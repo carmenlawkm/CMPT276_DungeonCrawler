@@ -22,7 +22,7 @@ public class TrapCell extends GameObject{
     }
 
     //methods
-    public void startTimer(int timer){
+    public void startTimer(){
         //method to start counting down to when it will disappear
     }
 }

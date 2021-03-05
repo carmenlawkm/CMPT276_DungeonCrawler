@@ -7,5 +7,5 @@ public enum ID {
     Trap(),
     Barrier(),
     RegularReward(),
-    SpecialReward();
+    BonusReward();
 }
