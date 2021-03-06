@@ -54,7 +54,7 @@ public class Game implements Runnable{
         //buffer strategies allow the computer to draw things on the screen
         bs = window.getCanvas().getBufferStrategy();
         if(bs == null){
-            window.getCanvas().createBufferStrategy(3);
+            window.getCanvas().createBufferStrategy(2);
             return;
         }
         g = bs.getDrawGraphics();
@@ -75,7 +75,7 @@ public class Game implements Runnable{
 
         while(running){
             update();//update all variables, position of objects..etc
-            render();//render (draw) everthing on the window ---- loop
+            render();//render (draw) everything on the window ---- loop
         }
 
         stop();
