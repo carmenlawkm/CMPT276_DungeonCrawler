@@ -1,6 +1,7 @@
 package main.java.com.game;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.util.concurrent.ExecutionException;
 
 import main.java.com.game.GameObjects.ID;
@@ -18,6 +19,9 @@ public class Game implements Runnable{
 
     private BufferStrategy bs;
     private Graphics g;
+
+    //TEMPORARY CODE
+    private BufferedImage testImage;
 
 
     public Game (int width, int height, String title){
@@ -63,6 +67,10 @@ public class Game implements Runnable{
             return;
         }
         g = bs.getDrawGraphics();
+
+        //draw graphics here
+        g.drawImage(testImage, 0, 0, null);
+
         bs.show();
         g.dispose();
     }
@@ -70,7 +78,7 @@ public class Game implements Runnable{
     //initialize game graphics etc
     private void init(){
         window = new Window(width, height, title);
-
+        testImage = ImageLoader.loadImage("/main/resource/dungeonBG_resized.png");
     }
 
 
