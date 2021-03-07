@@ -3,8 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import main.java.com.game.GameObjects.ID;
-import main.java.com.game.GameObjects.MainCharacter;
+import main.java.com.game.GameObjects.*;
 
 public class Game implements Runnable{
     private Window window;
@@ -18,8 +17,8 @@ public class Game implements Runnable{
     private Graphics g;
 
     //TEMPORARY CODE
-    private BufferedImage testImage;
-    MainCharacter player = new MainCharacter("/main/resources/dungeonBG_resized.png", new Point(0, 0), ID.MainCharacter);
+    MainCharacter player = new MainCharacter("/main/resources/mainCharacter.png", new Point(0, 0), ID.MainCharacter);
+    Enemy enemy1 = new Enemy("/main/resources/slime.png", new Point(50, 50), ID.Enemy, 50);
 
 
     public Game (int width, int height, String title){
@@ -67,7 +66,9 @@ public class Game implements Runnable{
         g = bs.getDrawGraphics();
 
         //draw graphics here
-        g.drawImage(testImage, 0, 0, null);
+        g.drawImage(player.loadImage(), 0, 0, null);
+        g.drawImage(enemy1.loadImage(), enemy1.getX(), enemy1.getY(), null);
+
 
         bs.show();
         g.dispose();
@@ -76,7 +77,6 @@ public class Game implements Runnable{
     //initialize game graphics etc
     private void init(){
         window = new Window(width, height, title);
-        testImage = player.loadImage();
     }
 
 
