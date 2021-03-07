@@ -1,6 +1,7 @@
 package main.java.com.game.GameObjects;
 
 import main.java.com.game.ImageLoader;
+import net.coobird.thumbnailator.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -56,7 +57,9 @@ public abstract class GameObject {
 
     public BufferedImage loadImage(){
         try {
-            return ImageIO.read(ImageLoader.class.getResource(image));
+            BufferedImage bImage;
+            bImage = ImageIO.read(ImageLoader.class.getResource(image));
+            return Thumbnails.of(bImage).size(100, 100).asBufferedImage();
         }catch (IOException e){
             e.printStackTrace();
             System.exit(1);

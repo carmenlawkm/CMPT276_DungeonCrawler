@@ -2,12 +2,9 @@ package main.java.com.game;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.concurrent.ExecutionException;
 
 import main.java.com.game.GameObjects.ID;
 import main.java.com.game.GameObjects.MainCharacter;
-
-import java.awt.*;
 
 public class Game implements Runnable{
     private Window window;
@@ -22,6 +19,7 @@ public class Game implements Runnable{
 
     //TEMPORARY CODE
     private BufferedImage testImage;
+    MainCharacter player = new MainCharacter("/main/resources/dungeonBG_resized.png", new Point(0, 0), ID.MainCharacter);
 
 
     public Game (int width, int height, String title){
@@ -78,7 +76,7 @@ public class Game implements Runnable{
     //initialize game graphics etc
     private void init(){
         window = new Window(width, height, title);
-        testImage = ImageLoader.loadImage("/main/resource/dungeonBG_resized.png");
+        testImage = player.loadImage();
     }
 
 
