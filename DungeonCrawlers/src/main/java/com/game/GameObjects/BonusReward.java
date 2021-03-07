@@ -5,7 +5,7 @@ import java.awt.*;
 public class BonusReward extends RewardCell{
     int disappearTimer;
 
-    BonusReward(Image image, Point location, ID id, int value, int disappearTimer) {
+    BonusReward(String image, Point location, ID id, int value, int disappearTimer) {
         super(image, location, id, value);
         this.disappearTimer = disappearTimer;
     }

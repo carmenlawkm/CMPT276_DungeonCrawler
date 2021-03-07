@@ -1,21 +1,26 @@
 package main.java.com.game.GameObjects;
 
+import main.java.com.game.ImageLoader;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public abstract class GameObject {
-    private Image image;
+    private String image;
     private Point location;
     private ID id;
 
     //constructor
-    GameObject(Image image, Point location, ID id){ //currently no location upon creation as
+    GameObject(String image, Point location, ID id){ //currently no location upon creation as
         this.image = image;
         this.location = location;
         this.id = id;
     }
 
     //getters
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -47,5 +52,15 @@ public abstract class GameObject {
 
     public void setY(int y){
         location.y = y;
+    }
+
+    public BufferedImage loadImage(){
+        try {
+            return ImageIO.read(ImageLoader.class.getResource(image));
+        }catch (IOException e){
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return null;
     }
 }

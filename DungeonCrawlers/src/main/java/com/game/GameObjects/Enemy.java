@@ -5,7 +5,7 @@ import java.awt.*;
 public class Enemy extends GameObject{
     private int deductionValue;
 
-    Enemy(Image image, Point location, ID id, int deductionValue) {
+    Enemy(String image, Point location, ID id, int deductionValue) {
         super(image, location, id);
         this.deductionValue = deductionValue;
     }

@@ -6,7 +6,7 @@ public class MainCharacter extends GameObject {
     private Point spawn;
 
     //constructor
-    MainCharacter(Image image, Point location, ID id) {
+    MainCharacter(String image, Point location, ID id) {
         super(image, location, id);
     }
 
