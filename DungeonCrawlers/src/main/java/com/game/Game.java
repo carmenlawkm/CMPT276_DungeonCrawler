@@ -1,12 +1,8 @@
 package main.java.com.game;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.concurrent.ExecutionException;
 
-import main.java.com.game.GameObjects.ID;
-import main.java.com.game.GameObjects.MainCharacter;
-
-import java.awt.*;
+import main.java.com.game.state.*;
 
 public class Game implements Runnable{
     private Window window;
@@ -19,6 +15,12 @@ public class Game implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
 
+    //states
+    private State gameState;
+    private State startMenuState;
+    private State levelMenuState;
+    private State tutorialState;
+
 
     public Game (int width, int height, String title){
         this.width = width;
@@ -26,6 +28,19 @@ public class Game implements Runnable{
         this.title = title;
     }
 
+    //initialize game graphics etc
+    private void init(){
+        window = new Window(width, height, title);
+        gameState = new GameState();
+        startMenuState = new StartMenuState();
+        levelMenuState = new LevelMenuState();
+        tutorialState = new TutorialState();
+
+        //set to gameState for now (implement menu later)
+        State.setState(gameState);
+
+
+    }
 
     //starts the thread
     public synchronized void start(){
@@ -51,7 +66,9 @@ public class Game implements Runnable{
 
     //game loop's method
     public void update(){
-
+        if(State.getState() != null){
+            State.getState().update();
+        }
     }
 
     //game loop's method
@@ -63,14 +80,14 @@ public class Game implements Runnable{
             return;
         }
         g = bs.getDrawGraphics();
+        //draw here
+        if(State.getState() != null) {
+            State.getState().render(g);
+        }
+
+        //end drawing
         bs.show();
         g.dispose();
-    }
-
-    //initialize game graphics etc
-    private void init(){
-        window = new Window(width, height, title);
-
     }
 
 
