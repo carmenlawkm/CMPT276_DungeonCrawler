@@ -1,4 +1,4 @@
-package main.java.com.game.GameObjects;
+package GameObjects;
 
 import java.awt.*;
 
@@ -8,7 +8,6 @@ public abstract class RewardCell extends GameObject{
     RewardCell(Point location, ID id, int value) {
         super(location, id);
         this.value = value;
-        this.setImage("/main/resources/regularReward.png");
+        this.setImage("/regularReward.png");
     }
-
 }

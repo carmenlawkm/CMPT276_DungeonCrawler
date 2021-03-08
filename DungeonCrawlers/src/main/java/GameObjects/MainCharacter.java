@@ -1,4 +1,4 @@
-package main.java.com.game.GameObjects;
+package GameObjects;
 
 import java.awt.*;
 
@@ -8,7 +8,7 @@ public class MainCharacter extends GameObject {
     //constructor
     public MainCharacter(Point location, ID id) {
         super(location, id);
-        this.setImage("/main/resources/mainCharacter.png");
+        this.setImage("/mainCharacter.png");
     }
 
     //setters

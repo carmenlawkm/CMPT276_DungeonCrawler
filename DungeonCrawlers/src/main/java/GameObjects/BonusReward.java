@@ -1,4 +1,4 @@
-package main.java.com.game.GameObjects;
+package GameObjects;
 
 import java.awt.*;
 
@@ -8,7 +8,7 @@ public class BonusReward extends RewardCell{
     BonusReward(Point location, ID id, int value, int disappearTimer) {
         super(location, id, value);
         this.disappearTimer = disappearTimer;
-        this.setImage("/main/resources/specialReward.png");
+        this.setImage("/specialReward.png");
     }
 
     //methods

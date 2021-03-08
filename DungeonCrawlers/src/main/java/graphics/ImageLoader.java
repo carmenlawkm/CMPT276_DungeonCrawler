@@ -1,10 +1,10 @@
-package main.java.com.game;
-
-import net.coobird.thumbnailator.Thumbnails;
+package graphics;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 public class ImageLoader {
 

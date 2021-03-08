@@ -1,9 +1,7 @@
-package main.java.com.game;
+package graphics;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class Window {
     private JFrame frame;

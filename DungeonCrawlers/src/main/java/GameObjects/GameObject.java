@@ -1,12 +1,6 @@
-package main.java.com.game.GameObjects;
+package GameObjects;
 
-import main.java.com.game.ImageLoader;
-import net.coobird.thumbnailator.*;
-
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public abstract class GameObject {
     private String image;
