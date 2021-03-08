@@ -54,16 +54,4 @@ public abstract class GameObject {
     public void setY(int y){
         location.y = y;
     }
-
-    public BufferedImage loadImage(){
-        try {
-            BufferedImage bImage;
-            bImage = ImageIO.read(ImageLoader.class.getResource(image));
-            return Thumbnails.of(bImage).size(100, 100).asBufferedImage();
-        }catch (IOException e){
-            e.printStackTrace();
-            System.exit(1);
-        }
-        return null;
-    }
 }

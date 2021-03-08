@@ -1,9 +1,10 @@
 package main.java.com.game;
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import main.java.com.game.GameObjects.*;
+
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 public class Game implements Runnable{
     private Window window;
@@ -16,17 +17,21 @@ public class Game implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
 
-    //TEMPORARY CODE
-    MainCharacter player = new MainCharacter("/main/resources/mainCharacter.png", new Point(0, 0), ID.MainCharacter);
-    Enemy enemy1 = new Enemy("/main/resources/slime.png", new Point(50, 50), ID.Enemy, 50);
+    //Game Objects
+    MainCharacter player;
+    ExitCell exitCell;
 
+    ArrayList<BarrierCell> barriers = new ArrayList<BarrierCell>();
+    ArrayList<Enemy> enemies;
+    ArrayList<TrapCell> traps;
+    ArrayList<RegularReward> regularRewards;
+    ArrayList<BonusReward> bonusRewards;
 
     public Game (int width, int height, String title){
         this.width = width;
         this.height = height;
         this.title = title;
     }
-
 
     //starts the thread
     public synchronized void start(){
@@ -35,7 +40,6 @@ public class Game implements Runnable{
         running = true;
         thread1 = new Thread (this);
         thread1.start();
-
     }
 
     //stops the thread
@@ -50,8 +54,14 @@ public class Game implements Runnable{
         }
     }
 
-    //game loop's method
-    public void update(){
+    //initialize game graphics etc
+    private void init(){
+        window = new Window(width, height, title);
+
+        //initialize based on locations
+        player = new MainCharacter("/main/resources/mainCharacter.png", new Point(50, 50), ID.MainCharacter);
+
+        barriers.add(new BarrierCell("/main/resources/barrier.png", new Point(100, 100), ID.Barrier));
 
     }
 
@@ -65,20 +75,34 @@ public class Game implements Runnable{
         }
         g = bs.getDrawGraphics();
 
-        //draw graphics here
-        g.drawImage(player.loadImage(), 0, 0, null);
-        g.drawImage(enemy1.loadImage(), enemy1.getX(), enemy1.getY(), null);
+        //DRAW GRPHICS HERE
 
+        //get background
+        g.drawImage(ImageLoader.loadImage("/main/resources/dungeonBG_resized.png", false), 0, 0, null);
+
+        //drawing floor tiles
+        for (int x = 50; x < width - 50; x += 50){
+            for (int y = 50; y < height - 50; y += 50){
+                g.drawImage(ImageLoader.loadImage("/main/resources/floor.png", true), x, y, null);
+            }
+        }
+
+        //draw barriers
+        for (BarrierCell barrier: barriers){
+            g.drawImage(ImageLoader.loadImage(barrier.getImage(), true), barrier.getX(), barrier.getY(), null);
+        }
+
+        //set main character
+        g.drawImage(ImageLoader.loadImage(player.getImage(), true), player.getX(), player.getY(), null);
 
         bs.show();
         g.dispose();
     }
 
-    //initialize game graphics etc
-    private void init(){
-        window = new Window(width, height, title);
-    }
+    //game loop's method
+    public void update(){
 
+    }
 
     //game loop
     public void run (){ //runnable's method - runs whenever we start our thread
