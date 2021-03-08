@@ -14,8 +14,7 @@ public abstract class GameObject {
     private ID id;
 
     //constructor
-    GameObject(String image, Point location, ID id){ //currently no location upon creation as
-        this.image = image;
+    GameObject(Point location, ID id){ //currently no location upon creation as
         this.location = location;
         this.id = id;
     }
@@ -42,6 +41,10 @@ public abstract class GameObject {
     }
 
     //setters
+    public void setImage(String image){
+        this.image = image;
+    }
+
     public void setLocation(int x, int y){
         location.x = x;
         location.y = y;

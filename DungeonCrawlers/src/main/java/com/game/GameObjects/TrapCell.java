@@ -6,10 +6,11 @@ public class TrapCell extends GameObject{
     int deductionValue;
     int disappearTimer;
 
-    TrapCell(String image, Point location, ID id, int deductionValue, int disappearTimer) {
-        super(image, location, id);
+    TrapCell(Point location, ID id, int deductionValue, int disappearTimer) {
+        super(location, id);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;
+        this.setImage("/main/resources/trap.png");
     }
 
     //getters

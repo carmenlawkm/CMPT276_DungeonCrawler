@@ -5,9 +5,10 @@ import java.awt.*;
 public class BonusReward extends RewardCell{
     int disappearTimer;
 
-    BonusReward(String image, Point location, ID id, int value, int disappearTimer) {
-        super(image, location, id, value);
+    BonusReward(Point location, ID id, int value, int disappearTimer) {
+        super(location, id, value);
         this.disappearTimer = disappearTimer;
+        this.setImage("/main/resources/specialReward.png");
     }
 
     //methods

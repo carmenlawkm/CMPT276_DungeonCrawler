@@ -58,9 +58,10 @@ public class Game implements Runnable{
     private void init(){
         window = new Window(width, height, title);
 
-        //initialize based on locations
-        player = new MainCharacter("/main/resources/mainCharacter.png", new Point(50, 50), ID.MainCharacter);
+        //initialize based on level design, PROBABLY WILL SEPARATE INTO 5 METHODS, ONE PER LEVEL
+        player = new MainCharacter(new Point(50, 50), ID.MainCharacter);
 
+        //create barriers
         barriers.add(new BarrierCell("/main/resources/barrier.png", new Point(100, 100), ID.Barrier));
 
     }
@@ -75,9 +76,9 @@ public class Game implements Runnable{
         }
         g = bs.getDrawGraphics();
 
-        //DRAW GRPHICS HERE
+        /****DRAW GRAPHICS HERE ****/
 
-        //get background
+        //draw background
         g.drawImage(ImageLoader.loadImage("/main/resources/dungeonBG_resized.png", false), 0, 0, null);
 
         //drawing floor tiles
@@ -92,7 +93,7 @@ public class Game implements Runnable{
             g.drawImage(ImageLoader.loadImage(barrier.getImage(), true), barrier.getX(), barrier.getY(), null);
         }
 
-        //set main character
+        //draw main character
         g.drawImage(ImageLoader.loadImage(player.getImage(), true), player.getX(), player.getY(), null);
 
         bs.show();
