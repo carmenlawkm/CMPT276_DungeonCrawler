@@ -36,6 +36,26 @@ public abstract class GameObject {
         return location.y;
     }
 
+    public Point moveNorth(){
+        this.location.y += 50;
+        return this.location;
+    }
+
+    public Point moveWest(){
+        this.location.x -= 50;
+        return this.location;
+    }
+
+    public Point moveEast(){
+        this.location.x += 50;
+        return this.location;
+    }
+
+    public Point moveSouth(){
+        this.location.y -= 50;
+        return this.location;
+    }
+
     public ID getId(){
         return id;
     }

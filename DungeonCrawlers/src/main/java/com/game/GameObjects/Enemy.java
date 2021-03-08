@@ -15,7 +15,7 @@ public class Enemy extends GameObject{
         deductionValue = value;
     }
 
-    void moveTowardsPlayer(Point playerLocation){
+    public void moveTowardsPlayer(Point playerLocation){
         //method to move towards player point
     }
 }

@@ -4,6 +4,7 @@ import main.java.com.game.GameObjects.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Game implements Runnable{
@@ -22,10 +23,10 @@ public class Game implements Runnable{
     ExitCell exitCell;
 
     ArrayList<BarrierCell> barriers = new ArrayList<BarrierCell>();
-    ArrayList<Enemy> enemies;
-    ArrayList<TrapCell> traps;
-    ArrayList<RegularReward> regularRewards;
-    ArrayList<BonusReward> bonusRewards;
+    ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    ArrayList<TrapCell> traps = new ArrayList<TrapCell>();
+    ArrayList<RegularReward> regularRewards = new ArrayList<RegularReward>();
+    ArrayList<BonusReward> bonusRewards = new ArrayList<BonusReward>();
 
     public Game (int width, int height, String title){
         this.width = width;
@@ -62,8 +63,14 @@ public class Game implements Runnable{
         player = new MainCharacter(new Point(50, 50), ID.MainCharacter);
 
         //create barriers
-        barriers.add(new BarrierCell("/main/resources/barrier.png", new Point(100, 100), ID.Barrier));
+        barriers.add(new BarrierCell(new Point(100, 100), ID.Barrier));
+        barriers.add(new BarrierCell(new Point(150, 100), ID.Barrier));
+        barriers.add(new BarrierCell(new Point(150, 150), ID.Barrier));
+        barriers.add(new BarrierCell(new Point(200, 100), ID.Barrier));
 
+        enemies.add(new Enemy(new Point(500, 500), ID.Enemy, 10));
+        enemies.add(new Enemy(new Point(300, 300), ID.Enemy, 10));
+        enemies.add(new Enemy(new Point(600, 600), ID.Enemy, 10));
     }
 
     //game loop's method
@@ -93,6 +100,11 @@ public class Game implements Runnable{
             g.drawImage(ImageLoader.loadImage(barrier.getImage(), true), barrier.getX(), barrier.getY(), null);
         }
 
+        //draw enemies
+        for (Enemy enemy: enemies){
+            g.drawImage(ImageLoader.loadImage(enemy.getImage(), true), enemy.getX(), enemy.getY(), null);
+        }
+
         //draw main character
         g.drawImage(ImageLoader.loadImage(player.getImage(), true), player.getX(), player.getY(), null);
 
@@ -102,7 +114,11 @@ public class Game implements Runnable{
 
     //game loop's method
     public void update(){
+        player.moveEast();
 
+        for (Enemy enemy: enemies){
+            enemy.moveTowardsPlayer(player.getLocation());
+        }
     }
 
     //game loop
