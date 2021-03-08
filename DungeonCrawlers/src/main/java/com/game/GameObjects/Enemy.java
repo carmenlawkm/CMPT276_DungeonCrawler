@@ -6,9 +6,9 @@ public class Enemy extends GameObject{
     private int deductionValue;
 
     public Enemy(Point location, ID id, int deductionValue) {
-        super(location, id);
+        super(location);
         this.deductionValue = deductionValue;
-        this.setImage("/main/resources/enemy.png");
+        //this.setImage("/main/resources/enemy.png");
     }
 
     void setDeductionValue(int value){
@@ -17,5 +17,15 @@ public class Enemy extends GameObject{
 
     public void moveTowardsPlayer(Point playerLocation){
         //method to move towards player point
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
+
     }
 }

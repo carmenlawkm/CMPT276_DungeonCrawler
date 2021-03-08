@@ -4,9 +4,18 @@ import java.awt.*;
 
 public class RegularReward extends RewardCell{
 
-    RegularReward(Point location, ID id, int value) {
-        super(location, id, value);
-        this.setImage("/main/resources/regularReward.png");
+    RegularReward(Point location, int value) {
+        super(location, value);
+        //this.setImage("/main/resources/regularReward.png");
     }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
+
+    }
 }

@@ -6,11 +6,11 @@ public class TrapCell extends GameObject{
     int deductionValue;
     int disappearTimer;
 
-    TrapCell(Point location, ID id, int deductionValue, int disappearTimer) {
-        super(location, id);
+    TrapCell(Point location, int deductionValue, int disappearTimer) {
+        super(location);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;
-        this.setImage("/main/resources/trap.png");
+        //this.setImage("/main/resources/trap.png");
     }
 
     //getters
@@ -25,5 +25,15 @@ public class TrapCell extends GameObject{
     //methods
     public void startTimer(){
         //method to start counting down to when it will disappear
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
+
     }
 }
