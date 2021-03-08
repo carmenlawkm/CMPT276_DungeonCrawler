@@ -39,7 +39,6 @@ public class Game implements Runnable{
         //set to gameState for now (implement menu later)
         State.setState(gameState);
 
-
     }
 
     //starts the thread
