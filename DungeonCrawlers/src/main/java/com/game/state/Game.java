@@ -1,4 +1,4 @@
-package main.java.com.game;
+package com.game.state;
 
 
 import main.java.com.game.GameObjects.*;
