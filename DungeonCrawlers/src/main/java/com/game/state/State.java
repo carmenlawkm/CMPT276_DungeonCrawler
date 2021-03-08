@@ -1,9 +1,9 @@
 package main.java.com.game.state;
 
+import main.java.com.game.Game;
 import java.awt.*;
 
 public abstract class State {
-
     //state manager
     private static State currentState = null;
 
@@ -15,7 +15,16 @@ public abstract class State {
         return currentState;
     }
 
+    protected Game game;
+
+    public State(Game game){
+        this.game = game;
+    }
+
+    //class
     public abstract void update();
     public abstract void render (Graphics g);
 
 }
+
+

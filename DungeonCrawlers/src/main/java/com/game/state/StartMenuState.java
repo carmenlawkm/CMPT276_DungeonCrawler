@@ -1,9 +1,13 @@
 package main.java.com.game.state;
 
+import main.java.com.game.Game;
+import main.java.com.game.GameObjects.MainCharacter;
+
 import java.awt.*;
 
 public class StartMenuState extends State{
-    public StartMenuState(){
+    public StartMenuState(Game game){
+        super(game);
 
     }
 

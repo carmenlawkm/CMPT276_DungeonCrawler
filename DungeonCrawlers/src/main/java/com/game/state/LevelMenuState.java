@@ -1,10 +1,12 @@
 package main.java.com.game.state;
 
+import main.java.com.game.Game;
+
 import java.awt.*;
 
 public class LevelMenuState extends State{
-    public LevelMenuState(){
-
+    public LevelMenuState(Game game){
+        super(game);
     }
 
     public void update() {
