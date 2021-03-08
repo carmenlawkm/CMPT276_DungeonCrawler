@@ -1,6 +1,5 @@
 package main.java.com.game;
 
-
 import main.java.com.game.GameObjects.*;
 
 import java.awt.*;
@@ -8,13 +7,11 @@ import java.awt.image.BufferStrategy;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import main.java.com.game.state.*;
-
-
 public class Game implements Runnable{
     private Window window;
     public int width, height;
     public String title;
+    private KeyInput keyInput;
 
     private Thread thread1; //game runs on thread1
     private boolean running = false;
@@ -32,45 +29,15 @@ public class Game implements Runnable{
     ArrayList<RegularReward> regularRewards = new ArrayList<RegularReward>();
     ArrayList<BonusReward> bonusRewards = new ArrayList<BonusReward>();
 
-    //states
-    private State gameState;
-    private State startMenuState;
-    private State levelMenuState;
-    private State tutorialState;
-
-
     public Game (int width, int height, String title){
         this.width = width;
         this.height = height;
         this.title = title;
+        keyInput= new KeyInput();
     }
-
-    //initialize game graphics etc
-    private void init(){
-        window = new Window(width, height, title);
-        gameState = new GameState();
-        startMenuState = new StartMenuState();
-        levelMenuState = new LevelMenuState();
-        tutorialState = new TutorialState();
-
-        //set to gameState for now (implement menu later)
-        State.setState(gameState);
-
-        //initialize based on level design, PROBABLY WILL SEPARATE INTO 5 METHODS, ONE PER LEVEL
-        player = new MainCharacter(new Point(50, 50), ID.MainCharacter);
-
-        //create barriers
-        barriers.add(new BarrierCell(new Point(100, 100), ID.Barrier));
-        barriers.add(new BarrierCell(new Point(150, 100), ID.Barrier));
-        barriers.add(new BarrierCell(new Point(150, 150), ID.Barrier));
-        barriers.add(new BarrierCell(new Point(200, 100), ID.Barrier));
-
-        enemies.add(new Enemy(new Point(500, 500), ID.Enemy, 10));
-        enemies.add(new Enemy(new Point(300, 300), ID.Enemy, 10));
-        enemies.add(new Enemy(new Point(600, 600), ID.Enemy, 10));
-
+    public KeyInput getKeyInput(){
+        return keyInput;
     }
-
     //starts the thread
     public synchronized void start(){
         if(running) return;
@@ -90,6 +57,26 @@ public class Game implements Runnable{
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    //initialize game graphics etc
+    private void init(){
+        window = new Window(width, height, title);
+        //initializing a keylistener
+        window.getFrame().addKeyListener(keyInput);
+
+        //initialize based on level design, PROBABLY WILL SEPARATE INTO 5 METHODS, ONE PER LEVEL
+        player = new MainCharacter(new Point(50, 50), ID.MainCharacter);
+
+        //create barriers
+        barriers.add(new BarrierCell(new Point(100, 100), ID.Barrier));
+        barriers.add(new BarrierCell(new Point(150, 100), ID.Barrier));
+        barriers.add(new BarrierCell(new Point(150, 150), ID.Barrier));
+        barriers.add(new BarrierCell(new Point(200, 100), ID.Barrier));
+
+        enemies.add(new Enemy(new Point(500, 500), ID.Enemy, 10));
+        enemies.add(new Enemy(new Point(300, 300), ID.Enemy, 10));
+        enemies.add(new Enemy(new Point(600, 600), ID.Enemy, 10));
     }
 
     //game loop's method
@@ -127,22 +114,14 @@ public class Game implements Runnable{
         //draw main character
         g.drawImage(ImageLoader.loadImage(player.getImage(), true), player.getX(), player.getY(), null);
 
-        //draw here
-        if(State.getState() != null) {
-            State.getState().render(g);
-        }
-
         bs.show();
         g.dispose();
     }
 
     //game loop's method
     public void update(){
-        if (State.getState() != null) {
-            State.getState().update();
-        }
-
-        player.moveEast();
+        keyInput.update();
+        //player.moveEast();
 
         for (Enemy enemy: enemies){
             enemy.moveTowardsPlayer(player.getLocation());
