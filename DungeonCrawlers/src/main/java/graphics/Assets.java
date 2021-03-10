@@ -1,5 +1,7 @@
-package main.java.com.game.graphics;
+package graphics;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 
@@ -19,4 +21,5 @@ public class Assets {
         trap = ImageLoader.loadImage("/main/resources/trap.png");
 
     }
+
 }

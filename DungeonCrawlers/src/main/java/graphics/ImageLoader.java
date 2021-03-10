@@ -1,4 +1,4 @@
-package main.java.com.game.graphics;
+package graphics;
 
 //import net.coobird.thumbnailator.Thumbnails;
 
