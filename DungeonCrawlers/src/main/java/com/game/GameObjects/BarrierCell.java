@@ -5,7 +5,6 @@ import java.awt.*;
 public class BarrierCell extends GameObject{
     public BarrierCell(Point location) {
         super(location);
-        //this.setImage("/main/resources/barrier.png");
     }
 
     @Override

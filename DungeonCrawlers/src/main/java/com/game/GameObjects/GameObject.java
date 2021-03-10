@@ -1,7 +1,5 @@
 package main.java.com.game.GameObjects;
 
-//import net.coobird.thumbnailator.*;
-
 import java.awt.*;
 
 public abstract class GameObject {
@@ -10,6 +8,15 @@ public abstract class GameObject {
     //constructor
     GameObject(Point location){ //currently no location upon creation as
         this.location = location;
+    }
+
+    public Point getLocation(){
+        return location;
+    }
+
+    public void setLocation(int x, int y){
+        location.x = x;
+        location.y = y;
     }
 
     public abstract void update();

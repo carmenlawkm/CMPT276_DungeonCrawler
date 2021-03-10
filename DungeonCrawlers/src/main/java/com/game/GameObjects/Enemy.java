@@ -8,7 +8,7 @@ public class Enemy extends GameObject{
     public Enemy(Point location, ID id, int deductionValue) {
         super(location);
         this.deductionValue = deductionValue;
-        //this.setImage("/main/resources/enemy.png");
+
     }
 
     void setDeductionValue(int value){

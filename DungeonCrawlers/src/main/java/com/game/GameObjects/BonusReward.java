@@ -8,7 +8,7 @@ public class BonusReward extends RewardCell{
     BonusReward(Point location, int value, int disappearTimer) {
         super(location, value);
         this.disappearTimer = disappearTimer;
-        //this.setImage("/main/resources/specialReward.png");
+
     }
 
     //methods
