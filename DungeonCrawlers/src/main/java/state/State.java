@@ -1,6 +1,5 @@
-package main.java.com.game.state;
+package state;
 
-import main.java.com.game.Game;
 import java.awt.*;
 
 public abstract class State {

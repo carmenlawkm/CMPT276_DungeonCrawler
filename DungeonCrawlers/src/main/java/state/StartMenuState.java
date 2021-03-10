@@ -1,7 +1,4 @@
-package main.java.com.game.state;
-
-import main.java.com.game.Game;
-import main.java.com.game.GameObjects.MainCharacter;
+package state;
 
 import java.awt.*;
 
