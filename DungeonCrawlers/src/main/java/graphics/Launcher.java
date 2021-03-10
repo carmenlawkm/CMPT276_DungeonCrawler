@@ -1,4 +1,4 @@
-package main.java.com.game;
+import state.Game;
 
 //starts up our game.
 public class Launcher {

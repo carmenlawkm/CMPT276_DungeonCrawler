@@ -1,7 +1,7 @@
-package main.java.com.game.GameObjects;
+package GameObjects;
 
-import main.java.com.game.Game;
-import main.java.com.game.graphics.Assets;
+import state.Game;
+import graphics.*;
 
 import java.awt.*;
 

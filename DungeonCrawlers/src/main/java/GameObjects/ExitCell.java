@@ -1,6 +1,4 @@
-package main.java.com.game.GameObjects;
-
-import main.java.com.game.Game;
+package GameObjects;
 
 import java.awt.*;
 
