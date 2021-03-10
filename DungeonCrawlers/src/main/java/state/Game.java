@@ -7,7 +7,6 @@ import input.KeyInput;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
 
 
 public class Game implements Runnable {
