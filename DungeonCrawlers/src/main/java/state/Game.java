@@ -1,17 +1,14 @@
-package main.java.com.game;
+package state;
 
-import main.java.com.game.GameObjects.*;
-import main.java.com.game.display.Window;
-import main.java.com.game.graphics.Assets;
-import main.java.com.game.graphics.ImageLoader;
-import main.java.com.game.input.KeyInput;
-import main.java.com.game.state.GameState;
-import main.java.com.game.state.State;
+import GameObjects.*;
+import graphics.*;
+import graphics.Window;
+import input.KeyInput;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
 
 public class Game implements Runnable {
     private Window window;
@@ -27,8 +24,6 @@ public class Game implements Runnable {
     private Graphics g;
 
     private State gameState;
-
-    private BufferedImage test;
 
 
     public Game(int width, int height, String title) {
