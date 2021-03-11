@@ -4,19 +4,24 @@ import graphics.Assets;
 import graphics.Window;
 import state.Game;
 import state.State;
+import state.Timer;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public abstract class GameObject extends Thread{
+public abstract class GameObject implements Runnable{
     protected Point location;
     protected Image image;
     protected Game game;
+    protected Timer timer;
+    protected Thread objectThread;
+    protected boolean running;
 
     //constructor
     GameObject(Point location){ //currently no location upon creation as
         this.location = location;
         this.game = Game.getInstance();
+        this.timer = game.timer;
     }
 
     public Point getLocation(){
@@ -52,9 +57,35 @@ public abstract class GameObject extends Thread{
         g.dispose();
     }
 
-    @Override
     public void run() {
+        int i = 0;
+
+        while(i == 0) {
+            System.out.println("hello");
             update();
             render();
+        }
+    }
+
+    //starts the thread
+    public synchronized void start() {
+        if (running) return;
+
+        running = true;
+        objectThread = new Thread(this);
+        objectThread.start();
+
+    }
+
+    //stops the thread
+    public synchronized void stop() {
+        if (!running) return;
+
+        running = false;
+        try {
+            objectThread.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
