@@ -19,23 +19,25 @@ public class MainCharacter extends GameObject {
 
     @Override
     public void update() {
-        if(game.getKeyInput().up){
-            location.y -=3;
-        }
-        if(game.getKeyInput().down){
-            location.y +=3;
-        }
-        if(game.getKeyInput().left){
-            location.x -=3;
-        }
-        if(game.getKeyInput().right){
-            location.x +=3;
+        if (game.ifKeyPressed()){
+            if (game.getKeyInput().up) {
+                location.y -= 50;
+            }
+            if (game.getKeyInput().down) {
+                location.y += 50;
+            }
+            if (game.getKeyInput().left) {
+                location.x -= 50;
+            }
+            if (game.getKeyInput().right) {
+                location.x += 50;
+            }
         }
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.player, location.x,location.y, 128,128,null);
+        g.drawImage(Assets.player, location.x,location.y, 50,50,null);
     }
 
     //setters

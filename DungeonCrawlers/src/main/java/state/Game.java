@@ -36,7 +36,9 @@ public class Game implements Runnable {
         return keyInput;
     }
 
-
+    public boolean ifKeyPressed(){
+        return keyInput.ifPressed;
+    }
 
     //initialize game graphics etc
     private void init() {
@@ -102,13 +104,14 @@ public class Game implements Runnable {
             lastTime = now;
 
             if (delta >= 1) {
-                update();
-                render();
                 ticks++;
                 delta--;
+                update();
+                render();
+                keyInput.ifPressed = false;
             }
 
-            if (timer >= 1000000000) {
+            if (timer >= 10000000) {
                 System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
@@ -139,6 +142,4 @@ public class Game implements Runnable {
             e.printStackTrace();
         }
     }
-
-
 }
