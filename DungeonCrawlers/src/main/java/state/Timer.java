@@ -4,7 +4,7 @@ public class Timer extends Thread{
 
     private boolean running;
     private Thread timerThread;
-
+    private Game game;
     private int fps = 60;
     private double timePerTick = 1000000000 / fps;
     private double delta = 0;
@@ -14,6 +14,9 @@ public class Timer extends Thread{
     private int ticks = 0;
 
     public void run() {
+
+        game = Game.getInstance();
+
         now = System.nanoTime();
         delta += (now - lastTime) / timePerTick;
         timer += now - lastTime;
@@ -25,10 +28,11 @@ public class Timer extends Thread{
             timer += now - lastTime;
             lastTime = now;
 
-            if (delta >= 50) {
+            if (delta >= 1) {
                 ticks++;
                 delta--;
             }
+
 
             if (timer >= 1000*10000000) {
                 //System.out.println("Ticks and Frames: " + ticks);
@@ -36,7 +40,9 @@ public class Timer extends Thread{
                 timer = 0;
 
                 synchronized (this) {
+                    //game.g.dispose();
                     notifyAll();
+                    game.resetGraphics();
                     System.out.println("notifying");
                 }
             }

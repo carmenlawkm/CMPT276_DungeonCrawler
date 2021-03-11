@@ -27,8 +27,8 @@ public class Game implements Runnable {
     private Thread gameThread; //game runs on gameThread
     private boolean running = false;
 
-    private BufferStrategy bs;
-    private Graphics g;
+    public BufferStrategy bs;
+    public Graphics g;
 
     private State gameState;
 
@@ -91,14 +91,28 @@ public class Game implements Runnable {
         gameState = new GameState(this);
         State.setState(gameState);
 
+        while(bs == null){
+            initiateBs();
+            System.out.println("hello111");
+        }
+
+
+    }
+
+    public void initiateBs(){
         //buffer strategies allow the computer to draw things on the screen
         bs = window.getCanvas().getBufferStrategy();
         if (bs == null) {
             System.out.println("haha");
             window.getCanvas().createBufferStrategy(2);
+            return;
         }
 
         g = bs.getDrawGraphics();
+        g.clearRect(0, 0, width, height);
+    }
+
+    public void resetGraphics() {
         g.clearRect(0, 0, width, height);
     }
 
@@ -118,17 +132,6 @@ public class Game implements Runnable {
 
         stop();
     }
-
-    public void render(GameObject object) {
-        //draw here
-        System.out.println("here");
-        g.drawImage(object.image, object.getLocation().x, object.getLocation().y, 40, 40, null);
-
-        bs.show();
-    }
-
-
-
 
     //starts the thread
     public synchronized void start() {

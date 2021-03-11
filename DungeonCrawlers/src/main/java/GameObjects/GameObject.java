@@ -37,36 +37,17 @@ public abstract class GameObject implements Runnable{
 
     public void render() {
 
-        BufferStrategy bs;
-        Graphics g;
-        Window window = game.getWindow();
-
-        //buffer strategies allow the computer to draw things on the screen
-        bs = window.getCanvas().getBufferStrategy();
-        if (bs == null) {
-            window.getCanvas().createBufferStrategy(2);
-            return;
-        }
-        g = bs.getDrawGraphics();
-        g.clearRect(0, 0, game.width, game.height);
-
         //draw here
-        g.drawImage(image, location.x, location.y, 40, 40, null);
+        game.g.drawImage(image, location.x, location.y, 40, 40, null);
 
-        bs.show();
-        g.dispose();
+        game.bs.show();
     }
 
     public void run() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         synchronized (game.timer){
             while(running) {
                 update();
-                game.render(this);
+                render();
 
                 //wait for one tick controlled by Timer class
                 try {
