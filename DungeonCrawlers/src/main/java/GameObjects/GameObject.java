@@ -58,12 +58,20 @@ public abstract class GameObject implements Runnable{
     }
 
     public void run() {
-        int i = 0;
 
-        while(i == 0) {
-            System.out.println("hello");
-            update();
-            render();
+        synchronized (game.timer){
+            while(running) {
+                System.out.println("hello");
+
+                update();
+                render();
+
+                try {
+                    game.timer.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
