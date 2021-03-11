@@ -8,13 +8,11 @@ import java.awt.*;
 public class MainCharacter extends GameObject {
     private Point spawn;
     protected int score;
-    private Game game;
 
     //constructor
-    public MainCharacter(Game game, Point location) {
+    public MainCharacter(Point location) {
         super(location);
         score = 0;
-        this.game = game;
         this.image = Assets.player;
     }
 

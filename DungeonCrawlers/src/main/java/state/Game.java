@@ -1,6 +1,5 @@
 package state;
 
-import GameObjects.*;
 import graphics.*;
 import graphics.Window;
 import input.KeyInput;
@@ -10,13 +9,17 @@ import java.awt.image.BufferStrategy;
 
 
 public class Game implements Runnable {
+
+    private static Game instance;
+    private boolean isFirstRun;
+
     private Window window;
     public int width, height;
     public String title;
 
     private KeyInput keyInput;
 
-    private Thread thread1; //game runs on thread1
+    private Thread gameThread; //game runs on gameThread
     private boolean running = false;
 
     private BufferStrategy bs;
@@ -26,10 +29,28 @@ public class Game implements Runnable {
 
 
     public Game(int width, int height, String title) {
+
+        //singleton initiation
+        if(instance != null){
+            isFirstRun = false;
+        }else{
+            isFirstRun = true;
+        }
+
         this.width = width;
         this.height = height;
         this.title = title;
         keyInput = new KeyInput();
+    }
+
+    //creates one public instance of object Game
+    //available to all classes, protects from creating duplicate Game objects
+    public static Game getInstance(){
+
+        if(instance == null){
+            instance = new Game(1200, 800, "DungeonCrawler");
+        }
+        return instance;
     }
 
     public KeyInput getKeyInput() {
@@ -127,8 +148,8 @@ public class Game implements Runnable {
         if (running) return;
 
         running = true;
-        thread1 = new Thread(this);
-        thread1.start();
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     //stops the thread
@@ -137,7 +158,7 @@ public class Game implements Runnable {
 
         running = false;
         try {
-            thread1.join();
+            gameThread.join();
         } catch (Exception e) {
             e.printStackTrace();
         }

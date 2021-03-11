@@ -9,16 +9,13 @@ import java.util.ArrayList;
 
 public class GameState extends State{
     private MainCharacter player;
-    private MainCharacter player2;
 
 
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
     public GameState(Game game){
         super(game);
-        player = new MainCharacter(game,new Point(100, 100));
-        player2 = new MainCharacter(game,new Point(500, 100));
-
+        player = new MainCharacter(new Point(100, 100));
 
         enemies.add(new Enemy(new Point(500, 500), ID.Enemy, 10));
         enemies.add(new Enemy(new Point(200, 500), ID.Enemy, 10));
@@ -27,7 +24,6 @@ public class GameState extends State{
 
     public void update() {
         player.update();
-        player2.update();
 
         for (Enemy enemy: enemies){
             enemy.update();
@@ -36,10 +32,9 @@ public class GameState extends State{
 
     public void render(Graphics g) {
         player.render(g);
-        player2.update();
 
         for (Enemy enemy: enemies){
-            enemy.update();
+            enemy.render(g);
         }
     }
 }
