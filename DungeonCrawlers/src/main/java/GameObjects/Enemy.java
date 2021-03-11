@@ -18,12 +18,11 @@ public class Enemy extends GameObject{
     }
 
     public void moveTowardsPlayer(Point playerLocation){
-        //TESTING MOVEMENT, TO BE REMOVED
-        setLocation(location.x, location.y + 50);
     }
 
     @Override
     public void update() {
-
+        setLocation(location.x, location.y + 50);
+        System.out.println("new location: " + location.getY());
     }
 }

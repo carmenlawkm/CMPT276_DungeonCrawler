@@ -14,8 +14,6 @@ public class Timer extends Thread{
     private int ticks = 0;
 
     public void run() {
-        System.out.println("y11e");
-
         now = System.nanoTime();
         delta += (now - lastTime) / timePerTick;
         timer += now - lastTime;
@@ -30,6 +28,12 @@ public class Timer extends Thread{
             if (delta >= 50) {
                 ticks++;
                 delta--;
+            }
+
+            if (timer >= 1000*10000000) {
+                //System.out.println("Ticks and Frames: " + ticks);
+                ticks = 0;
+                timer = 0;
 
                 synchronized (this) {
                     notifyAll();

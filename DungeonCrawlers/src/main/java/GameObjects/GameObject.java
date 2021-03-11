@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 
 public abstract class GameObject implements Runnable{
     protected Point location;
-    protected Image image;
+    public Image image;
     protected Game game;
     protected Timer timer;
     protected Thread objectThread;
@@ -37,7 +37,7 @@ public abstract class GameObject implements Runnable{
 
     public void render() {
 
-        BufferStrategy bs = game.getBs();
+        BufferStrategy bs;
         Graphics g;
         Window window = game.getWindow();
 
@@ -58,14 +58,17 @@ public abstract class GameObject implements Runnable{
     }
 
     public void run() {
-
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         synchronized (game.timer){
             while(running) {
-                System.out.println("hello");
-
                 update();
-                render();
+                game.render(this);
 
+                //wait for one tick controlled by Timer class
                 try {
                     game.timer.wait();
                 } catch (InterruptedException e) {
@@ -82,7 +85,6 @@ public abstract class GameObject implements Runnable{
         running = true;
         objectThread = new Thread(this);
         objectThread.start();
-
     }
 
     //stops the thread
