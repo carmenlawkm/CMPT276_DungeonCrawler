@@ -15,9 +15,4 @@ public class ExitCell extends GameObject {
     public void update() {
 
     }
-
-    @Override
-    public void render(Graphics g) {
-
-    }
 }

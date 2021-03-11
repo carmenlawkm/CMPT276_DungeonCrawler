@@ -13,7 +13,7 @@ public class TutorialState extends State{
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render() {
 
     }
 }

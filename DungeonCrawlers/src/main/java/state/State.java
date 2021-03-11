@@ -22,7 +22,7 @@ public abstract class State {
 
     //class
     public abstract void update();
-    public abstract void render (Graphics g);
+    public abstract void render ();
 
 }
 

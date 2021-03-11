@@ -33,9 +33,4 @@ public class TrapCell extends GameObject{
     public void update() {
 
     }
-
-    @Override
-    public void render(Graphics g) {
-
-    }
 }

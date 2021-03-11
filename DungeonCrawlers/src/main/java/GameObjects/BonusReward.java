@@ -23,9 +23,4 @@ public class BonusReward extends RewardCell{
     public void update() {
 
     }
-
-    @Override
-    public void render(Graphics g) {
-
-    }
 }

@@ -23,18 +23,9 @@ public class GameState extends State{
     }
 
     public void update() {
-        player.update();
-
-        for (Enemy enemy: enemies){
-            enemy.update();
-        }
+        player.start();
     }
 
-    public void render(Graphics g) {
-        player.render(g);
-
-        for (Enemy enemy: enemies){
-            enemy.render(g);
-        }
+    public void render() {
     }
 }

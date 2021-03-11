@@ -15,9 +15,4 @@ public class RegularReward extends RewardCell{
     public void update() {
 
     }
-
-    @Override
-    public void render(Graphics g) {
-
-    }
 }

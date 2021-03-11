@@ -14,9 +14,4 @@ public class BarrierCell extends GameObject{
     public void update() {
 
     }
-
-    @Override
-    public void render(Graphics g) {
-
-    }
 }

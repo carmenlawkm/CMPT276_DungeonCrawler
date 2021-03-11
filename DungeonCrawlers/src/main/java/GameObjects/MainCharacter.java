@@ -18,6 +18,8 @@ public class MainCharacter extends GameObject {
 
     @Override
     public void update() {
+        game.getKeyInput().update();
+
         if (game.ifKeyPressed()){
             if (game.getKeyInput().up) {
                 location.y -= 50;

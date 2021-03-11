@@ -1,11 +1,14 @@
 package GameObjects;
 
 import graphics.Assets;
+import graphics.Window;
 import state.Game;
+import state.State;
 
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 
-public abstract class GameObject implements Runnable{
+public abstract class GameObject extends Thread{
     protected Point location;
     protected Image image;
     protected Game game;
@@ -27,11 +30,31 @@ public abstract class GameObject implements Runnable{
 
     public abstract void update();
 
-    public void render(Graphics g) {
-        g.drawImage(this.image, location.x,location.y, 40,40,null);
+    public void render() {
+
+        BufferStrategy bs = game.getBs();
+        Graphics g;
+        Window window = game.getWindow();
+
+        //buffer strategies allow the computer to draw things on the screen
+        bs = window.getCanvas().getBufferStrategy();
+        if (bs == null) {
+            window.getCanvas().createBufferStrategy(2);
+            return;
+        }
+        g = bs.getDrawGraphics();
+        g.clearRect(0, 0, game.width, game.height);
+
+        //draw here
+        g.drawImage(image, location.x, location.y, 40, 40, null);
+
+        bs.show();
+        g.dispose();
     }
 
-    public void run(){
-        update();
+    @Override
+    public void run() {
+            update();
+            render();
     }
 }

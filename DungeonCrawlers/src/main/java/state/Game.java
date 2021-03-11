@@ -1,11 +1,13 @@
 package state;
 
+import GameObjects.MainCharacter;
 import graphics.*;
 import graphics.Window;
 import input.KeyInput;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.nio.Buffer;
 
 
 public class Game implements Runnable {
@@ -26,7 +28,6 @@ public class Game implements Runnable {
     private Graphics g;
 
     private State gameState;
-
 
     public Game(int width, int height, String title) {
 
@@ -53,6 +54,18 @@ public class Game implements Runnable {
         return instance;
     }
 
+    public BufferStrategy getBs(){
+        return bs;
+    }
+
+    public Graphics getG(){
+        return g;
+    }
+
+    public Window getWindow(){
+        return window;
+    }
+
     public KeyInput getKeyInput() {
         return keyInput;
     }
@@ -69,46 +82,13 @@ public class Game implements Runnable {
         Assets.initAssets();
         gameState = new GameState(this);
         State.setState(gameState);
-
-    }
-
-    //game loop's method
-    public void render() {
-        //buffer strategies allow the computer to draw things on the screen
-        bs = window.getCanvas().getBufferStrategy();
-        if (bs == null) {
-            window.getCanvas().createBufferStrategy(2);
-            return;
-        }
-        g = bs.getDrawGraphics();
-        g.clearRect(0, 0, width, height);
-
-        //draw here
-
-        if (State.getState() != null) {
-            State.getState().render(g);
-        }
-
-        //end draw
-
-        bs.show();
-        g.dispose();
-    }
-
-    //game loop's method
-    public void update() {
-        keyInput.update();
-
-        if (State.getState() != null) {
-
-            State.getState().update();
-        }
-
     }
 
     //game loop
     public void run() { //runnable's method - runs whenever we start our thread
         init();
+
+        MainCharacter player = new MainCharacter( new Point(100, 100));
 
         int fps = 60;
         double timePerTick = 1000000000 / fps;
@@ -117,6 +97,8 @@ public class Game implements Runnable {
         long lastTime = System.nanoTime();
         long timer = 0;
         int ticks = 0;
+
+        player.start();
 
         while (running) {
             now = System.nanoTime();
@@ -127,13 +109,12 @@ public class Game implements Runnable {
             if (delta >= 1) {
                 ticks++;
                 delta--;
-                update();
-                render();
+
                 keyInput.ifPressed = false;
             }
 
             if (timer >= 10000000) {
-                System.out.println("Ticks and Frames: " + ticks);
+                //System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
             }
