@@ -1,9 +1,12 @@
 package GameObjects;
 
+import graphics.Assets;
+
 import java.awt.*;
 
 public abstract class GameObject {
     protected Point location;
+    protected Image image;
 
     //constructor
     GameObject(Point location){ //currently no location upon creation as
@@ -20,6 +23,9 @@ public abstract class GameObject {
     }
 
     public abstract void update();
-    public abstract void render(Graphics g);
+
+    public void render(Graphics g) {
+        g.drawImage(this.image, location.x,location.y, 40,40,null);
+    }
 
 }

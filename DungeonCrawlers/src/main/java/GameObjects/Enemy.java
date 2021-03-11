@@ -1,5 +1,7 @@
 package GameObjects;
 
+import graphics.Assets;
+
 import java.awt.*;
 
 public class Enemy extends GameObject{
@@ -8,7 +10,7 @@ public class Enemy extends GameObject{
     public Enemy(Point location, ID id, int deductionValue) {
         super(location);
         this.deductionValue = deductionValue;
-
+        this.image = Assets.enemy;
     }
 
     void setDeductionValue(int value){

@@ -15,6 +15,7 @@ public class MainCharacter extends GameObject {
         super(location);
         score = 0;
         this.game = game;
+        this.image = Assets.player;
     }
 
     @Override
@@ -33,11 +34,6 @@ public class MainCharacter extends GameObject {
                 location.x += 50;
             }
         }
-    }
-
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(Assets.player, location.x,location.y, 50,50,null);
     }
 
     //setters

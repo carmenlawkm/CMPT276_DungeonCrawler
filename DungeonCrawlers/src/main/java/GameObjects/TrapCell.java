@@ -1,5 +1,7 @@
 package GameObjects;
 
+import graphics.Assets;
+
 import java.awt.*;
 
 public class TrapCell extends GameObject{
@@ -10,7 +12,7 @@ public class TrapCell extends GameObject{
         super(location);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;
-        //this.setImage("/main/resources/trap.png");
+        this.image = Assets.trap;
     }
 
     //getters
