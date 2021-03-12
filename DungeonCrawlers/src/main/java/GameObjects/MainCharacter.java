@@ -20,7 +20,7 @@ public class MainCharacter extends GameObject {
     public static MainCharacter getInstance(){
 
         if(instance == null){
-            instance = new MainCharacter(new Point(100,100));
+            instance = new MainCharacter(new Point(0,0));
         }
         return instance;
     }
@@ -31,23 +31,24 @@ public class MainCharacter extends GameObject {
         game.getKeyInput().update();
 
         if (game.getKeyInput().up) {
-            if((location.y-50<=800) && (location.y-50>=0)){
-                location.y -= 50;
+            if((location.y-40<=760) && (location.y-40>=0)){
+                location.y -= 40;
             }
         }
         if (game.getKeyInput().down) {
-            if((location.y+50<=800) && (location.y+50>=0)){
-                location.y += 50;
+            if((location.y+40<=760) && (location.y+40>=0)){
+                location.y += 40;
             }
         }
         if (game.getKeyInput().left) {
-            if((location.x-50<=1200) && (location.x-50>=0)){
-                location.x -= 50;
+            if((location.x-40<=1160) && (location.x-40>=0)){
+                location.x -= 40;
             }
         }
         if (game.getKeyInput().right) {
-            if((location.x+50<=1200) && (location.x+50>=0)){
-                location.x += 50;
+            if((location.x+40<=1160) && (location.x+40>=0)){
+                location.x += 40;
+                System.out.println(location.x);
             }
         }
     }
