@@ -24,20 +24,31 @@ public class Enemy extends GameObject{
     @Override
     public void update() {
         //MainCharacter player=MainCharacter.getInstance();
-        //int y=player.y;
+        //int y=player.y;dd
+        int flag=0;
         int xtowardsplayer=0;
         int ytowardsplayer=0;
-        if(location.x<player.getX()){
-            xtowardsplayer=50;
-        }
-        if(location.x>player.getX()){
-            xtowardsplayer=-50;
-        }
-        if(location.y<player.getY()){
-            ytowardsplayer=50;
-        }
-        if(location.y>player.getY()){
-            ytowardsplayer=-50;
+        while(flag==0) {
+            if (location.x < player.getX()) {
+                xtowardsplayer = 40;
+                flag=1;
+                break;
+            }
+            if (location.x > player.getX()) {
+                xtowardsplayer = -40;
+                flag=1;
+                break;
+            }
+            if (location.y < player.getY()) {
+                ytowardsplayer = 40;
+                flag=1;
+                break;
+            }
+            if (location.y > player.getY()) {
+                ytowardsplayer = -40;
+                flag=1;
+                break;
+            }
         }
         setLocation(location.x+xtowardsplayer, location.y + ytowardsplayer);
     }
