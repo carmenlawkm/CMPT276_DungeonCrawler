@@ -6,6 +6,7 @@ import graphics.Assets;
 import java.awt.*;
 
 public class Enemy extends GameObject{
+    //MainCharacter player=MainCharacter.getInstance();
     MainCharacter player=MainCharacter.getInstance();
     private int deductionValue;
 
@@ -22,22 +23,22 @@ public class Enemy extends GameObject{
 
     @Override
     public void update() {
-        /*MainCharacter player=MainCharacter.getInstance();
+        //MainCharacter player=MainCharacter.getInstance();
         //int y=player.y;
         int xtowardsplayer=0;
         int ytowardsplayer=0;
-        if(location.x<player.){
+        if(location.x<player.getX()){
             xtowardsplayer=50;
         }
-        if(location.x>player.x){
+        if(location.x>player.getX()){
             xtowardsplayer=-50;
         }
-        if(location.y<player.y){
+        if(location.y<player.getY()){
             ytowardsplayer=50;
         }
-        if(location.y>player.y){
+        if(location.y>player.getY()){
             ytowardsplayer=-50;
-        }*/
-        setLocation(location.x, location.y + 40);
+        }
+        setLocation(location.x+xtowardsplayer, location.y + ytowardsplayer);
     }
 }
