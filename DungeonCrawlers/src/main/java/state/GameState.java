@@ -1,6 +1,7 @@
 package state;
 
 import GameObjects.Enemy;
+import GameObjects.GameObject;
 import GameObjects.ID;
 import GameObjects.MainCharacter;
 
@@ -8,24 +9,37 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GameState extends State{
-    private MainCharacter player;
-
-
-    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    private Timer timer;
+    private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 
     public GameState(Game game){
         super(game);
-        player = new MainCharacter(new Point(100, 100));
 
-        enemies.add(new Enemy(new Point(500, 500), ID.Enemy, 10));
-        enemies.add(new Enemy(new Point(200, 500), ID.Enemy, 10));
-        enemies.add(new Enemy(new Point(500, 800), ID.Enemy, 10));
+        timer = game.timer;
+
+        //design level here!
+        objects.add(new MainCharacter(new Point(100, 100)));
+        objects.add(new Enemy(new Point(800, 800), ID.Enemy, 50));
+        objects.add(new Enemy(new Point(600, 600), ID.Enemy, 50));
+        objects.add(new Enemy(new Point(800, 800), ID.Enemy, 50));
     }
 
     public void update() {
-        player.start();
     }
 
+    @Override
     public void render() {
+
+    }
+
+    @Override
+    public void initiateState() {
+        //start timer thread
+        timer.start();
+
+        //start threads for each game object
+        for (GameObject object: objects){
+            object.start();
+        }
     }
 }

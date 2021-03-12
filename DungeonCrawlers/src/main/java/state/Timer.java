@@ -33,17 +33,17 @@ public class Timer extends Thread{
                 delta--;
             }
 
-
+            //Timer time to be decided
             if (timer >= 1000*10000000) {
                 //System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
 
                 synchronized (this) {
-                    //game.g.dispose();
+                    //notify all game objects one tick has ended
+                    System.out.println("hello");
                     notifyAll();
                     game.resetGraphics();
-                    System.out.println("notifying");
                 }
             }
         }

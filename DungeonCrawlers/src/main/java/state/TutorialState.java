@@ -16,4 +16,9 @@ public class TutorialState extends State{
     public void render() {
 
     }
+
+    @Override
+    public void initiateState() {
+
+    }
 }

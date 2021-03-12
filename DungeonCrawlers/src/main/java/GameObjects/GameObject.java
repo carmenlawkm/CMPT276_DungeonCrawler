@@ -16,6 +16,7 @@ public abstract class GameObject implements Runnable{
     protected Timer timer;
     protected Thread objectThread;
     protected boolean running;
+    protected boolean imageChanged;
 
     //constructor
     GameObject(Point location){ //currently no location upon creation as
@@ -39,15 +40,23 @@ public abstract class GameObject implements Runnable{
 
         //draw here
         game.g.drawImage(image, location.x, location.y, 40, 40, null);
-
         game.bs.show();
     }
 
+    //object thread
     public void run() {
         synchronized (game.timer){
+
+            //initial render
+            render();
+
             while(running) {
+                //update location
                 update();
-                render();
+
+                if (imageChanged){
+                    render();
+                }
 
                 //wait for one tick controlled by Timer class
                 try {

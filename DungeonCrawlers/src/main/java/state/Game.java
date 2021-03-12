@@ -46,7 +46,9 @@ public class Game implements Runnable {
         this.width = width;
         this.height = height;
         this.title = title;
+
         keyInput = new KeyInput();
+        timer = new Timer();
     }
 
     //creates one public instance of object Game
@@ -82,8 +84,7 @@ public class Game implements Runnable {
     //initialize game graphics etc
     private void init() {
 
-        System.out.println("here1");
-
+        //initiate windows
         window = new Window(width, height, title);
         //initializing a keylistener (allows access to keyboard)
         window.getFrame().addKeyListener(keyInput);
@@ -91,11 +92,12 @@ public class Game implements Runnable {
         gameState = new GameState(this);
         State.setState(gameState);
 
+        //initiate buffer strategy
         while(bs == null){
             initiateBs();
-            System.out.println("hello111");
         }
 
+        //initiate background graphics
 
     }
 
@@ -103,7 +105,6 @@ public class Game implements Runnable {
         //buffer strategies allow the computer to draw things on the screen
         bs = window.getCanvas().getBufferStrategy();
         if (bs == null) {
-            System.out.println("haha");
             window.getCanvas().createBufferStrategy(2);
             return;
         }
@@ -116,19 +117,12 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
     }
 
-        //game loop
     public void run() { //runnable's method - runs whenever we start our thread
         init();
 
-        timer = new Timer();
-        MainCharacter player = new MainCharacter( new Point(100, 100));
-        Enemy enemy2 = new Enemy(new Point(600, 500), ID.Enemy, 100);
-        Enemy enemy3 = new Enemy(new Point(200, 200), ID.Enemy, 100);
-
-        timer.start();
-        player.start();
-        enemy2.start();
-        enemy3.start();
+        if (State.getState() != null) {
+            State.getState().initiateState();
+        }
 
         stop();
     }

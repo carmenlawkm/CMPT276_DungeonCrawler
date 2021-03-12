@@ -17,4 +17,9 @@ public class StartMenuState extends State{
     public void render() {
 
     }
+
+    @Override
+    public void initiateState() {
+
+    }
 }

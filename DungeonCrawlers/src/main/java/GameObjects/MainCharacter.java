@@ -18,6 +18,9 @@ public class MainCharacter extends GameObject {
 
     @Override
     public void update() {
+
+        //always update player
+        imageChanged = true;
         game.getKeyInput().update();
 
         if (game.ifKeyPressed()){
