@@ -15,7 +15,7 @@ public class GameState extends State{
         timer = game.getTimer();
 
         //design level here!
-        objects.add(new MainCharacter(new Point(100, 100)));
+        objects.add(MainCharacter.getInstance());
         objects.add(new Enemy(new Point(200, 200), ID.Enemy, 50));
         objects.add(new Enemy(new Point(400, 400), ID.Enemy, 50));
         objects.add(new Enemy(new Point(440, 440), ID.Enemy, 50));
