@@ -2,6 +2,7 @@ package GameObjects;
 
 import state.Game;
 import graphics.*;
+import World.*;
 
 import java.awt.*;
 
@@ -9,33 +10,47 @@ public class MainCharacter extends GameObject {
     private Point spawn;
     protected int score;
     private Game game;
+    private World w;
+    private Tile nextTile;
+    private int tileSize = Tile.TEXTUREWIDTH;
 
     //constructor
-    public MainCharacter(Game game, Point location) {
+    public MainCharacter(Game game, World world, Point location) {
         super(location);
         score = 0;
         this.game = game;
+        this.w = world;
     }
 
     @Override
     public void update() {
+
+
         if(game.getKeyInput().up){
-            location.y -=3;
+            nextTile = w.getTile(location.x/tileSize , (location.y-tileSize)/tileSize);
+            if(nextTile.getID() != 1)
+                location.y -=tileSize;
         }
         if(game.getKeyInput().down){
-            location.y +=3;
+            nextTile = w.getTile(location.x/tileSize , (location.y + tileSize)/tileSize);
+            if(nextTile.getID() != 1)
+                location.y +=tileSize;
         }
-        if(game.getKeyInput().left){
-            location.x -=3;
+        if(game.getKeyInput().left ){
+            nextTile = w.getTile((location.x - tileSize)/tileSize, location.y/tileSize);
+            if(nextTile.getID() != 1)
+            location.x -=tileSize;
         }
         if(game.getKeyInput().right){
-            location.x +=3;
+            nextTile = w.getTile((location.x + tileSize)/tileSize, location.y/tileSize);
+            if(nextTile.getID() != 1)
+            location.x +=tileSize;
         }
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.player, location.x,location.y, 128,128,null);
+        g.drawImage(Assets.player, location.x,location.y, 100,100,null);
     }
 
     //setters
@@ -43,4 +58,6 @@ public class MainCharacter extends GameObject {
         spawn.x = x;
         spawn.y = y;
     }
+
+
 }
