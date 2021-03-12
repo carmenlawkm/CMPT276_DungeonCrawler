@@ -32,10 +32,10 @@ public abstract class GameObject implements Runnable{
         location.x = x;
         location.y = y;
     }
-    public int getX(Point point){
+    public int getX(){
         return location.x;
     }
-    public int getY(Point point){
+    public int getY(){
         return location.y;
     }
 
