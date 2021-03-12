@@ -11,7 +11,12 @@ public class LevelMenuState extends State{
 
     }
 
-    public void render(Graphics g) {
+    public void render() {
+
+    }
+
+    @Override
+    public void initiateState() {
 
     }
 }

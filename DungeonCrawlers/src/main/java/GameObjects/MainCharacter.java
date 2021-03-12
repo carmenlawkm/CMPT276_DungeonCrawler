@@ -8,34 +8,30 @@ import java.awt.*;
 public class MainCharacter extends GameObject {
     private Point spawn;
     protected int score;
-    private Game game;
 
     //constructor
-    public MainCharacter(Game game, Point location) {
+    public MainCharacter(Point location) {
         super(location);
         score = 0;
-        this.game = game;
+        this.image = Assets.player;
     }
 
     @Override
     public void update() {
-        if(game.getKeyInput().up){
-            location.y -=3;
-        }
-        if(game.getKeyInput().down){
-            location.y +=3;
-        }
-        if(game.getKeyInput().left){
-            location.x -=3;
-        }
-        if(game.getKeyInput().right){
-            location.x +=3;
-        }
-    }
+        game.getKeyInput().update();
 
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(Assets.player, location.x,location.y, 128,128,null);
+        if (game.getKeyInput().up) {
+            location.y -= 50;
+        }
+        if (game.getKeyInput().down) {
+            location.y += 50;
+        }
+        if (game.getKeyInput().left) {
+            location.x -= 50;
+        }
+        if (game.getKeyInput().right) {
+            location.x += 50;
+        }
     }
 
     //setters

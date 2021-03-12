@@ -1,16 +1,18 @@
 package GameObjects;
 
+import graphics.Assets;
+
 import java.awt.*;
 
 public class TrapCell extends GameObject{
     int deductionValue;
     int disappearTimer;
 
-    TrapCell(Point location, int deductionValue, int disappearTimer) {
+    public TrapCell(Point location, int deductionValue, int disappearTimer) {
         super(location);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;
-        //this.setImage("/main/resources/trap.png");
+        this.image = Assets.trap;
     }
 
     //getters
@@ -29,11 +31,6 @@ public class TrapCell extends GameObject{
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    public void render(Graphics g) {
 
     }
 }

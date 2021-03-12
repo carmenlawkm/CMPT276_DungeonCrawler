@@ -1,23 +1,46 @@
 package state;
 
-import GameObjects.MainCharacter;
+import GameObjects.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GameState extends State{
-    private MainCharacter player;
-    private static Point spawnPoint = new Point(100,100);
+    private Timer timer;
+    private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 
     public GameState(Game game){
         super(game);
-        player = new MainCharacter(game,spawnPoint);
+
+        timer = game.getTimer();
+
+        //design level here!
+        objects.add(new MainCharacter(new Point(100, 100)));
+        objects.add(new Enemy(new Point(200, 200), ID.Enemy, 50));
+        objects.add(new Enemy(new Point(400, 400), ID.Enemy, 50));
+        objects.add(new Enemy(new Point(440, 440), ID.Enemy, 50));
+        objects.add(new TrapCell(new Point(300, 300), 50, 50));
+        objects.add(new TrapCell(new Point(220, 250), 50, 50));
+        objects.add(new BarrierCell(new Point(600, 600)));
+        objects.add(new BarrierCell(new Point(600, 640)));
     }
 
     public void update() {
-        player.update();
     }
 
-    public void render(Graphics g) {
-        player.render(g);
+    @Override
+    public void render() {
+
+    }
+
+    @Override
+    public void initiateState() {
+        //start timer thread
+        timer.start();
+
+        //start threads for each game object
+        for (GameObject object: objects){
+            object.start();
+        }
     }
 }

@@ -1,5 +1,7 @@
 package GameObjects;
 
+import graphics.Assets;
+
 import java.awt.*;
 
 public class BonusReward extends RewardCell{
@@ -8,6 +10,7 @@ public class BonusReward extends RewardCell{
     BonusReward(Point location, int value, int disappearTimer) {
         super(location, value);
         this.disappearTimer = disappearTimer;
+        this.image = Assets.specialReward;
 
     }
 
@@ -18,11 +21,6 @@ public class BonusReward extends RewardCell{
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    public void render(Graphics g) {
 
     }
 }

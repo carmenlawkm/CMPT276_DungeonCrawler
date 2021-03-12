@@ -1,45 +1,86 @@
 package state;
 
-import GameObjects.*;
+import GameObjects.Enemy;
+import GameObjects.GameObject;
+import GameObjects.ID;
+import GameObjects.MainCharacter;
 import graphics.*;
 import graphics.Window;
 import input.KeyInput;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.nio.Buffer;
 
 
 public class Game implements Runnable {
+
+    private static Game instance;
+    private boolean isFirstRun;
+
     private Window window;
-    public int width, height;
-    public String title;
+    private int width, height;
+    private String title;
 
     private KeyInput keyInput;
 
-    private Thread thread1; //game runs on thread1
+    private Thread gameThread; //game runs on gameThread
     private boolean running = false;
 
-    private BufferStrategy bs;
-    private Graphics g;
+    public BufferStrategy bs;
+    public Graphics g;
 
     private State gameState;
 
+    private Timer timer;
 
     public Game(int width, int height, String title) {
+
+        //singleton initiation
+        if(instance != null){
+            isFirstRun = false;
+        }else{
+            isFirstRun = true;
+        }
+
         this.width = width;
         this.height = height;
         this.title = title;
+
         keyInput = new KeyInput();
+        timer = new Timer();
+    }
+
+    //creates one public instance of object Game
+    //available to all classes, protects from creating duplicate Game objects
+    public static Game getInstance(){
+
+        if(instance == null){
+            instance = new Game(1200, 800, "DungeonCrawler");
+        }
+        return instance;
+    }
+
+    public BufferStrategy getBs(){
+        return bs;
+    }
+
+    public Graphics getG(){
+        return g;
+    }
+
+    public Timer getTimer(){
+        return timer;
     }
 
     public KeyInput getKeyInput() {
         return keyInput;
     }
 
-
-
     //initialize game graphics etc
     private void init() {
+
+        //initiate windows
         window = new Window(width, height, title);
         //initializing a keylistener (allows access to keyboard)
         window.getFrame().addKeyListener(keyInput);
@@ -47,85 +88,52 @@ public class Game implements Runnable {
         gameState = new GameState(this);
         State.setState(gameState);
 
+        //initiate buffer strategy
+        while(bs == null){
+            initiateBs();
+        }
+
+        //initiate background graphics
+
     }
 
-    //game loop's method
-    public void render() {
+    public void initiateBs(){
         //buffer strategies allow the computer to draw things on the screen
         bs = window.getCanvas().getBufferStrategy();
         if (bs == null) {
             window.getCanvas().createBufferStrategy(2);
             return;
         }
+
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
-
-        //draw here
-
-        if (State.getState() != null) {
-            State.getState().render(g);
-        }
-
-        //end draw
-
-        bs.show();
-        g.dispose();
     }
 
-    //game loop's method
-    public void update() {
-        keyInput.update();
-
-        if (State.getState() != null) {
-
-            State.getState().update();
-        }
-
+    public void resetGraphics() {
+        g.clearRect(0, 0, width, height);
     }
 
-    //game loop
     public void run() { //runnable's method - runs whenever we start our thread
         init();
 
-        int fps = 60;
-        double timePerTick = 1000000000 / fps;
-        double delta = 0;
-        long now;
-        long lastTime = System.nanoTime();
-        long timer = 0;
-        int ticks = 0;
+        if (State.getState() != null) {
+            State.getState().initiateState();
+        }
 
-        while (running) {
-            now = System.nanoTime();
-            delta += (now - lastTime) / timePerTick;
-            timer += now - lastTime;
-            lastTime = now;
-
-            if (delta >= 1) {
-                update();
-                render();
-                ticks++;
-                delta--;
-            }
-
-            if (timer >= 1000000000) {
-                System.out.println("Ticks and Frames: " + ticks);
-                ticks = 0;
-                timer = 0;
-            }
+        while(running){
+            //I don't know if we still need this game loop
         }
 
         stop();
     }
-
 
     //starts the thread
     public synchronized void start() {
         if (running) return;
 
         running = true;
-        thread1 = new Thread(this);
-        thread1.start();
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     //stops the thread
@@ -134,11 +142,9 @@ public class Game implements Runnable {
 
         running = false;
         try {
-            thread1.join();
+            gameThread.join();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
 }
