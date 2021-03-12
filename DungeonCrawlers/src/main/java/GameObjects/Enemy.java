@@ -23,8 +23,8 @@ public class Enemy extends GameObject{
 
     @Override
     public void update() {
-        //MainCharacter player=MainCharacter.getInstance();
-        //int y=player.y;dd
+        // enemy will prioritize moving in terms of left and right direction to
+        // player then prioritizes moving up and down closer to player
         int flag=0;
         int xtowardsplayer=0;
         int ytowardsplayer=0;
