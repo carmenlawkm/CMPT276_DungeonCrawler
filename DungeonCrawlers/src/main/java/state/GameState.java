@@ -1,9 +1,6 @@
 package state;
 
-import GameObjects.Enemy;
-import GameObjects.GameObject;
-import GameObjects.ID;
-import GameObjects.MainCharacter;
+import GameObjects.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,13 +12,17 @@ public class GameState extends State{
     public GameState(Game game){
         super(game);
 
-        timer = game.timer;
+        timer = game.getTimer();
 
         //design level here!
         objects.add(new MainCharacter(new Point(100, 100)));
-        objects.add(new Enemy(new Point(800, 800), ID.Enemy, 50));
-        objects.add(new Enemy(new Point(600, 600), ID.Enemy, 50));
-        objects.add(new Enemy(new Point(800, 800), ID.Enemy, 50));
+        objects.add(new Enemy(new Point(200, 200), ID.Enemy, 50));
+        objects.add(new Enemy(new Point(400, 400), ID.Enemy, 50));
+        objects.add(new Enemy(new Point(440, 440), ID.Enemy, 50));
+        objects.add(new TrapCell(new Point(300, 300), 50, 50));
+        objects.add(new TrapCell(new Point(220, 250), 50, 50));
+        objects.add(new BarrierCell(new Point(600, 600)));
+        objects.add(new BarrierCell(new Point(600, 640)));
     }
 
     public void update() {

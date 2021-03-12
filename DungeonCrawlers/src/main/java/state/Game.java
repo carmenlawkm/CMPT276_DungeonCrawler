@@ -19,8 +19,8 @@ public class Game implements Runnable {
     private boolean isFirstRun;
 
     private Window window;
-    public int width, height;
-    public String title;
+    private int width, height;
+    private String title;
 
     private KeyInput keyInput;
 
@@ -32,7 +32,7 @@ public class Game implements Runnable {
 
     private State gameState;
 
-    public Timer timer;
+    private Timer timer;
 
     public Game(int width, int height, String title) {
 
@@ -69,16 +69,12 @@ public class Game implements Runnable {
         return g;
     }
 
-    public Window getWindow(){
-        return window;
+    public Timer getTimer(){
+        return timer;
     }
 
     public KeyInput getKeyInput() {
         return keyInput;
-    }
-
-    public boolean ifKeyPressed(){
-        return keyInput.ifPressed;
     }
 
     //initialize game graphics etc
@@ -122,6 +118,10 @@ public class Game implements Runnable {
 
         if (State.getState() != null) {
             State.getState().initiateState();
+        }
+
+        while(running){
+            //I don't know if we still need this game loop
         }
 
         stop();

@@ -8,7 +8,7 @@ public class TrapCell extends GameObject{
     int deductionValue;
     int disappearTimer;
 
-    TrapCell(Point location, int deductionValue, int disappearTimer) {
+    public TrapCell(Point location, int deductionValue, int disappearTimer) {
         super(location);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;

@@ -8,9 +8,6 @@ public class KeyInput implements KeyListener{
     private boolean[] keys;
     public boolean up, down, left, right;
 
-    //keeps track of whether a key has been registered per this tick
-    public boolean ifPressed = false;
-
     public KeyInput(){
         keys=new boolean[256];
     }
@@ -24,7 +21,6 @@ public class KeyInput implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        ifPressed = true;
         keys[e.getKeyCode()] = true;
     }
 

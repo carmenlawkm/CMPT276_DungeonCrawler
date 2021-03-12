@@ -16,13 +16,12 @@ public abstract class GameObject implements Runnable{
     protected Timer timer;
     protected Thread objectThread;
     protected boolean running;
-    protected boolean imageChanged;
 
     //constructor
     GameObject(Point location){ //currently no location upon creation as
         this.location = location;
         this.game = Game.getInstance();
-        this.timer = game.timer;
+        this.timer = game.getTimer();
     }
 
     public Point getLocation(){
@@ -37,30 +36,27 @@ public abstract class GameObject implements Runnable{
     public abstract void update();
 
     public void render() {
+        Graphics g = game.getG();
+        BufferStrategy bs = game.getBs();
 
         //draw here
-        game.g.drawImage(image, location.x, location.y, 40, 40, null);
-        game.bs.show();
+        g.drawImage(image, location.x, location.y, 40, 40, null);
+        bs.show();
     }
 
     //object thread
     public void run() {
-        synchronized (game.timer){
-
-            //initial render
-            render();
+        synchronized (timer){
 
             while(running) {
+
+                render();
                 //update location
                 update();
 
-                if (imageChanged){
-                    render();
-                }
-
                 //wait for one tick controlled by Timer class
                 try {
-                    game.timer.wait();
+                    timer.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

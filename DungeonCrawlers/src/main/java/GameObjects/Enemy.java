@@ -23,7 +23,6 @@ public class Enemy extends GameObject{
     @Override
     public void update() {
         //always update enemy
-        imageChanged = true;
         setLocation(location.x, location.y + 50);
     }
 }

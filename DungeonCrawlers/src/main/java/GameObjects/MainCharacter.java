@@ -18,24 +18,19 @@ public class MainCharacter extends GameObject {
 
     @Override
     public void update() {
-
-        //always update player
-        imageChanged = true;
         game.getKeyInput().update();
 
-        if (game.ifKeyPressed()){
-            if (game.getKeyInput().up) {
-                location.y -= 50;
-            }
-            if (game.getKeyInput().down) {
-                location.y += 50;
-            }
-            if (game.getKeyInput().left) {
-                location.x -= 50;
-            }
-            if (game.getKeyInput().right) {
-                location.x += 50;
-            }
+        if (game.getKeyInput().up) {
+            location.y -= 50;
+        }
+        if (game.getKeyInput().down) {
+            location.y += 50;
+        }
+        if (game.getKeyInput().left) {
+            location.x -= 50;
+        }
+        if (game.getKeyInput().right) {
+            location.x += 50;
         }
     }
 
