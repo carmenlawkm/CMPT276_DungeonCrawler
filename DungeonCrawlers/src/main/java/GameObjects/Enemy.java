@@ -1,10 +1,12 @@
 package GameObjects;
 
+import com.sun.tools.javac.Main;
 import graphics.Assets;
 
 import java.awt.*;
 
 public class Enemy extends GameObject{
+    MainCharacter player=MainCharacter.getInstance();
     private int deductionValue;
 
     public Enemy(Point location, ID id, int deductionValue) {
@@ -17,12 +19,25 @@ public class Enemy extends GameObject{
         deductionValue = value;
     }
 
-    public void moveTowardsPlayer(Point playerLocation){
-    }
 
     @Override
     public void update() {
-        //always update enemy
-        setLocation(location.x, location.y + 50);
+        /*MainCharacter player=MainCharacter.getInstance();
+        //int y=player.y;
+        int xtowardsplayer=0;
+        int ytowardsplayer=0;
+        if(location.x<player.){
+            xtowardsplayer=50;
+        }
+        if(location.x>player.x){
+            xtowardsplayer=-50;
+        }
+        if(location.y<player.y){
+            ytowardsplayer=50;
+        }
+        if(location.y>player.y){
+            ytowardsplayer=-50;
+        }*/
+        setLocation(location.x, location.y + 40);
     }
 }
