@@ -16,9 +16,9 @@ public class Assets {
         barrier = ImageLoader.loadImage("/barrierTexture.png");
         exit = ImageLoader.loadImage("/exitTexture.png");
         floor = ImageLoader.loadImage("/floorTexture.png");
-//        //specialReward = ImageLoader.loadImage("/specialReward.png");
-//        regularReward = ImageLoader.loadImage("/regularReward.png");
-//        trap = ImageLoader.loadImage("/trap.png");
+        specialReward = ImageLoader.loadImage("/specialReward.png");
+        regularReward = ImageLoader.loadImage("/regularReward.png");
+        trap = ImageLoader.loadImage("/trap.png");
     }
 
 }

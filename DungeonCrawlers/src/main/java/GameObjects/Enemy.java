@@ -5,7 +5,7 @@ import state.Game;
 
 import java.awt.*;
 
-public class Enemy extends GameObject{
+public class Enemy extends Creatures{
     private int deductionValue;
 
     public Enemy(Game game, Point location, int deductionValue) {
