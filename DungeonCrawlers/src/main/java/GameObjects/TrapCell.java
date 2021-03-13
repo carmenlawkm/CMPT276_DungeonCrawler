@@ -1,5 +1,6 @@
 package GameObjects;
 
+import com.sun.tools.javac.Main;
 import graphics.Assets;
 
 import java.awt.*;
@@ -7,12 +8,13 @@ import java.awt.*;
 public class TrapCell extends GameObject{
     int deductionValue;
     int disappearTimer;
-    MainCharacter player=MainCharacter.getInstance();
-    public TrapCell(Point location, int deductionValue, int disappearTimer) {
+    MainCharacter player;
+    public TrapCell(Point location, int deductionValue, int disappearTimer, MainCharacter player) {
         super(location);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;
         this.image = Assets.trap;
+        this.player=player;
     }
 
     //getters

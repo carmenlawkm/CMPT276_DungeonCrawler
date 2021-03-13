@@ -1,21 +1,31 @@
 package GameObjects;
 
+import World.Tile;
 import graphics.Assets;
+import state.Game;
+
 
 import java.awt.*;
 
-public class Enemy extends GameObject {
-    MainCharacter player = MainCharacter.getInstance();
+public class Enemy extends Creatures{
     private int deductionValue;
+    private Game game;
+    private int texturesize= Tile.TEXTUREWIDTH;
+    private MainCharacter player;
 
-    public Enemy(Point location, ID id, int deductionValue) {
+    public Enemy(Game game, Point location, int deductionValue, MainCharacter player) {
         super(location);
         this.deductionValue = deductionValue;
         this.image = Assets.enemy;
+        this.game=game;
+        this.player=player;
     }
 
     void setDeductionValue(int value) {
         deductionValue = value;
+    }
+
+    public void moveTowardsPlayer(Point playerLocation){
     }
 
     @Override
