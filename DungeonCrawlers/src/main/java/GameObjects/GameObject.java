@@ -41,22 +41,13 @@ public abstract class GameObject implements Runnable{
 
     public abstract void update();
 
-    public void render() {
-        Graphics g = game.getG();
-        BufferStrategy bs = game.getBs();
-
-        //draw here
-        g.drawImage(image, location.x, location.y, 40, 40, null);
-        bs.show();
-    }
-
     //object thread
     public void run() {
         synchronized (timer){
 
             while(running) {
 
-                render();
+                game.render(image, location.x, location.y);
                 //update location
                 update();
 
