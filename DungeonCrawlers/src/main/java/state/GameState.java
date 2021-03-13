@@ -21,7 +21,7 @@ public class GameState extends State{
         timer = game.getTimer();
         world = new World("src/main/resources/Level1.txt");
         player = new MainCharacter(world, spawnPoint);
-        enemy = new Enemy(game, spawnPoint2, 100,player);
+        enemy = new Enemy(game, spawnPoint2, 100, player);
 
     }
 
