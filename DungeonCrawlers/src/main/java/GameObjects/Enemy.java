@@ -21,7 +21,7 @@ public class Enemy extends Creatures{
         this.player=player;
     }
 
-    void setDeductionValue(int value){
+    void setDeductionValue(int value) {
         deductionValue = value;
     }
 
@@ -32,53 +32,25 @@ public class Enemy extends Creatures{
     public void update() {
         // enemy will prioritize moving in terms of left and right direction to
         // player then prioritizes moving up and down closer to player
-        int flag=0;
-        //int stunned=0;
-        int xtowardsplayer=0;
-        int ytowardsplayer=0;
-        if(location.x==player.getX() && location.y==player.getY()){
-            flag=1;
-            player.score=player.score-deductionValue;
-            System.out.println("enemy is in same spot as player");
+        int xTowardsPlayer = 0;
+        int yTowardsPlayer = 0;
 
+        if (location.x == player.getX() && location.y == player.getY()) {
+            player.score = player.score - deductionValue;
+            System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
+        } else if (location.x < player.getX()) {
+            xTowardsPlayer = 40;
+            System.out.printf("Enemy is to the left of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
+        } else if (location.x > player.getX()) {
+            xTowardsPlayer = -40;
+            System.out.printf("Enemy is to the right of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
+        } else if (location.y < player.getY()) {
+            yTowardsPlayer = 40;
+            System.out.printf("Enemy is below player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
+        } else if (location.y > player.getY()) {
+            yTowardsPlayer = -40;
+            System.out.printf("Enemy is above player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         }
-        while(flag==0) {
-
-            xtowardsplayer=0;
-            ytowardsplayer=0;
-            if (location.x == player.getX() && location.y==player.getY()) {
-                xtowardsplayer = texturesize;
-                ytowardsplayer = texturesize;
-                flag=1;
-                System.out.println("enemy is to the left of player");
-                break;
-            }
-            else if (location.x > player.getX()) {
-                xtowardsplayer = -texturesize;
-                flag=1;
-                System.out.println("enemy is to the right of player");
-                break;
-            }
-            else if (location.y < player.getY()) {
-                ytowardsplayer = texturesize;
-                flag=1;
-                System.out.println("enemy is above the player");
-                break;
-            }
-            else if (location.y > player.getY()) {
-                ytowardsplayer = -texturesize;
-                System.out.println("enemy is below the player");
-                break;
-            }
-            else{
-                xtowardsplayer=0;
-                ytowardsplayer=0;
-                System.out.println("did this trigger");
-                break;
-            }
-
-
-        }
-        setLocation(location.x+xtowardsplayer, location.y + ytowardsplayer);
+        setLocation(location.x + xTowardsPlayer, location.y + yTowardsPlayer);
     }
 }
