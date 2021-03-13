@@ -34,7 +34,7 @@ public class Timer extends Thread{
             }
 
             //Timer time to be decided
-            if (timer >= 100*10000000) {
+            if (timer >= 100000*50000) {
                 //System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;

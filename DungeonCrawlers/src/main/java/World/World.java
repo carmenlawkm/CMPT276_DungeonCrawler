@@ -1,20 +1,27 @@
 package World;
 
+import state.Game;
+import state.Timer;
+
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class World {
+public class World implements Runnable{
     private int width, height;
     private int spawnX, spawnY;
     private int[][] tilesID;
+    private Game game;
+    private Timer timer;
+    private Boolean running;
+    private Thread worldThread;
 
     public World(String path){
         loadWorld(path);
+        game = Game.getInstance();
+        timer = game.getTimer();
     }
-
-    public void tick(){}
 
     public void render(Graphics g){
         for(int j = 0; j<height; j++){
@@ -37,8 +44,6 @@ public class World {
         return t;
     }
 
-
-
     private void loadWorld(String path){
         String file = loadFile(path);
         String [] value = file.split("\\s+"); //split by space
@@ -53,8 +58,6 @@ public class World {
                 tilesID[i][j] = stringToInt(value[(i+j*width)+4]);
             }
         }
-
-
     }
 
     //Helper methods for loading the world
@@ -80,6 +83,46 @@ public class World {
         }catch (NumberFormatException e){
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    //object thread
+    public void run() {
+        synchronized (timer){
+
+            while(running) {
+
+                System.out.println("hello");
+
+                render(game.g);
+                //update location
+
+                //wait for one tick controlled by Timer class
+                try {
+                    timer.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //starts the thread
+    public synchronized void start() {
+        running = true;
+        worldThread = new Thread(this);
+        worldThread.start();
+    }
+
+    //stops the thread
+    public synchronized void stop() {
+        if (!running) return;
+
+        running = false;
+        try {
+            worldThread.join();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

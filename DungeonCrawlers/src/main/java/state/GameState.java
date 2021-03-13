@@ -20,6 +20,9 @@ public class GameState extends State{
         super(game);
 
         timer = game.getTimer();
+        world = new World("src/main/resources/Level1.txt");
+        player = new MainCharacter(game,world,spawnPoint);
+        enemy = new Enemy(game, spawnPoint2, 100);
     }
 
     @Override
@@ -29,24 +32,14 @@ public class GameState extends State{
 
     @Override
     public void initiateState() {
-        world = new World("src/main/resources/Level1.txt");
-        player = new MainCharacter(game,world,spawnPoint);
-        enemy = new Enemy(game, spawnPoint2, 100);
-
         timer.start();
+        world.start();
         player.start();
         enemy.start();
     }
 
     public void update() {
-        world.tick();
         player.update();
     }
 
-//    public void render(Graphics g) {
-//        world.render(g);
-//        player.render(g);
-//        enemy.render(g);
-//
-//    }
 }

@@ -13,7 +13,7 @@ import java.awt.image.BufferStrategy;
 import java.nio.Buffer;
 
 
-public class Game implements Runnable {
+public class Game{
 
     private static Game instance;
     private boolean isFirstRun;
@@ -106,12 +106,12 @@ public class Game implements Runnable {
         }
 
         g = bs.getDrawGraphics();
-        g.clearRect(0, 0, width, height);
+        g.clearRect(0, 0, width, height)    ;
     }
 
     public void render(Image image, int x, int y) {
         //draw here
-        g.drawImage(image, x, y, 40, 40, null);
+        g.drawImage(image, x, y, 100, 100, null);
         bs.show();
     }
 
@@ -124,33 +124,6 @@ public class Game implements Runnable {
 
         if (State.getState() != null) {
             State.getState().initiateState();
-        }
-
-        while(running){
-            //I don't know if we still need this game loop
-        }
-
-        stop();
-    }
-
-    //starts the thread
-    public synchronized void start() {
-        if (running) return;
-
-        running = true;
-        gameThread = new Thread(this);
-        gameThread.start();
-    }
-
-    //stops the thread
-    public synchronized void stop() {
-        if (!running) return;
-
-        running = false;
-        try {
-            gameThread.join();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

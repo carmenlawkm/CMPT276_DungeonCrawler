@@ -23,6 +23,6 @@ public class Enemy extends GameObject{
 
     @Override
     public void update() {
-        setLocation(location.x, location.y + 50);
+        setLocation(location.x, location.y + 100);
     }
 }

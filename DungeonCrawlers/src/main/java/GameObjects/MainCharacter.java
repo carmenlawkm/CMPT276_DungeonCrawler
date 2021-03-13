@@ -25,6 +25,9 @@ public class MainCharacter extends GameObject {
 
     @Override
     public void update() {
+
+        game.getKeyInput().update();
+
         if(game.getKeyInput().up){
             nextTile = w.getTile(location.x/tileSize , (location.y-tileSize)/tileSize);
             if(nextTile.getID() != 1)
