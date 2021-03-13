@@ -109,6 +109,12 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
     }
 
+    public void render(Image image, int x, int y) {
+        //draw here
+        g.drawImage(image, x, y, 40, 40, null);
+        bs.show();
+    }
+
     public void resetGraphics() {
         g.clearRect(0, 0, width, height);
     }

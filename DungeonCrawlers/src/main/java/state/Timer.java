@@ -41,7 +41,6 @@ public class Timer extends Thread{
 
                 synchronized (this) {
                     //notify all game objects one tick has ended
-                    System.out.println("hello");
                     notifyAll();
                     game.resetGraphics();
                 }
