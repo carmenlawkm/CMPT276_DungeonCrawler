@@ -6,7 +6,7 @@ import World.*;
 
 import java.awt.*;
 
-public class MainCharacter extends GameObject {
+public class MainCharacter extends Creatures {
     private Point spawn;
     protected int score;
     private Game game;
