@@ -14,7 +14,7 @@ public class MainCharacter extends GameObject {
     //constructor
     public MainCharacter(Point location) {
         super(location);
-        score = 0;
+        score = 100;
         this.image = Assets.player;
     }
     public static MainCharacter getInstance(){
@@ -24,7 +24,6 @@ public class MainCharacter extends GameObject {
         }
         return instance;
     }
-
 
     @Override
     public void update() {

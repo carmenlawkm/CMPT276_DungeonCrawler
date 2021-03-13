@@ -7,7 +7,7 @@ import java.awt.*;
 public class TrapCell extends GameObject{
     int deductionValue;
     int disappearTimer;
-
+    MainCharacter player=MainCharacter.getInstance();
     public TrapCell(Point location, int deductionValue, int disappearTimer) {
         super(location);
         this.deductionValue = deductionValue;
@@ -31,6 +31,10 @@ public class TrapCell extends GameObject{
 
     @Override
     public void update() {
+        if(player.getX()==location.x && player.getY()==location.y){
+            player.score=player.score-deductionValue;
+            System.out.println(player.score);
+        }
 
     }
 }
