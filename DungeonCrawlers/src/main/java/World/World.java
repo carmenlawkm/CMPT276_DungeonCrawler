@@ -91,8 +91,7 @@ public class World implements Runnable{
         synchronized (timer){
 
             while(running) {
-
-                //System.out.println("hello");
+                
 
                 render(game.g);
                 //update location
