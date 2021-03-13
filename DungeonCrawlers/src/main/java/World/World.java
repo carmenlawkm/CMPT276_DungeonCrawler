@@ -92,7 +92,7 @@ public class World implements Runnable{
 
             while(running) {
 
-                System.out.println("hello");
+                //System.out.println("hello");
 
                 render(game.g);
                 //update location
