@@ -1,13 +1,14 @@
 package GameObjects;
 
 import graphics.Assets;
+import state.Game;
 
 import java.awt.*;
 
 public class Enemy extends GameObject{
     private int deductionValue;
 
-    public Enemy(Point location, ID id, int deductionValue) {
+    public Enemy(Game game, Point location, int deductionValue) {
         super(location);
         this.deductionValue = deductionValue;
         this.image = Assets.enemy;
@@ -22,7 +23,6 @@ public class Enemy extends GameObject{
 
     @Override
     public void update() {
-        //always update enemy
-        setLocation(location.x, location.y + 50);
+        setLocation(location.x, location.y + 100);
     }
 }
