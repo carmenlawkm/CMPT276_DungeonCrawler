@@ -27,19 +27,19 @@ public class Enemy extends GameObject {
 
         if (location.x == player.getX() && location.y == player.getY()) {
             player.score = player.score - deductionValue;
-            System.out.println("enemy is in same spot as player");
+            System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
         } else if (location.x < player.getX()) {
             xTowardsPlayer = 40;
-            System.out.println("enemy is to the left of player");
+            System.out.printf("Enemy is to the left of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         } else if (location.x > player.getX()) {
             xTowardsPlayer = -40;
-            System.out.println("enemy is to the right of player");
+            System.out.printf("Enemy is to the right of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         } else if (location.y < player.getY()) {
             yTowardsPlayer = 40;
-            System.out.println("enemy is below the player");
+            System.out.printf("Enemy is below player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         } else if (location.y > player.getY()) {
             yTowardsPlayer = -40;
-            System.out.println("enemy is above the player");
+            System.out.printf("Enemy is above player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         }
         setLocation(location.x + xTowardsPlayer, location.y + yTowardsPlayer);
     }

@@ -1,7 +1,5 @@
 package graphics;
 
-//import net.coobird.thumbnailator.Thumbnails;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
