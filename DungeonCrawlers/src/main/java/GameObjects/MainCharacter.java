@@ -1,5 +1,6 @@
 package GameObjects;
 
+import com.sun.tools.javac.Main;
 import state.Game;
 import graphics.*;
 import World.*;
@@ -9,19 +10,21 @@ import java.awt.*;
 public class MainCharacter extends Creatures {
     private Point spawn;
     protected int score;
-    private Game game;
+    private static MainCharacter instance=null;
+    //private Game game;
     private World w;
     private Tile nextTile;
     private int tileSize = Tile.TEXTUREWIDTH;
 
     //constructor
-    public MainCharacter(Game game, World world, Point location) {
+    public MainCharacter(World world, Point location) {
         super(location);
-        score = 0;
+        score = 100;
         this.image = Assets.player;
-        this.game = game;
+        this.game = Game.getInstance();
         this.w = world;
     }
+
 
     @Override
     public void update() {

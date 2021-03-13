@@ -26,6 +26,12 @@ public abstract class GameObject{
         location.x = x;
         location.y = y;
     }
+    public int getX(){
+        return location.x;
+    }
+    public int getY(){
+        return location.y;
+    }
 
     public abstract void update();
 

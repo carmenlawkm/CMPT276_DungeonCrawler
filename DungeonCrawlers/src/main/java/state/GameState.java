@@ -18,11 +18,11 @@ public class GameState extends State{
 
     public GameState(Game game){
         super(game);
-
         timer = game.getTimer();
         world = new World("src/main/resources/Level1.txt");
-        player = new MainCharacter(game,world,spawnPoint);
-        enemy = new Enemy(game, spawnPoint2, 100);
+        player = new MainCharacter(world, spawnPoint);
+        enemy = new Enemy(game, spawnPoint2, 100,player);
+
     }
 
     @Override
