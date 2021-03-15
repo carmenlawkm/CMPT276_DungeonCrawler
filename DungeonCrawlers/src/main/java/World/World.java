@@ -8,6 +8,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * World defines the game's environment
+ * Implements graphics in a thread
+ */
 public class World implements Runnable{
     private int width, height;
     private int spawnX, spawnY;
@@ -17,6 +21,10 @@ public class World implements Runnable{
     private Boolean running;
     private Thread worldThread;
 
+    /**
+     * World constructor
+     * @param path
+     */
     public World(String path){
         loadWorld(path);
         game = Game.getInstance();
@@ -86,7 +94,11 @@ public class World implements Runnable{
         }
     }
 
-    //object thread
+    /**
+     * Thread which loops to renders game environment
+     * Synchronized to Game's Timer object
+     * Awaits timer signal for one tick, then repeats the loop
+     */
     public void run() {
         synchronized (timer){
 
@@ -106,14 +118,18 @@ public class World implements Runnable{
         }
     }
 
-    //starts the thread
+    /**
+     * starts the World thread
+     */
     public synchronized void start() {
         running = true;
         worldThread = new Thread(this);
         worldThread.start();
     }
 
-    //stops the thread
+    /**
+     * stops the World thread
+     */
     public synchronized void stop() {
         if (!running) return;
 

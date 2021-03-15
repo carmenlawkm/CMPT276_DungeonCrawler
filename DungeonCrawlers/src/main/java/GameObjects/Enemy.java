@@ -7,27 +7,33 @@ import state.Game;
 
 import java.awt.*;
 
+/**
+ * Enemy class
+ * Defines the moving enemies of the game
+ */
 public class Enemy extends Creatures{
     private int deductionValue;
     private Game game;
     private int texturesize= Tile.TEXTUREWIDTH;
     private MainCharacter player;
 
-    public Enemy(Game game, Point location, int deductionValue, MainCharacter player) {
+    /**
+     * Enemy constructor
+     * @param location Defines the spawning location of the enemy
+     * @param deductionValue defines the amount of points the player loses if they run into this enemy
+     * @param player defines the player-controlled character in the game
+     */
+    public Enemy(Point location, int deductionValue, MainCharacter player) {
         super(location);
         this.deductionValue = deductionValue;
         this.image = Assets.enemy;
-        this.game=game;
+        this.game=Game.getInstance();
         this.player=player;
     }
 
-    void setDeductionValue(int value) {
-        deductionValue = value;
-    }
-
-    public void moveTowardsPlayer(Point playerLocation){
-    }
-
+    /**
+     * Update method allows enemy to evaluate the player's location and determine the best direction to move towards the player
+     */
     @Override
     public void update() {
         // enemy will prioritize moving in terms of left and right direction to

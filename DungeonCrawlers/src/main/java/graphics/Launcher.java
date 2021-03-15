@@ -2,8 +2,16 @@ package graphics;
 
 import state.Game;
 
-//starts up our game.
+/**
+ * Holds the main method
+ * Initiates our game!
+ */
+
 public class Launcher {
+    /**
+     * Main method
+     * runs our game
+     */
     public static void main(String args[]){
         Game game = Game.getInstance();
         game.run();

@@ -12,7 +12,9 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.nio.Buffer;
 
-
+/**
+ * Game class manages state of the game
+ */
 public class Game{
 
     private static Game instance;
@@ -34,6 +36,13 @@ public class Game{
 
     private Timer timer;
 
+    /**
+     * Game constructor
+     * implements singleton design patterns
+     * @param width defines width of Window to be created
+     * @param height defines height of Window to be created
+     * @param title defines title of Window to be created
+     */
     public Game(int width, int height, String title) {
 
         //singleton initiation
@@ -51,8 +60,12 @@ public class Game{
         timer = new Timer();
     }
 
-    //creates one public instance of object Game
-    //available to all classes, protects from creating duplicate Game objects
+    /**
+     * Creates singleton Game
+     * One Game object exists at all times
+     * Allows classes to grab the one instance of Game object
+     * @return the one instance of Game class
+     */
     public static Game getInstance(){
 
         if(instance == null){
@@ -61,23 +74,26 @@ public class Game{
         return instance;
     }
 
-    public BufferStrategy getBs(){
-        return bs;
-    }
-
-    public Graphics getG(){
-        return g;
-    }
-
+    /**
+     * @return Timer thread used by Game object
+     */
     public Timer getTimer(){
         return timer;
     }
 
+    /**
+     * @return KeyInput class used by Game object
+     */
     public KeyInput getKeyInput() {
         return keyInput;
     }
 
-    //initialize game graphics etc
+    /**
+     * Initializes Window
+     * Initiates assets
+     * Initializes GameState
+     * Repeatedly initiates buffer strategy
+     */
     private void init() {
 
         //initiate windows
@@ -85,18 +101,18 @@ public class Game{
         //initializing a keylistener (allows access to keyboard)
         window.getFrame().addKeyListener(keyInput);
         Assets.initAssets();
-        gameState = new GameState(this);
+        gameState = new GameState();
         State.setState(gameState);
 
         //initiate buffer strategy
         while(bs == null){
             initiateBs();
         }
-
-        //initiate background graphics
-
     }
 
+    /**
+     * Initiates buffer strategy
+     */
     public void initiateBs(){
         //buffer strategies allow the computer to draw things on the screen
         bs = window.getCanvas().getBufferStrategy();
@@ -109,17 +125,31 @@ public class Game{
         g.clearRect(0, 0, width, height)    ;
     }
 
+    /**
+     * Renders an image to the window
+     * @param image defines image to be rendered
+     * @param x defines x position of image
+     * @param y defines y position of image
+     */
     public void render(Image image, int x, int y) {
         //draw here
         g.drawImage(image, x, y, 100, 100, null);
         bs.show();
     }
 
+    /**
+     * Clears the window of any images
+     */
     public void resetGraphics() {
         g.clearRect(0, 0, width, height);
     }
 
-    public void run() { //runnable's method - runs whenever we start our thread
+    /**
+     * Method to be run when game is started
+     * Calls init() method
+     * Initiates appropriate State class depending on the state of the game
+     */
+    public void run() {
         init();
 
         if (State.getState() != null) {

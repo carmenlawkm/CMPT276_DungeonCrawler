@@ -7,6 +7,9 @@ import World.*;
 
 import java.awt.*;
 
+/**
+ * MainCharacter class defines the player-controlled character of the game
+ */
 public class MainCharacter extends Creatures {
     private Point spawn;
     protected int score;
@@ -16,7 +19,11 @@ public class MainCharacter extends Creatures {
     private Tile nextTile;
     private int tileSize = Tile.TEXTUREWIDTH;
 
-    //constructor
+    /**
+     * MainCharacter constructor
+     * @param world defines the world the character is loaded in
+     * @param location defines the spawning point of the player
+     */
     public MainCharacter(World world, Point location) {
         super(location);
         score = 100;
@@ -25,8 +32,10 @@ public class MainCharacter extends Creatures {
         this.w = world;
     }
 
-
-
+    /**
+     * update method allows player to get key input
+     * determines direction of key input and udpates player location
+     */
     @Override
     public void update() {
 
@@ -53,12 +62,5 @@ public class MainCharacter extends Creatures {
             location.x +=tileSize;
         }
     }
-
-    //setters
-    public void setSpawn(int x, int y){
-        spawn.x = x;
-        spawn.y = y;
-    }
-
 
 }

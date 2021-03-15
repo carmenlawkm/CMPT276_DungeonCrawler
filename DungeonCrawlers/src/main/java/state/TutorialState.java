@@ -3,8 +3,8 @@ package state;
 import java.awt.*;
 
 public class TutorialState extends State{
-    public TutorialState(Game game){
-        super(game);
+    public TutorialState(){
+        super();
     }
 
     @Override

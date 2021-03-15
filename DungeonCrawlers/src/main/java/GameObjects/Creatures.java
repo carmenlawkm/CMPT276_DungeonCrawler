@@ -5,6 +5,11 @@ import state.Timer;
 
 import java.awt.*;
 
+/**
+ * Creatures class defines outline for Player and Enemy classes
+ * Allows Creatures to run on threads concurrently
+ * Extends GameObject class
+ */
 public abstract class Creatures extends GameObject implements Runnable{
 
     protected Game game;
@@ -12,16 +17,29 @@ public abstract class Creatures extends GameObject implements Runnable{
     protected Thread creatureThread;
     protected boolean running;
 
+    /**
+     * Creatures constructor
+     * @param location defines the spawning location of the creature object
+     */
     Creatures(Point location) {
         super(location);
         this.game = Game.getInstance();
         this.timer = game.getTimer();
     }
 
+    /**
+     * Abstract update method
+     * Allows each individual object to implement the way they move
+     */
     @Override
     public abstract void update();
 
-    //object thread
+    /**
+     * Creature object timer
+     * Runs in a loop while the game is running
+     * Handles movement and visual render per tick
+     * Synched to timer class, waits for signal of one tick before proceeding to next tick actions
+     */
     public void run() {
         synchronized (timer){
 
@@ -41,7 +59,9 @@ public abstract class Creatures extends GameObject implements Runnable{
         }
     }
 
-    //starts the thread
+    /**
+     * Starts the thread
+     */
     public synchronized void start() {
         if (running) return;
 
@@ -50,7 +70,9 @@ public abstract class Creatures extends GameObject implements Runnable{
         creatureThread.start();
     }
 
-    //stops the thread
+    /**
+     * Stops the thread
+     */
     public synchronized void stop() {
         if (!running) return;
 

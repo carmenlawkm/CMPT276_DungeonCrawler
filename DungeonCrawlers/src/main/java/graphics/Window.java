@@ -3,6 +3,9 @@ package graphics;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Window class creates the window of the game
+ */
 public class Window {
     private JFrame frame;
     private Canvas canvas;
@@ -10,6 +13,13 @@ public class Window {
     private String title;
     private int width, height;
 
+    /**
+     * Window constructor
+     * Defines and creates the window
+     * @param width defines the width of the window
+     * @param height defines the height of the window
+     * @param title defines the title of the window
+     */
     public Window(int width, int height, String title) {
         this.title = title;
         this.width = width;
@@ -18,6 +28,9 @@ public class Window {
         createWindow();
     }
 
+    /**
+     * Creates the window
+     */
     private void createWindow() {
         frame = new JFrame(title);
         //setting size for window
@@ -37,10 +50,18 @@ public class Window {
         frame.pack();
     }
 
+    /**
+     * Canvas getter
+     * @return Window canvas
+     */
     public Canvas getCanvas() {
         return canvas;
     }
 
+    /**
+     * JFrame getter
+     * @return frame of the window
+     */
     public JFrame getFrame() {
         return frame;
     }

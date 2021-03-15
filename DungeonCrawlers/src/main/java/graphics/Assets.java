@@ -1,15 +1,21 @@
 package graphics;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-
+/**
+ * Assets class holds all images used in the game
+ */
 public class Assets {
 
     public static BufferedImage player, enemy, barrier, exit, floor, specialReward, regularReward, trap;
 
-    //load in everything(material) in our game
+    /**
+     * loads all assets from our resources folder
+     */
     public static void initAssets(){
         player = ImageLoader.loadImage("/mainCharacter.png");
         enemy = ImageLoader.loadImage("/enemy2.png");

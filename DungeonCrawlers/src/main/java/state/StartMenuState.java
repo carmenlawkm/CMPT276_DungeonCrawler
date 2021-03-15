@@ -3,8 +3,8 @@ package state;
 import java.awt.*;
 
 public class StartMenuState extends State{
-    public StartMenuState(Game game){
-        super(game);
+    public StartMenuState(){
+        super();
 
     }
 

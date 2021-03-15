@@ -1,6 +1,9 @@
 package state;
 
-public class Timer extends Thread{
+/**
+ * Timer class (thread) manages ticks while game is running
+ */
+public class Timer implements Runnable{
 
     private boolean running;
     private Thread timerThread;
@@ -13,6 +16,11 @@ public class Timer extends Thread{
     private long timer = 0;
     private int ticks = 0;
 
+    /**
+     * Timer thread
+     * Tracks ticks
+     * When one tick is reached, notifies threads synchronized to this timer to continue the next loop
+     */
     public void run() {
 
         game = Game.getInstance();
@@ -48,7 +56,9 @@ public class Timer extends Thread{
         }
     }
 
-    //starts the thread
+    /**
+     * Starts the thread
+     */
     public synchronized void start() {
         if (running) return;
 
@@ -58,16 +68,18 @@ public class Timer extends Thread{
 
     }
 
-//    //stops the thread
-//    public synchronized void stop() {
-//        if (running) {
-//            running = false;
-//            try {
-//                timerThread.join();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//    }
+    /**
+     * Stops the thread
+     */
+    public synchronized void stop() {
+        if (running) {
+            running = false;
+            try {
+                timerThread.join();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 }
