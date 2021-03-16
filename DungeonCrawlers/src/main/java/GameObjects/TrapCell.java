@@ -48,10 +48,15 @@ public class TrapCell extends GameObject{
      */
     @Override
     public void update() {
+        if(disappearTimer==2){
+            this.image = Assets.trapgone;
+        }
         if(player.getX()==location.x && player.getY()==location.y){
             player.score=player.score-deductionValue;
-            System.out.println(player.score);
+            this.image=Assets.trap;
+            disappearTimer=0;
         }
-
+        System.out.println(player.score);
+        disappearTimer++;
     }
 }

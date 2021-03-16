@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class Assets {
 
-    public static BufferedImage player, enemy, barrier, exit, floor, specialReward, regularReward, trap;
+    public static BufferedImage player, enemy, barrier, exit, floor, specialReward, regularReward, trap, trapgone, rewardgone;
 
     /**
      * loads all assets from our resources folder
@@ -25,6 +25,8 @@ public class Assets {
         specialReward = ImageLoader.loadImage("/specialReward.png");
         regularReward = ImageLoader.loadImage("/regularReward.png");
         trap = ImageLoader.loadImage("/trap.png");
+        trapgone = ImageLoader.loadImage("/Trapgone.png");
+        rewardgone= ImageLoader.loadImage("/Rewardgone.png");
     }
 
 }

@@ -43,19 +43,19 @@ public class Enemy extends GameObject{
 
         if (location.x == player.getX() && location.y == player.getY()) {
             player.score = player.score - deductionValue;
-            System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
+            //System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
         } else if (location.x < player.getX()) {
             xTowardsPlayer = texturesize;
-            System.out.printf("Enemy is to the left of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
+            //System.out.printf("Enemy is to the left of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         } else if (location.x > player.getX()) {
             xTowardsPlayer = -texturesize;
-            System.out.printf("Enemy is to the right of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
+            //System.out.printf("Enemy is to the right of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         } else if (location.y < player.getY()) {
             yTowardsPlayer = texturesize;
-            System.out.printf("Enemy is below player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
+            //System.out.printf("Enemy is below player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         } else if (location.y > player.getY()) {
             yTowardsPlayer = -texturesize;
-            System.out.printf("Enemy is above player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
+            //System.out.printf("Enemy is above player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         }
         setLocation(location.x + xTowardsPlayer, location.y + yTowardsPlayer);
     }
