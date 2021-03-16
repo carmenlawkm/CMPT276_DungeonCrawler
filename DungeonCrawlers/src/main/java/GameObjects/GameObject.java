@@ -72,7 +72,7 @@ public abstract class GameObject implements Runnable{
     public abstract void update();
 
     /**
-     * Creature object timer
+     * GameObject thread
      * Runs in a loop while the game is running
      * Handles movement and visual render per tick
      * Synched to timer class, waits for signal of one tick before proceeding to next tick actions
