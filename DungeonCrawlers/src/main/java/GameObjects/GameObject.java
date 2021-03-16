@@ -100,8 +100,6 @@ public abstract class GameObject implements Runnable{
      * Starts the thread
      */
     public synchronized void start() {
-        if (running) return;
-
         running = true;
         objectThread = new Thread(this);
         objectThread.start();
