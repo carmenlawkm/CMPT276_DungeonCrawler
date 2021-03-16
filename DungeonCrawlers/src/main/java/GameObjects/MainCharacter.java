@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * MainCharacter class defines the player-controlled character of the game
  */
-public class MainCharacter extends Creatures {
+public class MainCharacter extends GameObject {
     private Point spawn;
     protected int score;
     private static MainCharacter instance=null;

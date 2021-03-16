@@ -11,7 +11,7 @@ import java.awt.*;
  * Enemy class
  * Defines the moving enemies of the game
  */
-public class Enemy extends Creatures{
+public class Enemy extends GameObject{
     private int deductionValue;
     private Game game;
     private int texturesize= Tile.TEXTUREWIDTH;
