@@ -10,6 +10,7 @@ import java.awt.*;
  */
 public class BonusReward extends RewardCell{
     int disappearTimer;
+    MainCharacter player;
 
     /**
      * BonusReward constructor
@@ -17,20 +18,27 @@ public class BonusReward extends RewardCell{
      * @param value defines the amount of points the player earns when collecting this reward
      * @param disappearTimer defines the amount of ticks the player has to collect the reward before it disappears
      */
-    BonusReward(Point location, int value, int disappearTimer) {
+    public BonusReward(Point location, int value, int disappearTimer, MainCharacter player) {
         super(location, value);
         this.disappearTimer = disappearTimer;
         this.image = Assets.specialReward;
+        this.player=player;
 
     }
 
-    //methods
-    public void startTimer(){
-        //method to startTimer and countdown to when reward disappears
-    }
 
     @Override
     public void update() {
+        if(disappearTimer==5){
+            this.image = Assets.rewardgone;
+        }
+        if(player.getX()==location.x && player.getY()==location.y){
+            player.score=player.score+value;
+            this.image=Assets.rewardgone;
+            value=0;
+        }
+        System.out.println(player.score);
+        disappearTimer++;
 
     }
 }
