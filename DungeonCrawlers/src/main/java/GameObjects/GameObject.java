@@ -11,6 +11,7 @@ import java.awt.*;
 public abstract class GameObject{
     protected Point location;
     public Image image;
+    boolean running;
     protected Game game;
     protected World world;
     protected Tile nextTile;

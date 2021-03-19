@@ -11,9 +11,8 @@ import java.awt.*;
  */
 public class MainCharacter extends GameObject implements Runnable{
     protected int score;
-    private Thread thread;
+    private Thread playerThread;
     private int keyCode;
-    boolean running;
     private Graphics g;
 
     /**
@@ -32,8 +31,7 @@ public class MainCharacter extends GameObject implements Runnable{
     }
 
     public void run(){
-
-        while(true){
+        while(running){
             keyCode = game.getKeyInput().getKeyCode();
             if(game.getKeyInput().keyPressed){
                 if(game.getKeyInput().up_W == keyCode && location.y > 0){
@@ -72,7 +70,6 @@ public class MainCharacter extends GameObject implements Runnable{
             try {
                 game.getKeyInput().setKeyPressed(false);
                 Thread.sleep(1000);
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -85,8 +82,8 @@ public class MainCharacter extends GameObject implements Runnable{
         if(running)
             return;
         running = true;
-        thread = new Thread(this);
-        thread.start();
+        playerThread = new Thread(this);
+        playerThread.start();
     }
 
     public synchronized void stop(){
@@ -94,7 +91,7 @@ public class MainCharacter extends GameObject implements Runnable{
             return;
         running = false;
         try {
-            thread.join();
+            playerThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
