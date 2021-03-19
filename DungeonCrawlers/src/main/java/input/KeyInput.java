@@ -8,15 +8,19 @@ import java.awt.event.KeyListener;
  */
 public class KeyInput implements KeyListener{
     private int keyCode;
+    public boolean keyPressed;
     public int up_W = KeyEvent.VK_W;
     public int left_A = KeyEvent.VK_A;
     public int down_S = KeyEvent.VK_S;
     public int right_D = KeyEvent.VK_D;
 
+    public void setKeyPressed(boolean pressed){
+        keyPressed = pressed;
+    }
     @Override
     public void keyPressed(KeyEvent e) {
         keyCode = e.getKeyCode();
-        System.out.println("Key "+ keyCode +" has been pressed!");
+        setKeyPressed(true);
     }
 
     @Override
