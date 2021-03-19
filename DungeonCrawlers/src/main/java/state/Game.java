@@ -11,9 +11,6 @@ import graphics.Window;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 //import input.KeyInput;
-import java.awt.*;
-//import java.awt.image.BufferStrategy;
-//import java.nio.Buffer;
 
 /**
  * Game class manages state of the game
@@ -26,8 +23,7 @@ public class Game{
     private String title;
     //private KeyInput keyInput;
     private boolean running = false;
-    //private State gameState;
-    private World world;
+    private State gameState;
     private BufferStrategy bs;
     private Graphics g;
 
@@ -54,23 +50,22 @@ public class Game{
         //window.getFrame().addKeyListener(keyInput);
         Assets.initAssets();
         System.out.println("Loading world...");
-        world = new World("DungeonCrawlers/src/main/resources/Level1.txt");
         if(bs == null){
-            window.getCanvas().createBufferStrategy(2);}
+            window.getCanvas().createBufferStrategy(2);
+        }
+        gameState = new GameState();
+        State.setState(gameState);
         render();
-       // gameState = new GameState();
-//        State.setState(gameState);
     }
 
     private void render(){
-
         bs = window.getCanvas().getBufferStrategy();
         g = bs.getDrawGraphics();
 
         //Clear Screen
         g.clearRect(0, 0, width, height);
         //Draw Here!
-        world.populateMap(g);
+        gameState.render(g);
         //End Drawing!
         bs.show();
         g.dispose();
