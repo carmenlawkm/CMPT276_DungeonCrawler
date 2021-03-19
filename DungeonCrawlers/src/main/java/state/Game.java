@@ -4,7 +4,6 @@ package state;
 //import GameObjects.GameObject;
 //import GameObjects.ID;
 //import GameObjects.MainCharacter;
-import World.World;
 import graphics.*;
 import graphics.Window;
 
@@ -36,12 +35,13 @@ public class Game{
     }
 
     public static Game getInstance(){
-
         if(instance == null){
             instance = new Game(1200, 800, "DungeonCrawler");
         }
         return instance;
     }
+
+
 
     //public KeyInput getKeyInput() { return keyInput; }
 
@@ -53,7 +53,7 @@ public class Game{
         if(bs == null){
             window.getCanvas().createBufferStrategy(2);
         }
-        gameState = new GameState();
+        gameState = new Level1State();
         State.setState(gameState);
         render();
     }

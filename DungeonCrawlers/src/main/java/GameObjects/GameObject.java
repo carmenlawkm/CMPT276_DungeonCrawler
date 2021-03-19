@@ -11,15 +11,11 @@ import java.awt.*;
 public abstract class GameObject{
     protected Point location;
     public Image image;
-    protected Thread objectThread;
     protected Game game;
     protected World w;
-    protected Boolean running;
     protected Tile nextTile;
     protected Point nextLocation = new Point();
     protected int tileSize = Tile.TEXTUREWIDTH;
-
-
 
     /**
      * GameObject constructor
@@ -27,10 +23,11 @@ public abstract class GameObject{
      */
     GameObject(World w, Point location){ //currently no location upon creation as
         this.location = location;
-        game = Game.getInstance();
         this.w = w;
 
     }
+
+    public abstract void render(Graphics g);
 
     /**
      * getLocation getter
@@ -70,7 +67,6 @@ public abstract class GameObject{
      * Abstract update method
      * Allows each individual game object to implement the way they move
      */
-    //public abstract void update();
 
     /**
      * GameObject thread
