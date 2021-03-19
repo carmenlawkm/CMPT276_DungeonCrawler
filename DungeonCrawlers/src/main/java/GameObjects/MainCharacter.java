@@ -28,13 +28,11 @@ public class MainCharacter extends GameObject implements Runnable{
     }
 
     public void render(Graphics g) {
-
-            g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
-        
-
+        g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
     }
 
     public void run(){
+
         while(true){
             keyCode = game.getKeyInput().getKeyCode();
             if(game.getKeyInput().up_W == keyCode && location.y > 0){

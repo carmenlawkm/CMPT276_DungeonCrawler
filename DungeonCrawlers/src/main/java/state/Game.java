@@ -56,16 +56,19 @@ public class Game{
     }
 
     private void render(){
-        bs = window.getCanvas().getBufferStrategy();
-        g = bs.getDrawGraphics();
+        while(true){
+            bs = window.getCanvas().getBufferStrategy();
+            g = bs.getDrawGraphics();
 
-        //Clear Screen
-        g.clearRect(0, 0, width, height);
-        //Draw Here!
-        gameState.render(g);
-        //End Drawing!
-        bs.show();
-        g.dispose();
+            //Clear Screen
+            g.clearRect(0, 0, width, height);
+            //Draw Here!
+            gameState.render(g);
+            //End Drawing!
+            bs.show();
+            g.dispose();
+        }
+
     }
 
     public KeyInput getKeyInput(){return k;}
