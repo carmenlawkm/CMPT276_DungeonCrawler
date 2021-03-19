@@ -28,64 +28,29 @@ public abstract class GameObject{
     }
 
     public abstract void render(Graphics g);
-
-    /**
-     * getLocation getter
-     * @return current location of the object
-     */
     public Point getLocation(){
         return location;
     }
+    public int getX(){
+        return location.x;
+    }
+    public int getY(){
+        return location.y;
+    }
 
-    /**
-     * location setter
-     * @param x x co-ordinate of the location
-     * @param y y co-ordinate of the location
-     */
     public void setLocation(int x, int y){
         location.x = x;
         location.y = y;
     }
 
-    /**
-     * x coordinate getter
-     * @return x coordinate of current location
-     */
-    public int getX(){
-        return location.x;
-    }
-
-    /**
-     * y coordinate getter
-     * @return y coordinate of current location
-     */
-    public int getY(){
-        return location.y;
-    }
-
-    /**
-     * Abstract update method
-     * Allows each individual game object to implement the way they move
-     */
-
-    /**
-     * GameObject thread
-     * Runs in a loop while the game is running
-     * Handles movement and visual render per tick
-     * Synched to timer class, waits for signal of one tick before proceeding to next tick actions
-     */
-
     //determines if next tile is walkable (for both enemy and player)
     public boolean isWalkable(Point nextLocation){
         nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
-        System.out.println("Next tile is at "+nextLocation.x/tileSize+" "+nextLocation.y/tileSize);
-        System.out.println("Next tile's ID is "+ nextTile.getID());
         if(nextTile.getID() != 1){
             return true;
         }else{
             return false;
         }
     }
-
 
 }

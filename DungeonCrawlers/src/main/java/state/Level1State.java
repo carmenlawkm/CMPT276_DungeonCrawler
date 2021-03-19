@@ -38,5 +38,9 @@ public class Level1State extends State{
     public void render(Graphics g) {
         world.populateMap(g);
         player.render(g);
+
+
+
+
     }
 }
