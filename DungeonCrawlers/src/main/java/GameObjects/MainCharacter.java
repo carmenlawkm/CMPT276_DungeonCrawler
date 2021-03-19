@@ -13,11 +13,8 @@ import java.awt.*;
 public class MainCharacter extends GameObject {
     private Point spawn;
     protected int score;
-    private static MainCharacter instance=null;
-    //private Game game;
-    private World w;
-    private Tile nextTile;
-    private int tileSize = Tile.TEXTUREWIDTH;
+
+
 
     /**
      * MainCharacter constructor
@@ -25,7 +22,7 @@ public class MainCharacter extends GameObject {
      * @param location defines the spawning point of the player
      */
     public MainCharacter(World world, Point location) {
-        super(location);
+        super(world,location);
         score = 100;
         this.image = Assets.player;
         this.game = Game.getInstance();
@@ -41,26 +38,32 @@ public class MainCharacter extends GameObject {
 
         game.getKeyInput().update();
 
-        if(game.getKeyInput().up){
-            nextTile = w.getTile(location.x/tileSize , (location.y-tileSize)/tileSize);
-            if(nextTile.getID() != 1)
+        if(game.getKeyInput().up && location.y > 0){
+            nextLocation.x = location.x;
+            nextLocation.y = location.y - tileSize;
+            if(isWalkable(nextLocation)){
                 location.y -=tileSize;
-        }
-        if(game.getKeyInput().down){
-            nextTile = w.getTile(location.x/tileSize , (location.y + tileSize)/tileSize);
-            if(nextTile.getID() != 1)
+            }
+        }else if(game.getKeyInput().down && location.y <800){
+            nextLocation.x = location.x;
+            nextLocation.y = location.y + tileSize;
+            if(isWalkable(nextLocation)){
                 location.y +=tileSize;
-        }
-        if(game.getKeyInput().left ){
-            nextTile = w.getTile((location.x - tileSize)/tileSize, location.y/tileSize);
-            if(nextTile.getID() != 1)
-            location.x -=tileSize;
-        }
-        if(game.getKeyInput().right){
-            nextTile = w.getTile((location.x + tileSize)/tileSize, location.y/tileSize);
-            if(nextTile.getID() != 1)
-            location.x +=tileSize;
+            }
+        }else if(game.getKeyInput().left && location.x > 0){
+            nextLocation.y = location.y;
+            nextLocation.x = location.x - tileSize;
+            if(isWalkable(nextLocation)){
+                location.x -=tileSize;
+            }
+        }else if(game.getKeyInput().right && location.x < 1200){
+            nextLocation.y = location.y;
+            nextLocation.x = location.x + tileSize;
+            if(isWalkable(nextLocation)){
+                location.x +=tileSize;
+            }
         }
     }
+
 
 }

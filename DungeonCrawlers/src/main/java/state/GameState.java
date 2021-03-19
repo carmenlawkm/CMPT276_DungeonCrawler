@@ -31,12 +31,12 @@ public class GameState extends State{
     public GameState(){
         super();
         timer = game.getTimer();
-        world = new World("src/main/resources/Level1.txt");
+        world = new World("DungeonCrawlers/src/main/resources/Level1.txt");
         player = new MainCharacter(world, spawnPoint);
-        enemy = new Enemy(spawnPoint2, 100, player);
-        reward = new RegularReward(spawnPoint3,100, player);
-        trap = new TrapCell(spawnPoint4,100,0,player);
-        bonus = new BonusReward(SpawnPoint5,200,0,player);
+        enemy = new Enemy(world, spawnPoint2, 100, player);
+        reward = new RegularReward(world, spawnPoint3,100, player);
+        trap = new TrapCell(world, spawnPoint4,100,0,player);
+        bonus = new BonusReward(world, SpawnPoint5,200,0,player);
     }
 
     @Override

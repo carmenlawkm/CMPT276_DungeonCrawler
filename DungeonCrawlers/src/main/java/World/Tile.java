@@ -1,8 +1,5 @@
 package World;
 
-import GameObjects.ExitCell;
-import com.sun.java.accessibility.util.TopLevelWindowListener;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

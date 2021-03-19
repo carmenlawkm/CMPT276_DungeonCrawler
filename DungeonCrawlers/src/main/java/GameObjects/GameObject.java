@@ -1,13 +1,11 @@
 package GameObjects;
 
-import graphics.Assets;
-import graphics.Window;
+import World.Tile;
+import World.World;
 import state.Game;
-import state.State;
 import state.Timer;
-
 import java.awt.*;
-import java.awt.image.BufferStrategy;
+
 
 /**
  * abstract class GameObject defines interface for objects used in the game
@@ -17,17 +15,23 @@ public abstract class GameObject implements Runnable{
     public Image image;
     protected Thread objectThread;
     protected Game game;
+    protected World w;
     protected Boolean running;
     protected Timer timer;
+    protected Tile nextTile;
+    protected Point nextLocation = new Point();
+    protected int tileSize = Tile.TEXTUREWIDTH;
+
 
 
     /**
      * GameObject constructor
      * @param location defines the location of the object
      */
-    GameObject(Point location){ //currently no location upon creation as
+    GameObject(World w, Point location){ //currently no location upon creation as
         this.location = location;
         game = Game.getInstance();
+        this.w = w;
         timer = game.getTimer();
     }
 
@@ -118,5 +122,18 @@ public abstract class GameObject implements Runnable{
             e.printStackTrace();
         }
     }
+
+    //determines if next tile is walkable (for both enemy and player)
+    public boolean isWalkable(Point nextLocation){
+        nextTile = w.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
+        System.out.println("Next tile is at "+nextLocation.x/tileSize+" "+nextLocation.y/tileSize);
+        System.out.println("Next tile's ID is "+ nextTile.getID());
+        if(nextTile.getID() != 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }

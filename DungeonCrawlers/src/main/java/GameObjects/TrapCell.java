@@ -1,5 +1,6 @@
 package GameObjects;
 
+import World.World;
 import com.sun.tools.javac.Main;
 import graphics.Assets;
 
@@ -21,8 +22,8 @@ public class TrapCell extends GameObject{
      * @param disappearTimer defines the number of ticks before the trap disappears
      * @param player defines the player-controlled character on the map
      */
-    public TrapCell(Point location, int deductionValue, int disappearTimer, MainCharacter player) {
-        super(location);
+    public TrapCell(World world, Point location, int deductionValue, int disappearTimer, MainCharacter player) {
+        super(world, location);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;
         this.image = Assets.trap;

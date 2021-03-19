@@ -1,6 +1,7 @@
 package GameObjects;
 
 import World.Tile;
+import World.World;
 import graphics.Assets;
 import state.Game;
 
@@ -23,8 +24,8 @@ public class Enemy extends GameObject{
      * @param deductionValue defines the amount of points the player loses if they run into this enemy
      * @param player defines the player-controlled character in the game
      */
-    public Enemy(Point location, int deductionValue, MainCharacter player) {
-        super(location);
+    public Enemy(World world, Point location, int deductionValue, MainCharacter player) {
+        super(world,location);
         this.deductionValue = deductionValue;
         this.image = Assets.enemy;
         this.game=Game.getInstance();
@@ -44,19 +45,27 @@ public class Enemy extends GameObject{
         if (location.x == player.getX() && location.y == player.getY()) {
             player.score = player.score - deductionValue;
             //System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
-        } else if (location.x < player.getX()) {
+        } else if (location.x < player.getX() ) {
             xTowardsPlayer = texturesize;
             //System.out.printf("Enemy is to the left of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
-        } else if (location.x > player.getX()) {
+        } else if (location.x > player.getX() ) {
             xTowardsPlayer = -texturesize;
             //System.out.printf("Enemy is to the right of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
-        } else if (location.y < player.getY()) {
+        } else if (location.y < player.getY() ) {
             yTowardsPlayer = texturesize;
             //System.out.printf("Enemy is below player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
-        } else if (location.y > player.getY()) {
+        } else if (location.y > player.getY() ) {
             yTowardsPlayer = -texturesize;
             //System.out.printf("Enemy is above player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
         }
-        setLocation(location.x + xTowardsPlayer, location.y + yTowardsPlayer);
+
+        nextLocation.x = location.x + xTowardsPlayer;
+        nextLocation.y = location.y + yTowardsPlayer;
+
+        if(isWalkable(nextLocation)){
+            setLocation(location.x + xTowardsPlayer, location.y + yTowardsPlayer);
+        }
+
+
     }
 }

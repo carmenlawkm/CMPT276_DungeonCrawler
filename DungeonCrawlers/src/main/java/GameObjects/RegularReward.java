@@ -1,5 +1,6 @@
 package GameObjects;
 
+import World.World;
 import graphics.Assets;
 
 import java.awt.*;
@@ -14,8 +15,8 @@ public class RegularReward extends RewardCell{
      * @param location defines the location of the reward
      * @param value defines points the player earns collecting the reward
      */
-    public RegularReward(Point location, int value, MainCharacter player) {
-        super(location, value);
+    public RegularReward(World world, Point location, int value, MainCharacter player) {
+        super(world, location, value);
         this.image = Assets.regularReward;
         this.player=player;
     }

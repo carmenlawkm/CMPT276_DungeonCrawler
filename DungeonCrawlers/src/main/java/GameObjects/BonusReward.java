@@ -1,5 +1,6 @@
 package GameObjects;
 
+import World.World;
 import graphics.Assets;
 
 import java.awt.*;
@@ -18,8 +19,8 @@ public class BonusReward extends RewardCell{
      * @param value defines the amount of points the player earns when collecting this reward
      * @param disappearTimer defines the amount of ticks the player has to collect the reward before it disappears
      */
-    public BonusReward(Point location, int value, int disappearTimer, MainCharacter player) {
-        super(location, value);
+    public BonusReward(World world, Point location, int value, int disappearTimer, MainCharacter player) {
+        super(world, location, value);
         this.disappearTimer = disappearTimer;
         this.image = Assets.specialReward;
         this.player=player;
