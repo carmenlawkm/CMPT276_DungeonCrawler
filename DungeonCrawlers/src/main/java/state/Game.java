@@ -63,6 +63,7 @@ public class Game{
             //Clear Screen
             g.clearRect(0, 0, width, height);
             //Draw Here!
+            gameState.update();
             gameState.render(g);
             //End Drawing!
             bs.show();

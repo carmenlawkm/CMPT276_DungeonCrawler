@@ -1,6 +1,8 @@
 package GameObjects;
 import World.World;
 import graphics.Assets;
+import state.Game;
+
 import java.awt.*;
 
 /**
@@ -15,12 +17,15 @@ public abstract class RewardCell extends GameObject{
      * @param location defines the location of the reward
      * @param value defines the points the player earns when collecting the reward
      */
-    RewardCell(World world, Point location, int value) {
-        super(world, location);
+    RewardCell(Game game, World world, Point location, int value) {
+        super(game, world, location);
         this.value = value;
     }
-    public void update(){
 
+    public void render(Graphics g) {
+        g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
     }
+
+
 
 }

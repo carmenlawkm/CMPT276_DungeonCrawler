@@ -70,6 +70,7 @@ public class MainCharacter extends GameObject implements Runnable{
 
             try {
                 game.getKeyInput().setKeyPressed(false);
+                System.out.println(score);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -2,6 +2,7 @@ package GameObjects;
 
 import World.World;
 import graphics.Assets;
+import state.Game;
 
 import java.awt.*;
 
@@ -15,13 +16,12 @@ public class RegularReward extends RewardCell{
      * @param location defines the location of the reward
      * @param value defines points the player earns collecting the reward
      */
-    public RegularReward(World world, Point location, int value, MainCharacter player) {
-        super(world, location, value);
+    public RegularReward(Game game, World world, Point location, int value, MainCharacter player) {
+        super(game, world, location, value);
         this.image = Assets.regularReward;
         this.player=player;
     }
 
-    @Override
     public void update() {
         if(player.getX()==location.x && player.getY()==location.y){
             player.score=player.score+value;
@@ -31,4 +31,5 @@ public class RegularReward extends RewardCell{
         //System.out.println(player.score);
 
     }
+
 }

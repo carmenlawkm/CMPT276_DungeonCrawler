@@ -22,8 +22,8 @@ public class Assets {
         barrier = ImageLoader.loadImage("/barrierTexture.png");
         exit = ImageLoader.loadImage("/exitTexture.png");
         floor = ImageLoader.loadImage("/floorTexture.png");
-        specialReward = ImageLoader.loadImage("/specialReward.png");
-        regularReward = ImageLoader.loadImage("/regularReward.png");
+        specialReward = ImageLoader.loadImage("/specialReward2.png");
+        regularReward = ImageLoader.loadImage("/regularReward2.png");
         trap = ImageLoader.loadImage("/trap.png");
         trapgone = ImageLoader.loadImage("/Trapgone.png");
         rewardgone= ImageLoader.loadImage("/Rewardgone.png");
