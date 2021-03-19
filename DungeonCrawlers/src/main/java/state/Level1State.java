@@ -48,7 +48,6 @@ public class Level1State extends State{
     public void update(){
         reward.update();
         bonus.update();
-        trap.update();
     }
 
     public void render(Graphics g) {
@@ -58,7 +57,6 @@ public class Level1State extends State{
         enemy.render(g);
         reward.render(g);
         bonus.render(g);
-        trap.render(g);
         g.setColor(Color.white);
         g.setFont(Assets.eightBit);
         g.drawString("Score: "+player.getScore(), 500, 80);

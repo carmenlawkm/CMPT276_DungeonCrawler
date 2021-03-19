@@ -14,12 +14,4 @@ public class BarrierTile extends Tile {
     public BarrierTile(int id) {
         super(Assets.barrier, id);
     }
-
-    /**
-     * @return if BarrierTile is walkable, which it is not
-     */
-    @Override
-    public boolean isWalkable() {
-        return false;
-    }
 }

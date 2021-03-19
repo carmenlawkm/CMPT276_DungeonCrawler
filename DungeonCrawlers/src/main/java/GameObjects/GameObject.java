@@ -15,6 +15,7 @@ public abstract class GameObject{
     protected Game game;
     protected World world;
     protected Tile nextTile;
+    protected int trapDeduct = 100;
     protected Point nextLocation = new Point();
     protected int tileSize = Tile.TEXTUREWIDTH;
 
@@ -53,6 +54,15 @@ public abstract class GameObject{
     public boolean isWalkable(Point nextLocation){
         nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
         if(nextTile.getID() != 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean onLava(Point nextLocation){
+        nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
+        if(nextTile.getID() == 3){
             return true;
         }else{
             return false;

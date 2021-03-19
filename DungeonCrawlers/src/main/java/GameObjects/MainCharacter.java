@@ -30,6 +30,8 @@ public class MainCharacter extends GameObject implements Runnable{
         g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
     }
 
+
+
     public void run(){
         while(running){
             keyCode = game.getKeyInput().getKeyCode();
@@ -68,9 +70,12 @@ public class MainCharacter extends GameObject implements Runnable{
                 }
             }
 
+            if(onLava(nextLocation)){
+                score -= trapDeduct;
+            }
+
             try {
                 game.getKeyInput().setKeyPressed(false);
-                System.out.println(score);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

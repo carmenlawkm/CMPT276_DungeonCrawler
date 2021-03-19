@@ -18,13 +18,13 @@ public class Assets {
      */
     public static void initAssets(){
         eightBit = FontLoader.loadFont("DungeonCrawlers/src/main/resources/Pixeboy-z8XGD.ttf", 50);
-        player = ImageLoader.loadImage("/mainCharacter.png");
-        enemy = ImageLoader.loadImage("/enemy2.png");
+        player = ImageLoader.loadImage("/mainCharacter2.png");
+        enemy = ImageLoader.loadImage("/enemy3.png");
         barrier = ImageLoader.loadImage("/barrierTexture.png");
         exit = ImageLoader.loadImage("/exitTexture.png");
         floor = ImageLoader.loadImage("/floorTexture.png");
         specialReward = ImageLoader.loadImage("/specialReward2.png");
-        regularReward = ImageLoader.loadImage("/regularReward2.png");
+        regularReward = ImageLoader.loadImage("/regularReward3.png");
         trap = ImageLoader.loadImage("/trap3.png");
         trapgone = ImageLoader.loadImage("/Trapgone.png");
         rewardgone= ImageLoader.loadImage("/Rewardgone.png");
