@@ -10,11 +10,9 @@ import java.awt.*;
 /**
  * MainCharacter class defines the player-controlled character of the game
  */
-public class MainCharacter extends GameObject {
+public class MainCharacter extends GameObject implements Runnable{
     private Point spawn;
     protected int score;
-
-
 
     /**
      * MainCharacter constructor
@@ -29,41 +27,44 @@ public class MainCharacter extends GameObject {
         this.w = world;
     }
 
-    /**
-     * update method allows player to get key input
-     * determines direction of key input and udpates player location
-     */
-    @Override
-    public void update() {
-
-        game.getKeyInput().update();
-
-        if(game.getKeyInput().up && location.y > 0){
-            nextLocation.x = location.x;
-            nextLocation.y = location.y - tileSize;
-            if(isWalkable(nextLocation)){
-                location.y -=tileSize;
+    public void run(){
+        while(true){
+            game.getKeyInput().update();
+            if(game.getKeyInput().up && location.y > 0){
+                nextLocation.x = location.x;
+                nextLocation.y = location.y - tileSize;
+                if(isWalkable(nextLocation)){
+                    location.y -=tileSize;
+                }
+            }else if(game.getKeyInput().down && location.y <800){
+                nextLocation.x = location.x;
+                nextLocation.y = location.y + tileSize;
+                if(isWalkable(nextLocation)){
+                    location.y +=tileSize;
+                }
+            }else if(game.getKeyInput().left && location.x > 0){
+                nextLocation.y = location.y;
+                nextLocation.x = location.x - tileSize;
+                if(isWalkable(nextLocation)){
+                    location.x -=tileSize;
+                }
+            }else if(game.getKeyInput().right && location.x < 1200){
+                nextLocation.y = location.y;
+                nextLocation.x = location.x + tileSize;
+                if(isWalkable(nextLocation)){
+                    location.x +=tileSize;
+                }
             }
-        }else if(game.getKeyInput().down && location.y <800){
-            nextLocation.x = location.x;
-            nextLocation.y = location.y + tileSize;
-            if(isWalkable(nextLocation)){
-                location.y +=tileSize;
-            }
-        }else if(game.getKeyInput().left && location.x > 0){
-            nextLocation.y = location.y;
-            nextLocation.x = location.x - tileSize;
-            if(isWalkable(nextLocation)){
-                location.x -=tileSize;
-            }
-        }else if(game.getKeyInput().right && location.x < 1200){
-            nextLocation.y = location.y;
-            nextLocation.x = location.x + tileSize;
-            if(isWalkable(nextLocation)){
-                location.x +=tileSize;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+
     }
+
+
 
 
 }

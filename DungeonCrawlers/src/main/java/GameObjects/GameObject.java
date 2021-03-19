@@ -3,21 +3,18 @@ package GameObjects;
 import World.Tile;
 import World.World;
 import state.Game;
-import state.Timer;
 import java.awt.*;
-
 
 /**
  * abstract class GameObject defines interface for objects used in the game
  */
-public abstract class GameObject implements Runnable{
+public abstract class GameObject{
     protected Point location;
     public Image image;
     protected Thread objectThread;
     protected Game game;
     protected World w;
     protected Boolean running;
-    protected Timer timer;
     protected Tile nextTile;
     protected Point nextLocation = new Point();
     protected int tileSize = Tile.TEXTUREWIDTH;
@@ -32,7 +29,7 @@ public abstract class GameObject implements Runnable{
         this.location = location;
         game = Game.getInstance();
         this.w = w;
-        timer = game.getTimer();
+
     }
 
     /**
@@ -73,7 +70,7 @@ public abstract class GameObject implements Runnable{
      * Abstract update method
      * Allows each individual game object to implement the way they move
      */
-    public abstract void update();
+    //public abstract void update();
 
     /**
      * GameObject thread
@@ -81,47 +78,6 @@ public abstract class GameObject implements Runnable{
      * Handles movement and visual render per tick
      * Synched to timer class, waits for signal of one tick before proceeding to next tick actions
      */
-    public void run() {
-        synchronized (timer){
-
-            while(running) {
-
-                game.render(image, location.x, location.y);
-                //update location
-                update();
-
-                //wait for one tick controlled by Timer class
-                try {
-                    timer.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    /**
-     * Starts the thread
-     */
-    public synchronized void start() {
-        running = true;
-        objectThread = new Thread(this);
-        objectThread.start();
-    }
-
-    /**
-     * Stops the thread
-     */
-    public synchronized void stop() {
-        if (!running) return;
-
-        running = false;
-        try {
-            objectThread.join();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     //determines if next tile is walkable (for both enemy and player)
     public boolean isWalkable(Point nextLocation){

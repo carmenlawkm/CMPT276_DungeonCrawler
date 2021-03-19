@@ -1,8 +1,6 @@
 package World;
 
 import state.Game;
-import state.Timer;
-
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,12 +10,11 @@ import java.io.IOException;
  * World defines the game's environment
  * Implements graphics in a thread
  */
-public class World implements Runnable{
+public class World{
     private int width, height;
     private int spawnX, spawnY;
     private int[][] tilesID;
     private Game game;
-    private Timer timer;
     private Boolean running;
     private Thread worldThread;
 
@@ -27,11 +24,9 @@ public class World implements Runnable{
      */
     public World(String path){
         loadWorld(path);
-        game = Game.getInstance();
-        timer = game.getTimer();
     }
 
-    public void render(Graphics g){
+    public void populateMap(Graphics g){
         for(int j = 0; j<height; j++){
             for(int i = 0; i<width; i++) {
                 getTile(i,j).render(g,i*Tile.TEXTUREWIDTH,j*Tile.TEXTUREHEIGHT);
@@ -91,53 +86,6 @@ public class World implements Runnable{
         }catch (NumberFormatException e){
             e.printStackTrace();
             return 0;
-        }
-    }
-
-    /**
-     * Thread which loops to renders game environment
-     * Synchronized to Game's Timer object
-     * Awaits timer signal for one tick, then repeats the loop
-     */
-    public void run() {
-        synchronized (timer){
-
-            while(running) {
-                
-
-                render(game.g);
-                //update location
-
-                //wait for one tick controlled by Timer class
-                try {
-                    timer.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    /**
-     * starts the World thread
-     */
-    public synchronized void start() {
-        running = true;
-        worldThread = new Thread(this);
-        worldThread.start();
-    }
-
-    /**
-     * stops the World thread
-     */
-    public synchronized void stop() {
-        if (!running) return;
-
-        running = false;
-        try {
-            worldThread.join();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

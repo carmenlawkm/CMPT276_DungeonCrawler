@@ -47,7 +47,6 @@ public class TrapCell extends GameObject{
     /**
      * checks if the player is on the trap and deducts points if true
      */
-    @Override
     public void update() {
         if(disappearTimer==2){
             this.image = Assets.trapgone;

@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Window class creates the window of the game
  */
-public class Window {
+public class Window{
     private JFrame frame;
     private Canvas canvas;
 
@@ -24,7 +24,6 @@ public class Window {
         this.title = title;
         this.width = width;
         this.height = height;
-
         createWindow();
     }
 
