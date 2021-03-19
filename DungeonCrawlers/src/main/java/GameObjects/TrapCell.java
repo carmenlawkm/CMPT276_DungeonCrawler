@@ -3,52 +3,25 @@ package GameObjects;
 import World.World;
 import com.sun.tools.javac.Main;
 import graphics.Assets;
+import state.Game;
 
 import java.awt.*;
 
-/**
- * TrapCell defines non-moving cell the player must avoid
- * Deducts points when the player steps on it
- */
 public class TrapCell extends GameObject{
     int deductionValue;
     int disappearTimer;
     MainCharacter player;
 
-    /**
-     * Trapcell constructor
-     * @param location defines the location of the trap
-     * @param deductionValue defines the points the player loses when stepping on the trap
-     * @param disappearTimer defines the number of ticks before the trap disappears
-     * @param player defines the player-controlled character on the map
-     */
-    public TrapCell(World world, Point location, int deductionValue, int disappearTimer, MainCharacter player) {
-        super(world, location);
+    public TrapCell(Game game, World world, Point location, int deductionValue, int disappearTimer, MainCharacter player) {
+        super(game, world, location);
         this.deductionValue = deductionValue;
         this.disappearTimer = disappearTimer;
         this.image = Assets.trap;
         this.player=player;
     }
 
-    //getters
-    public int getDeductionValue(){
-        return deductionValue;
-    }
-
-    public int getDisappearTimer(){
-        return disappearTimer;
-    }
-
-    //methods
-    public void startTimer(){
-        //method to start counting down to when it will disappear
-    }
-
-    /**
-     * checks if the player is on the trap and deducts points if true
-     */
     public void update() {
-        if(disappearTimer==2){
+        if(disappearTimer==2000){
             this.image = Assets.trapgone;
         }
         if(player.getX()==location.x && player.getY()==location.y){
@@ -56,7 +29,12 @@ public class TrapCell extends GameObject{
             this.image=Assets.trap;
             disappearTimer=0;
         }
-        System.out.println(player.score);
         disappearTimer++;
     }
+
+    public void render(Graphics g){
+        g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
+
+    }
+
 }

@@ -28,7 +28,6 @@ public class RegularReward extends RewardCell{
             this.image=Assets.rewardgone;
             value=0;
         }
-        //System.out.println(player.score);
 
     }
 

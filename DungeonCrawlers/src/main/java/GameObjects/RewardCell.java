@@ -22,10 +22,5 @@ public abstract class RewardCell extends GameObject{
         this.value = value;
     }
 
-    public void render(Graphics g) {
-        g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
-    }
-
-
 
 }

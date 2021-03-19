@@ -28,7 +28,7 @@ public abstract class GameObject{
         this.game = game;
     }
 
-    public abstract void render(Graphics g);
+
     public Point getLocation(){
         return location;
     }
@@ -42,6 +42,11 @@ public abstract class GameObject{
     public void setLocation(int x, int y){
         location.x = x;
         location.y = y;
+    }
+
+    public void render(Graphics g){
+        g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
+
     }
 
     //determines if next tile is walkable (for both enemy and player)

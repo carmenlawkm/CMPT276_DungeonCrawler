@@ -3,7 +3,6 @@
   <component name="CompilerConfiguration">
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/DungeonCrawlers/src/main/java/UI" includeSubdirectories="true" />
-      <file url="file://$PROJECT_DIR$/DungeonCrawlers/src/main/java/GameObjects/TrapCell.java" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">

@@ -24,7 +24,7 @@ public class Assets {
         floor = ImageLoader.loadImage("/floorTexture.png");
         specialReward = ImageLoader.loadImage("/specialReward2.png");
         regularReward = ImageLoader.loadImage("/regularReward2.png");
-        trap = ImageLoader.loadImage("/trap.png");
+        trap = ImageLoader.loadImage("/trap3.png");
         trapgone = ImageLoader.loadImage("/Trapgone.png");
         rewardgone= ImageLoader.loadImage("/Rewardgone.png");
     }
