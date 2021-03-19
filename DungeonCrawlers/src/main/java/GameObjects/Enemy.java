@@ -45,6 +45,11 @@ public class Enemy extends GameObject implements Runnable{
             if (location.x == player.getX() && location.y == player.getY()) {
                 player.score = player.score - deductionValue;
                 System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } else if (location.x < player.getX() ) {
                 xTowardsPlayer = textureSize;
                 System.out.printf("Enemy is to the left of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
@@ -65,6 +70,7 @@ public class Enemy extends GameObject implements Runnable{
             if(isWalkable(nextLocation)){
                 setLocation(location.x + xTowardsPlayer, location.y + yTowardsPlayer);
             }
+
 
             try {
                 Thread.sleep(1000);

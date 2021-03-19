@@ -64,6 +64,7 @@ public class MainCharacter extends GameObject implements Runnable{
                     }
                 }else{
                     System.out.println("Character is NOT moving");
+                    nextLocation = location;
                 }
             }
 
