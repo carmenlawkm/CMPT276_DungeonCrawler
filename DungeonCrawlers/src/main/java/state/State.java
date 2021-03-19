@@ -7,6 +7,7 @@ public abstract class State {
     //state manager
     private static State currentState = null;
     protected Game game;
+
     public static void setState(State state){
         currentState = state;
     }

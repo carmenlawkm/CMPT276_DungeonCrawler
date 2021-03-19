@@ -10,6 +10,7 @@ import java.awt.*;
 public class Level1State extends State{
     private MainCharacter player;
     private World world;
+    private Game game;
     private static Point spawnPoint = new Point(100,100);
 //    private static Point spawnPoint2 = new Point(300,300);
 //    private static Point spawnPoint3= new Point (400,400);
@@ -23,9 +24,11 @@ public class Level1State extends State{
      * GameState constructor
      * Initializes GameObjects in the game according to level design
      */
-    public Level1State(){
+    public Level1State(Game game){
         world = new World("DungeonCrawlers/src/main/resources/Level1.txt");
-        player = new MainCharacter(world, spawnPoint);
+        this.game = game;
+        player = new MainCharacter(game, world, spawnPoint);
+        player.start();
 //        enemy = new Enemy(world, spawnPoint2, 100, player);
 //        reward = new RegularReward(world, spawnPoint3,100, player);
 //        trap = new TrapCell(world, spawnPoint4,100,0,player);

@@ -6,6 +6,7 @@ package state;
 //import GameObjects.MainCharacter;
 import graphics.*;
 import graphics.Window;
+import input.KeyInput;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -20,7 +21,7 @@ public class Game{
     private Window window;
     private int width, height;
     private String title;
-    //private KeyInput keyInput;
+    private KeyInput k;
     private boolean running = false;
     private State gameState;
     private BufferStrategy bs;
@@ -30,7 +31,7 @@ public class Game{
         this.width = width;
         this.height = height;
         this.title = title;
-        //keyInput = new KeyInput();
+        k = new KeyInput();
         initialize();
     }
 
@@ -41,19 +42,15 @@ public class Game{
         return instance;
     }
 
-
-
-    //public KeyInput getKeyInput() { return keyInput; }
-
     private void initialize() {
         window = new Window(width, height, title);
-        //window.getFrame().addKeyListener(keyInput);
+        window.getFrame().addKeyListener(k);
         Assets.initAssets();
         System.out.println("Loading world...");
         if(bs == null){
             window.getCanvas().createBufferStrategy(2);
         }
-        gameState = new Level1State();
+        gameState = new Level1State(this);
         State.setState(gameState);
         render();
     }
@@ -71,5 +68,6 @@ public class Game{
         g.dispose();
     }
 
+    public KeyInput getKeyInput(){return k;}
 
 }
