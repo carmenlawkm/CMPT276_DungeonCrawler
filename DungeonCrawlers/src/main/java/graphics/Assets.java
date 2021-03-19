@@ -12,11 +12,12 @@ import java.io.IOException;
 public class Assets {
 
     public static BufferedImage player, enemy, barrier, exit, floor, specialReward, regularReward, trap, trapgone, rewardgone;
-
+    public static Font eightBit;
     /**
      * loads all assets from our resources folder
      */
     public static void initAssets(){
+        eightBit = FontLoader.loadFont("DungeonCrawlers/src/main/resources/Pixeboy-z8XGD.ttf", 50);
         player = ImageLoader.loadImage("/mainCharacter.png");
         enemy = ImageLoader.loadImage("/enemy2.png");
         barrier = ImageLoader.loadImage("/barrierTexture.png");

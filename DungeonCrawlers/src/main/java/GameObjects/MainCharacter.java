@@ -80,6 +80,10 @@ public class MainCharacter extends GameObject implements Runnable{
 
     }
 
+    public int getScore(){
+        return score;
+    }
+
     public synchronized void start(){
         if(running)
             return;

@@ -34,7 +34,6 @@ public class TrapCell extends GameObject{
 
     public void render(Graphics g){
         g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
-
     }
 
 }

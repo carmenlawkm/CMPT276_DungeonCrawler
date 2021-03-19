@@ -2,6 +2,8 @@ package state;
 
 import GameObjects.*;
 import World.World;
+import graphics.Assets;
+
 import java.awt.*;
 
 /**
@@ -15,6 +17,7 @@ public class Level1State extends State{
     private RegularReward reward;
     private BonusReward bonus;
     private TrapCell trap;
+    private Font eightBit;
 
     private static Point spawnPoint = new Point(100,100);
     private static Point spawnPoint2 = new Point(500,500);
@@ -50,11 +53,15 @@ public class Level1State extends State{
 
     public void render(Graphics g) {
         world.populateMap(g);
+
         player.render(g);
         enemy.render(g);
         reward.render(g);
         bonus.render(g);
         trap.render(g);
+        g.setColor(Color.white);
+        g.setFont(Assets.eightBit);
+        g.drawString("Score: "+player.getScore(), 500, 80);
 
     }
 }
