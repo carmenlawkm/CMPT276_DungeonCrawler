@@ -1,16 +1,14 @@
 package state;
 
-//import GameObjects.Enemy;
-//import GameObjects.GameObject;
-//import GameObjects.ID;
-//import GameObjects.MainCharacter;
 import graphics.*;
 import graphics.Window;
 import input.KeyInput;
+import input.MouseInput;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-//import input.KeyInput;
+import java.util.logging.Level;
+
 
 /**
  * Game class manages state of the game
@@ -22,8 +20,10 @@ public class Game{
     private int width, height;
     private String title;
     private KeyInput k;
+    private MouseInput m;
     private boolean running = false;
-    private State gameState;
+    public Level1State gameState;
+    public MenuState menuState;
     private BufferStrategy bs;
     private Graphics g;
 
@@ -32,6 +32,7 @@ public class Game{
         this.height = height;
         this.title = title;
         k = new KeyInput();
+        m = new MouseInput();
         initialize();
     }
 
@@ -45,26 +46,33 @@ public class Game{
     private void initialize() {
         window = new Window(width, height, title);
         window.getFrame().addKeyListener(k);
+        window.getFrame().addMouseListener(m);
+        window.getFrame().addMouseMotionListener(m);
+        window.getCanvas().addMouseListener(m);
+        window.getCanvas().addMouseMotionListener(m);
         Assets.initAssets();
         System.out.println("Loading world...");
         if(bs == null){
             window.getCanvas().createBufferStrategy(2);
         }
         gameState = new Level1State(this);
-        State.setState(gameState);
+        menuState = new MenuState(this);
+        State.setState(menuState);
         render();
+
     }
 
-    private void render(){
+    protected void render(){
         while(true){
             bs = window.getCanvas().getBufferStrategy();
             g = bs.getDrawGraphics();
-
             //Clear Screen
             g.clearRect(0, 0, width, height);
             //Draw Here!
-            gameState.update();
-            gameState.render(g);
+            if(State.getState() != null){
+                State.getState().render(g);
+                State.getState().update();
+            }
             //End Drawing!
             bs.show();
             g.dispose();
@@ -73,5 +81,6 @@ public class Game{
     }
 
     public KeyInput getKeyInput(){return k;}
+    public MouseInput getMouseInput(){return m;}
 
 }

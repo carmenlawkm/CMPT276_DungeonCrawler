@@ -26,23 +26,24 @@ public class Level1State extends State{
     private static Point SpawnPoint5= new Point(300,100);
 
 
-
-
     /**
      * GameState constructor
      * Initializes GameObjects in the game according to level design
      */
     public Level1State(Game game){
+        System.out.println("Creating level!");
         world = new World("DungeonCrawlers/src/main/resources/Level1.txt");
         this.game = game;
         player = new MainCharacter(game, world, spawnPoint);
         enemy = new Enemy(game, world, spawnPoint2, 100, player);
-        player.start();
-        enemy.start();
         reward = new RegularReward(game, world, spawnPoint3,100, player);
         bonus = new BonusReward(game, world, SpawnPoint5,200,0,player);
         trap = new TrapCell(game, world, spawnPoint4,100,0,player);
+    }
 
+    public void startThreads(){
+        player.start();
+        enemy.start();
     }
 
     public void update(){
@@ -52,13 +53,12 @@ public class Level1State extends State{
 
     public void render(Graphics g) {
         world.populateMap(g);
-
         player.render(g);
         enemy.render(g);
         reward.render(g);
         bonus.render(g);
         g.setColor(Color.white);
-        g.setFont(Assets.eightBit);
+        g.setFont(Assets.eightBit_score);
         g.drawString("Score: "+player.getScore(), 500, 80);
 
     }
