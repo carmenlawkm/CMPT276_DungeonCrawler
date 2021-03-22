@@ -3,6 +3,7 @@ package GameObjects;
 import state.Game;
 import graphics.*;
 import World.*;
+import state.Level1State;
 
 import java.awt.*;
 
@@ -13,7 +14,8 @@ public class MainCharacter extends GameObject implements Runnable{
     protected int score;
     private Thread playerThread;
     private int keyCode;
-    private Graphics g;
+    private int rewardCount;
+    private boolean win = false;
 
     /**
      * MainCharacter constructor
@@ -57,7 +59,7 @@ public class MainCharacter extends GameObject implements Runnable{
                     if(isWalkable(nextLocation)){
                         location.x -=tileSize;
                     }
-                }else if(game.getKeyInput().right_D == keyCode && location.x < 1200){
+                }else if(game.getKeyInput().right_D == keyCode && location.x < 1120){
                     System.out.println("Character is going right");
                     nextLocation.y = location.y;
                     nextLocation.x = location.x + tileSize;
@@ -83,6 +85,23 @@ public class MainCharacter extends GameObject implements Runnable{
 
         }
 
+    }
+
+    public boolean getLevel1Win(){
+        if(rewardCount==5 && location.x == Level1State.exitLocation.x && location.y == Level1State.exitLocation.y){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public void addRewardCount(){
+        rewardCount++;
+    }
+
+    public int getRewardCount(){
+        return rewardCount;
     }
 
     public int getScore(){

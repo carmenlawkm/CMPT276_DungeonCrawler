@@ -24,6 +24,8 @@ public class Game{
     private boolean running = false;
     public Level1State gameState;
     public MenuState menuState;
+    public GameOverState gameOverState;
+    public WinState winState;
     private BufferStrategy bs;
     private Graphics g;
 
@@ -57,13 +59,16 @@ public class Game{
         }
         gameState = new Level1State(this);
         menuState = new MenuState(this);
+        gameOverState = new GameOverState(this);
+        winState = new WinState(this);
+        running = true;
         State.setState(menuState);
         render();
 
     }
 
     protected void render(){
-        while(true){
+        while(running){
             bs = window.getCanvas().getBufferStrategy();
             g = bs.getDrawGraphics();
             //Clear Screen
@@ -82,5 +87,9 @@ public class Game{
 
     public KeyInput getKeyInput(){return k;}
     public MouseInput getMouseInput(){return m;}
+
+    public void setRunning(boolean running){
+        this.running = running;
+    }
 
 }

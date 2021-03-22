@@ -11,6 +11,7 @@ import java.awt.*;
  */
 public abstract class RewardCell extends GameObject{
     int value;
+    protected boolean notTaken = true;
 
     /**
      * RewardCell constructor

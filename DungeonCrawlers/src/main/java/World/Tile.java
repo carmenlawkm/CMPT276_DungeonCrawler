@@ -12,7 +12,7 @@ public class Tile {
     public static Tile barrierTile = new BarrierTile(1);
     public static Tile exitTile = new ExitTile(2);
     public static Tile trapTile = new TrapTile(3);
-    public static final int  TEXTUREWIDTH = 100, TEXTUREHEIGHT =100;
+    public static final int  TEXTUREWIDTH = 80, TEXTUREHEIGHT =80;
     protected  BufferedImage texture;
     protected final int id; // to identify what type of tile
 

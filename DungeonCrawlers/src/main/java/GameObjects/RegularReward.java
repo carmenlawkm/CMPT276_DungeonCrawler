@@ -23,10 +23,12 @@ public class RegularReward extends RewardCell{
     }
 
     public void update() {
-        if(player.getX()==location.x && player.getY()==location.y){
+        if(player.getX()==location.x && player.getY()==location.y && notTaken){
             player.score=player.score+value;
             this.image=Assets.rewardgone;
             value=0;
+            notTaken = false;
+            player.addRewardCount();
         }
 
     }

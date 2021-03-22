@@ -30,7 +30,7 @@ public class BonusReward extends RewardCell{
 
 
     public void update() {
-        if(disappearTimer == 100){
+        if(disappearTimer == 1500){
             this.image = Assets.rewardgone;
             value=0;
         }
