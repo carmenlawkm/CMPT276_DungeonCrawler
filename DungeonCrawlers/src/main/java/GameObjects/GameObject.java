@@ -23,34 +23,56 @@ public abstract class GameObject{
      * GameObject constructor
      * @param location defines the location of the object
      */
-    GameObject(Game game, World world, Point location){ //currently no location upon creation as
+    GameObject(World world, Point location){ //currently no location upon creation as
         this.location = location;
         this.world = world;
-        this.game = game;
+        this.game = Game.getInstance();
     }
 
-
+    /**
+     * @return object's current location
+     */
     public Point getLocation(){
         return location;
     }
+
+    /**
+     * @return x-value of object current location
+     */
     public int getX(){
         return location.x;
     }
+
+    /**
+     * @return y-value of object current location
+     */
     public int getY(){
         return location.y;
     }
 
+    /**
+     * Change the object's location
+     * @param x x value of new location
+     * @param y y value of new location
+     */
     public void setLocation(int x, int y){
         location.x = x;
         location.y = y;
     }
 
+    /**
+     * draw the picture of the object
+     * @param g graphic to render to
+     */
     public void render(Graphics g){
         g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
-
     }
 
-    //determines if next tile is walkable (for both enemy and player)
+    /**
+     * determines if next tile is walkable
+     * @param nextLocation the next location the object wishes to walk to
+     * @return whether the location should be walkable or not
+     */
     public boolean isWalkable(Point nextLocation){
         nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
         if(nextTile.getID() != 1){
@@ -60,6 +82,11 @@ public abstract class GameObject{
         }
     }
 
+    /**
+     *determine if next tile is a trap
+     * @param nextLocation the next location the object wishes to walk to
+     * @return whether the location should be walkable or not
+     */
     public boolean onLava(Point nextLocation){
         nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
         if(nextTile.getID() == 3){

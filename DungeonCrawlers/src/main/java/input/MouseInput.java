@@ -4,29 +4,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * MouseInput class manages player mouse clicks to initiate the game
+ */
 public class MouseInput implements MouseListener, MouseMotionListener {
 
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
 
-    public MouseInput(){
 
-    }
 
     public boolean isLeftPressed(){
         return leftPressed;
-    }
-
-    public boolean isRightPressed(){
-        return rightPressed;
-    }
-
-    public int getMouseX(){
-        return mouseX;
-    }
-
-    public int getMouseY(){
-        return mouseY;
     }
 
     @Override

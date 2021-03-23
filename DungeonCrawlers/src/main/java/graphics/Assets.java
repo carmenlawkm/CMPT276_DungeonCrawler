@@ -19,9 +19,9 @@ public class Assets {
     public static void initAssets(){
         bg = ImageLoader.loadImage("/dungeonBG_resized.png");
         logo = ImageLoader.loadImage("/logo.png");
-        eightBit_click = FontLoader.loadFont("DungeonCrawlers/src/main/resources/Pixeboy-z8XGD.ttf", 70);
-        eightBit_score = FontLoader.loadFont("DungeonCrawlers/src/main/resources/Pixeboy-z8XGD.ttf", 60);
-        eightBit_over = FontLoader.loadFont("DungeonCrawlers/src/main/resources/Pixeboy-z8XGD.ttf", 120);
+        eightBit_click = FontLoader.loadFont("src/main/resources/Pixeboy-z8XGD.ttf", 70);
+        eightBit_score = FontLoader.loadFont("src/main/resources/Pixeboy-z8XGD.ttf", 60);
+        eightBit_over = FontLoader.loadFont("src/main/resources/Pixeboy-z8XGD.ttf", 120);
         player = ImageLoader.loadImage("/mainCharacter2.png");
         enemy = ImageLoader.loadImage("/enemy3.png");
         barrier = ImageLoader.loadImage("/barrierTexture.png");

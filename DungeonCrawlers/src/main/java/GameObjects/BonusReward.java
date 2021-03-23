@@ -20,17 +20,19 @@ public class BonusReward extends RewardCell{
      * @param value defines the amount of points the player earns when collecting this reward
      * @param disappearTimer defines the amount of ticks the player has to collect the reward before it disappears
      */
-    public BonusReward(Game game, World world, Point location, int value, int disappearTimer, MainCharacter player) {
-        super(game, world, location, value);
+    public BonusReward(World world, Point location, int value, int disappearTimer, MainCharacter player) {
+        super(world, location, value);
         this.disappearTimer = disappearTimer;
         this.image = Assets.specialReward;
         this.player=player;
-
     }
 
-
+    /**
+     * Updates status and location of bonus reward
+     * Set to disappear after a certain timer
+     */
     public void update() {
-        if(disappearTimer == 1500){
+        if(disappearTimer == 15000){
             this.image = Assets.rewardgone;
             value=0;
         }

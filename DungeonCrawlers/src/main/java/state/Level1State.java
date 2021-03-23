@@ -33,26 +33,33 @@ public class Level1State extends State{
      * GameState constructor
      * Initializes GameObjects in the game according to level design
      */
-    public Level1State(Game game){
+    public Level1State(){
         System.out.println("Creating level!");
-        world = new World("DungeonCrawlers/src/main/resources/Level1.txt");
-        this.game = game;
-        player = new MainCharacter(game, world, playerSpawn);
-        enemy = new Enemy(game, world, enemySpawn, 100, player);
-        reward1 = new RegularReward(game, world, reward1Spawn,100, player);
-        reward2 = new RegularReward(game, world, reward2Spawn,100, player);
-        reward3 = new RegularReward(game, world, reward3Spawn,100, player);
-        reward4 = new RegularReward(game, world, reward4Spawn,100, player);
-        reward5 = new RegularReward(game, world, reward5Spawn,100, player);
-        bonus1 = new BonusReward(game, world, bonusReward1Spawn,200,800,player);
-        bonus2 = new BonusReward(game, world, bonusReward2Spawn,200,0,player);
+        world = new World("src/main/resources/Level1.txt");
+        this.game = Game.getInstance();
+        player = new MainCharacter(world, playerSpawn);
+        enemy = new Enemy(world, enemySpawn, 100, player);
+        reward1 = new RegularReward(world, reward1Spawn,100, player);
+        reward2 = new RegularReward(world, reward2Spawn,100, player);
+        reward3 = new RegularReward(world, reward3Spawn,100, player);
+        reward4 = new RegularReward(world, reward4Spawn,100, player);
+        reward5 = new RegularReward(world, reward5Spawn,100, player);
+        bonus1 = new BonusReward(world, bonusReward1Spawn,200,800,player);
+        bonus2 = new BonusReward(world, bonusReward2Spawn,200,0,player);
     }
 
+    /**
+     * start the required threads of the level
+     */
     public void startThreads(){
         player.start();
         enemy.start();
     }
 
+    /**
+     * Update the status of various game objects
+     * Checks if the player has won or lost the game
+     */
     public void update(){
         reward1.update();
         reward2.update();
@@ -79,6 +86,10 @@ public class Level1State extends State{
 
     }
 
+    /**
+     * renders graphics of the level
+     * @param g the Graphic to be rendered on
+     */
     public void render(Graphics g) {
         world.populateMap(g);
         player.render(g);

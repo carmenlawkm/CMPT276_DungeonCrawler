@@ -18,8 +18,8 @@ public abstract class RewardCell extends GameObject{
      * @param location defines the location of the reward
      * @param value defines the points the player earns when collecting the reward
      */
-    RewardCell(Game game, World world, Point location, int value) {
-        super(game, world, location);
+    RewardCell(World world, Point location, int value) {
+        super(world, location);
         this.value = value;
     }
 

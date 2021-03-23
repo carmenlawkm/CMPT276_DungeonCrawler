@@ -16,12 +16,16 @@ public class RegularReward extends RewardCell{
      * @param location defines the location of the reward
      * @param value defines points the player earns collecting the reward
      */
-    public RegularReward(Game game, World world, Point location, int value, MainCharacter player) {
-        super(game, world, location, value);
+    public RegularReward(World world, Point location, int value, MainCharacter player) {
+        super(world, location, value);
         this.image = Assets.regularReward;
         this.player=player;
     }
 
+    /**
+     * update the status of regular rewards
+     * Checks if taken by player
+     */
     public void update() {
         if(player.getX()==location.x && player.getY()==location.y && notTaken){
             player.score=player.score+value;

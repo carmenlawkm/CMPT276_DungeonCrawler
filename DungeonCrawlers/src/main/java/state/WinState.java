@@ -4,13 +4,23 @@ import graphics.Assets;
 
 import java.awt.*;
 
+/**
+ * State to indicate the player has won
+ */
 public class WinState extends State{
     private Game game;
 
-    public WinState(Game game){
-        this.game = game;
+    /**
+     * Constructor
+     */
+    public WinState(){
+        this.game = Game.getInstance();
     }
 
+    /**
+     * renders the special graphics of game won status
+     * @param g Graphic to render on
+     */
     public void render(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0,0,1200,800);
@@ -20,6 +30,9 @@ public class WinState extends State{
 
     }
 
+    /**
+     * sets the game to not running
+     */
     public void update() {
         game.setRunning(false);
     }
