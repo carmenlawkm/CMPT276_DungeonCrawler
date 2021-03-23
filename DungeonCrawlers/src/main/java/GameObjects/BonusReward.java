@@ -28,9 +28,12 @@ public class BonusReward extends RewardCell{
 
     }
 
-
+    /**
+     * Updates status and location of bonus reward
+     * Set to disappear after a certain timer
+     */
     public void update() {
-        if(disappearTimer == 1500){
+        if(disappearTimer == 15000000){
             this.image = Assets.rewardgone;
             value=0;
         }

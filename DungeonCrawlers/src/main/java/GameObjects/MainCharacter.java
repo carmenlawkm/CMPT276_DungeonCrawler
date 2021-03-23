@@ -28,12 +28,10 @@ public class MainCharacter extends GameObject implements Runnable{
         this.image = Assets.player;
     }
 
-    public void render(Graphics g) {
-        g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
-    }
-
-
-
+    /**
+     * Main character thread loop
+     * Updates the location of main character
+     */
     public void run(){
         while(running){
             keyCode = game.getKeyInput().getKeyCode();
@@ -87,6 +85,10 @@ public class MainCharacter extends GameObject implements Runnable{
 
     }
 
+    /**
+     * checks if player has successfully won
+     * @return the status of whether the player won
+     */
     public boolean getLevel1Win(){
         if(rewardCount==5 && location.x == Level1State.exitLocation.x && location.y == Level1State.exitLocation.y){
             return true;
@@ -95,19 +97,30 @@ public class MainCharacter extends GameObject implements Runnable{
         }
     }
 
-
+    /**
+     * To indicate the player acquired a reward
+     */
     public void addRewardCount(){
         rewardCount++;
     }
 
+    /**
+     * @return the number of awards the player has collected
+     */
     public int getRewardCount(){
         return rewardCount;
     }
 
+    /**
+     * @return the current score of the player
+     */
     public int getScore(){
         return score;
     }
 
+    /**
+     * starts player thread
+     */
     public synchronized void start(){
         if(running)
             return;
@@ -116,6 +129,9 @@ public class MainCharacter extends GameObject implements Runnable{
         playerThread.start();
     }
 
+    /**
+     * stops player thread
+     */
     public synchronized void stop(){
         if(!running)
             return;

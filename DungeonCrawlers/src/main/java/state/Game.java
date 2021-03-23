@@ -29,6 +29,12 @@ public class Game{
     private BufferStrategy bs;
     private Graphics g;
 
+    /**
+     * Game constructor
+     * @param width width size of the window to hold the game
+     * @param height height size of the window to hold the game
+     * @param title title of the game!
+     */
     public Game(int width, int height, String title) {
         this.width = width;
         this.height = height;
@@ -38,6 +44,10 @@ public class Game{
         initialize();
     }
 
+    /**
+     * Singleton implementation of Game object
+     * @return the one instance of Game
+     */
     public static Game getInstance(){
         if(instance == null){
             instance = new Game(1200, 800, "DungeonCrawler");
@@ -45,6 +55,9 @@ public class Game{
         return instance;
     }
 
+    /**
+     * initialize game window and graphics
+     */
     private void initialize() {
         window = new Window(width, height, title);
         window.getFrame().addKeyListener(k);
@@ -67,6 +80,9 @@ public class Game{
 
     }
 
+    /**
+     * renders game graphics
+     */
     protected void render(){
         while(running){
             bs = window.getCanvas().getBufferStrategy();
@@ -85,9 +101,22 @@ public class Game{
 
     }
 
+    /**
+     * gets player key input
+     * @return key input
+     */
     public KeyInput getKeyInput(){return k;}
+
+    /**
+     * gets player mouse clicks
+     * @return mouse input
+     */
     public MouseInput getMouseInput(){return m;}
 
+    /**
+     * renders the status of the game
+     * @param running whether the game is running or not
+     */
     public void setRunning(boolean running){
         this.running = running;
     }

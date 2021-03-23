@@ -31,10 +31,10 @@ public class Enemy extends GameObject implements Runnable{
         this.player = player;
     }
 
-    public void render(Graphics g) {
-        g.drawImage(image, location.x, location.y, tileSize, tileSize, null);
-    }
-
+    /**
+     * Enemy thread
+     * updates the location of the enemy based on the location of the player
+     */
     @Override
     public void run() {
         // enemy will prioritize moving in terms of left and right direction to
@@ -81,6 +81,9 @@ public class Enemy extends GameObject implements Runnable{
 
     }
 
+    /**
+     * Starts enemy thread
+     */
     public synchronized void start(){
         if(running)
             return;
@@ -89,6 +92,9 @@ public class Enemy extends GameObject implements Runnable{
         enemyThread.start();
     }
 
+    /**
+     * stops enemy thread
+     */
     public synchronized void stop(){
         if(!running)
             return;

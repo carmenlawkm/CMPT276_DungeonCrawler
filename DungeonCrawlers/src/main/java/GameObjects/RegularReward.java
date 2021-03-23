@@ -22,6 +22,10 @@ public class RegularReward extends RewardCell{
         this.player=player;
     }
 
+    /**
+     * update the status of regular rewards
+     * Checks if taken by player
+     */
     public void update() {
         if(player.getX()==location.x && player.getY()==location.y && notTaken){
             player.score=player.score+value;

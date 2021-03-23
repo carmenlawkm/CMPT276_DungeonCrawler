@@ -35,7 +35,7 @@ public class Level1State extends State{
      */
     public Level1State(Game game){
         System.out.println("Creating level!");
-        world = new World("DungeonCrawlers/src/main/resources/Level1.txt");
+        world = new World("src/main/resources/Level1.txt");
         this.game = game;
         player = new MainCharacter(game, world, playerSpawn);
         enemy = new Enemy(game, world, enemySpawn, 100, player);
@@ -48,11 +48,18 @@ public class Level1State extends State{
         bonus2 = new BonusReward(game, world, bonusReward2Spawn,200,0,player);
     }
 
+    /**
+     * start the required threads of the level
+     */
     public void startThreads(){
         player.start();
         enemy.start();
     }
 
+    /**
+     * Update the status of various game objects
+     * Checks if the player has won or lost the game
+     */
     public void update(){
         reward1.update();
         reward2.update();
@@ -79,6 +86,10 @@ public class Level1State extends State{
 
     }
 
+    /**
+     * renders graphics of the level
+     * @param g the Graphic to be rendered on
+     */
     public void render(Graphics g) {
         world.populateMap(g);
         player.render(g);
