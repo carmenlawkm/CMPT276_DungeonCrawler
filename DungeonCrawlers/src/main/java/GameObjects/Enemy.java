@@ -24,8 +24,8 @@ public class Enemy extends GameObject implements Runnable{
      * @param deductionValue defines the amount of points the player loses if they run into this enemy
      * @param player defines the player-controlled character in the game
      */
-    public Enemy(Game game, World world, Point location, int deductionValue, MainCharacter player) {
-        super(game, world,location);
+    public Enemy(World world, Point location, int deductionValue, MainCharacter player) {
+        super(world,location);
         this.deductionValue = deductionValue;
         this.image = Assets.enemy;
         this.player = player;

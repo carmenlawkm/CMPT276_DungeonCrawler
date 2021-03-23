@@ -15,10 +15,9 @@ public class MenuState extends State{
 
     /**
      * Constructor
-     * @param game the game to render this to
      */
-    public MenuState(Game game){
-        this.game = game;
+    public MenuState(){
+        this.game = Game.getInstance();
         this.logo = Assets.logo;
         this.bg = Assets.bg;
     }

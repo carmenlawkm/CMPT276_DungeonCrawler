@@ -12,10 +12,9 @@ public class WinState extends State{
 
     /**
      * Constructor
-     * @param game the game the state is running on
      */
-    public WinState(Game game){
-        this.game = game;
+    public WinState(){
+        this.game = Game.getInstance();
     }
 
     /**

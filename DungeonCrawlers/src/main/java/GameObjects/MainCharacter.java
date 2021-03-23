@@ -22,8 +22,8 @@ public class MainCharacter extends GameObject implements Runnable{
      * @param world defines the world the character is loaded in
      * @param location defines the spawning point of the player
      */
-    public MainCharacter(Game game, World world, Point location) {
-        super(game, world,location);
+    public MainCharacter(World world, Point location) {
+        super(world,location);
         score = 100;
         this.image = Assets.player;
     }

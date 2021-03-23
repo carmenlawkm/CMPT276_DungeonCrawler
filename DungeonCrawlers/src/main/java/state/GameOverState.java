@@ -12,10 +12,9 @@ public class GameOverState extends State{
 
     /**
      * Constructor
-     * @param game the game to render this to
      */
-    public GameOverState(Game game){
-        this.game = game;
+    public GameOverState(){
+        this.game = Game.getInstance();
     }
 
     /**

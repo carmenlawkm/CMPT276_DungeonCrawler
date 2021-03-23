@@ -23,10 +23,10 @@ public abstract class GameObject{
      * GameObject constructor
      * @param location defines the location of the object
      */
-    GameObject(Game game, World world, Point location){ //currently no location upon creation as
+    GameObject(World world, Point location){ //currently no location upon creation as
         this.location = location;
         this.world = world;
-        this.game = game;
+        this.game = Game.getInstance();
     }
 
     /**

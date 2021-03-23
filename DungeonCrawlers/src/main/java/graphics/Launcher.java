@@ -13,6 +13,9 @@ public class Launcher {
      * runs our game
      */
     public static void main(String args[]){
-        Game.getInstance();
+
+        Game game;
+        game = Game.getInstance();
+        game.initialize();
     }
 }

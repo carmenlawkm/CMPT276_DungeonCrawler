@@ -41,7 +41,6 @@ public class Game{
         this.title = title;
         k = new KeyInput();
         m = new MouseInput();
-        initialize();
     }
 
     /**
@@ -58,7 +57,7 @@ public class Game{
     /**
      * initialize game window and graphics
      */
-    private void initialize() {
+    public void initialize() {
         window = new Window(width, height, title);
         window.getFrame().addKeyListener(k);
         window.getFrame().addMouseListener(m);
@@ -70,10 +69,10 @@ public class Game{
         if(bs == null){
             window.getCanvas().createBufferStrategy(2);
         }
-        gameState = new Level1State(this);
-        menuState = new MenuState(this);
-        gameOverState = new GameOverState(this);
-        winState = new WinState(this);
+        gameState = new Level1State();
+        menuState = new MenuState();
+        gameOverState = new GameOverState();
+        winState = new WinState();
         running = true;
         State.setState(menuState);
         render();
