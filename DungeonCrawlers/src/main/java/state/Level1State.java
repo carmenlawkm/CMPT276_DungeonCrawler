@@ -18,7 +18,7 @@ public class Level1State extends State{
     private BonusReward bonus1, bonus2;
 
     private static Point playerSpawn = new Point(80,80);
-    private static Point enemySpawn = new Point(1040,320);
+    private static Point enemySpawn = new Point(1040,640);
     private static Point reward1Spawn = new Point (160,640);
     private static Point reward2Spawn = new Point (1040,80);
     private static Point reward3Spawn = new Point (800,640);

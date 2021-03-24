@@ -52,11 +52,11 @@ public class Enemy extends GameObject implements Runnable{
                 }
             } else if (location.x < player.getX() && isWalkable(new Point(location.x + textureSize, location.y))) {
                 xTowardsPlayer = textureSize;
-            } else if (location.x > player.getX() isWalkable(new Point(location.x - textureSize, location.y))) {
+            } else if (location.x > player.getX() && isWalkable(new Point(location.x - textureSize, location.y))) {
                 xTowardsPlayer = -textureSize;
-            } else if (location.y < player.getY() isWalkable(new Point(location.x, location.y  + textureSize))) {
+            } else if (location.y < player.getY() && isWalkable(new Point(location.x, location.y  + textureSize))) {
                 yTowardsPlayer = textureSize;
-            } else if (location.y > player.getY() isWalkable(new Point(location.x, location.y - textureSize))) {
+            } else if (location.y > player.getY() && isWalkable(new Point(location.x, location.y - textureSize))) {
                 yTowardsPlayer = -textureSize;
             }
             nextLocation.x = location.x + xTowardsPlayer;
