@@ -105,6 +105,7 @@ public class Level1State extends State{
         g.setFont(Assets.eightBit_score);
         g.drawString("Score> "+player.getScore(), 50, 60);
         g.drawString("Coins collected> "+player.getRewardCount()+"/5", 600, 60);
+        g.drawString("Time "+player.getTime(),50,750);
 
     }
 }
