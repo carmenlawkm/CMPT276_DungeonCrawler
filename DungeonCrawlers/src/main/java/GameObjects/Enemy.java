@@ -63,15 +63,30 @@ public class Enemy extends GameObject implements Runnable{
                 yTowardsPlayer = -textureSize;
                 System.out.printf("Enemy is above player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
             }
-
             nextLocation.x = location.x + xTowardsPlayer;
             nextLocation.y = location.y + yTowardsPlayer;
 
-            if(isWalkable(nextLocation)){
-                setLocation(location.x + xTowardsPlayer, location.y + yTowardsPlayer);
+            // Strategy: Try to increase the number of tiles moving in direction, if fail to do so after 5 times, pick a random direction.
+            int nextLocationTries = 0;
+            boolean nextLocationWalkable = isWalkable(nextLocation);
+            while(!nextLocationWalkable && nextLocationTries < 5 ){
+                // Strategy for picking a new location here, i.e update xTowardsPlayer, yTowardsPlayer.
+                nextLocation.x += xTowardsPlayer;
+                nextLocation.y += yTowardsPlayer;
+                nextLocationWalkable = isWalkable(nextLocation);
+                nextLocationTries++;
             }
 
+            // If tried to increase movement in next direction 5 times and still not walkable, prioritize moving in other direction
+            if(!nextLocationWalkable){
+                if(xTowardsPlayer == 0){
+                    nextLocation.y = location.y < player.getY() ? location.y + textureSize : location.y - textureSize;
+                } else {
+                    nextLocation.x = location.x < player.getX() ? location.x + textureSize : location.x - textureSize;
+                }
+            }
 
+            setLocation(nextLocation.x, nextLocation.y);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
