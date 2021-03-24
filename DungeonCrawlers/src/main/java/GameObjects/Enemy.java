@@ -42,15 +42,8 @@ public class Enemy extends GameObject implements Runnable{
         while(running){
             int xTowardsPlayer = 0;
             int yTowardsPlayer = 0;
-            if (location.x == player.getX() && location.y == player.getY()) {
-                player.score = player.score - deductionValue;
-                System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else if (location.x < player.getX() && isWalkable(new Point(location.x + textureSize, location.y))) {
+
+            if (location.x < player.getX() && isWalkable(new Point(location.x + textureSize, location.y))) {
                 xTowardsPlayer = textureSize;
             } else if (location.x > player.getX() && isWalkable(new Point(location.x - textureSize, location.y))) {
                 xTowardsPlayer = -textureSize;
@@ -71,6 +64,13 @@ public class Enemy extends GameObject implements Runnable{
             }
         }
 
+    }
+
+    /**
+     * @return whether the enemy is located on top of player
+     */
+    public boolean isOnPlayer(){
+        return (location.x == player.getX() && location.y == player.getY());
     }
 
     /**

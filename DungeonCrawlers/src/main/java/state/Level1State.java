@@ -70,14 +70,14 @@ public class Level1State extends State{
         bonus2.update();
 
 
-        if(player.getScore() == 0){
+        if(player.getScore() == 0 || enemy.isOnPlayer()){
             System.out.println("Game over");
             player.stop();
             enemy.stop();
             State.setState(game.gameOverState);
         }
 
-        if(player.getLevel1Win()){
+        if(player.getLevel1Win()) {
             System.out.println("Player Wins");
             player.stop();
             enemy.stop();
