@@ -18,8 +18,8 @@ public class Level1State extends State{
     private RegularReward reward1, reward2, reward3, reward4, reward5;
     private BonusReward bonus1, bonus2;
 
-    private static Point playerSpawn = new Point(80,80);
-    private static Point enemySpawn = new Point(1040,320);
+    private static Point playerSpawn = new Point(0,80);
+    private static Point enemySpawn = new Point(1040,640);
     private static Point reward1Spawn = new Point (160,640);
     private static Point reward2Spawn = new Point (1040,80);
     private static Point reward3Spawn = new Point (800,640);
@@ -75,14 +75,14 @@ public class Level1State extends State{
         bonus2.update();
 
 
-        if(player.getScore() == 0){
+        if(player.getScore() == 0 || enemy.isOnPlayer()){
             System.out.println("Game over");
             player.stop();
             enemy.stop();
             State.setState(game.gameOverState);
         }
 
-        if(player.getLevel1Win()){
+        if(player.getLevel1Win()) {
             System.out.println("Player Wins");
             player.stop();
             enemy.stop();
@@ -110,6 +110,7 @@ public class Level1State extends State{
         g.setFont(Assets.eightBit_score);
         g.drawString("Score> "+player.getScore(), 50, 60);
         g.drawString("Coins collected> "+player.getRewardCount()+"/5", 600, 60);
+        g.drawString("Time "+player.getTime()+" s",50,770);
 
     }
 }

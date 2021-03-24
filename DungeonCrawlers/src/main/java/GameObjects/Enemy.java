@@ -42,49 +42,19 @@ public class Enemy extends GameObject implements Runnable{
         while(running){
             int xTowardsPlayer = 0;
             int yTowardsPlayer = 0;
-            if (location.x == player.getX() && location.y == player.getY()) {
-                player.score = player.score - deductionValue;
-                System.out.printf("Enemy is in the same spot as player: (%2d,%2d)%n", location.x, location.y);
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else if (location.x < player.getX() ) {
+
+            if (location.x < player.getX() && isWalkable(new Point(location.x + textureSize, location.y))) {
                 xTowardsPlayer = textureSize;
-                System.out.printf("Enemy is to the left of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
-            } else if (location.x > player.getX() ) {
+            } else if (location.x > player.getX() && isWalkable(new Point(location.x - textureSize, location.y))) {
                 xTowardsPlayer = -textureSize;
-                System.out.printf("Enemy is to the right of player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
-            } else if (location.y < player.getY() ) {
+            } else if (location.y < player.getY() && isWalkable(new Point(location.x, location.y  + textureSize))) {
                 yTowardsPlayer = textureSize;
-                System.out.printf("Enemy is below player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
-            } else if (location.y > player.getY() ) {
+            } else if (location.y > player.getY() && isWalkable(new Point(location.x, location.y - textureSize))) {
                 yTowardsPlayer = -textureSize;
-                System.out.printf("Enemy is above player in position (%2d, %2d), Player: (%2d, %2d)%n", location.x, location.y, player.getX(), player.getY());
             }
+
             nextLocation.x = location.x + xTowardsPlayer;
             nextLocation.y = location.y + yTowardsPlayer;
-
-            // Strategy: Try to increase the number of tiles moving in direction, if fail to do so after 5 times, pick a random direction.
-            int nextLocationTries = 0;
-            boolean nextLocationWalkable = isWalkable(nextLocation);
-            while(!nextLocationWalkable && nextLocationTries < 5 ){
-                // Strategy for picking a new location here, i.e update xTowardsPlayer, yTowardsPlayer.
-                nextLocation.x += xTowardsPlayer;
-                nextLocation.y += yTowardsPlayer;
-                nextLocationWalkable = isWalkable(nextLocation);
-                nextLocationTries++;
-            }
-
-            // If tried to increase movement in next direction 5 times and still not walkable, prioritize moving in other direction
-            if(!nextLocationWalkable){
-                if(xTowardsPlayer == 0){
-                    nextLocation.y = location.y < player.getY() ? location.y + textureSize : location.y - textureSize;
-                } else {
-                    nextLocation.x = location.x < player.getX() ? location.x + textureSize : location.x - textureSize;
-                }
-            }
 
             setLocation(nextLocation.x, nextLocation.y);
             try {
@@ -94,6 +64,13 @@ public class Enemy extends GameObject implements Runnable{
             }
         }
 
+    }
+
+    /**
+     * @return whether the enemy is located on top of player
+     */
+    public boolean isOnPlayer(){
+        return (location.x == player.getX() && location.y == player.getY());
     }
 
     /**

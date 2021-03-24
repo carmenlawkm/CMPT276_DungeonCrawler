@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class Assets {
 
-    public static BufferedImage bg,logo, player, enemy, barrier, exit, floor, specialReward, regularReward, trap, trapgone, rewardgone;
+    public static BufferedImage bg,logo, player, enemy, barrier, exit, floor, specialReward, regularReward, trap, trapgone, rewardgone, spawn;
     public static Font eightBit_click, eightBit_score, eightBit_over;
     /**
      * loads all assets from our resources folder
@@ -32,6 +32,7 @@ public class Assets {
         trap = ImageLoader.loadImage("/trap3.png");
         trapgone = ImageLoader.loadImage("/Trapgone.png");
         rewardgone= ImageLoader.loadImage("/Rewardgone.png");
+        spawn = ImageLoader.loadImage("/spawn.png");
     }
 
 }
