@@ -16,6 +16,7 @@ public class MainCharacter extends GameObject implements Runnable{
     private int keyCode;
     private int rewardCount;
     private boolean win = false;
+    private int timepassed;
 
     /**
      * MainCharacter constructor
@@ -34,6 +35,7 @@ public class MainCharacter extends GameObject implements Runnable{
      */
     public void run(){
         while(running){
+            timepassed++;
             keyCode = game.getKeyInput().getKeyCode();
             if(game.getKeyInput().keyPressed){
                 if(game.getKeyInput().up_W == keyCode && location.y > 0){
@@ -121,6 +123,9 @@ public class MainCharacter extends GameObject implements Runnable{
     /**
      * starts player thread
      */
+    public int getTime(){
+        return timepassed;
+    }
     public synchronized void start(){
         if(running)
             return;

@@ -4,6 +4,7 @@ import graphics.Assets;
 import state.Game;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * RewardCell defines reward interface
@@ -21,6 +22,12 @@ public abstract class RewardCell extends GameObject{
     RewardCell(World world, Point location, int value) {
         super(world, location);
         this.value = value;
+    }
+    public int getRandomtime(){
+        int randomtime=0;
+        Random random=new Random();
+        randomtime=random.nextInt();
+        return randomtime;
     }
 
 
