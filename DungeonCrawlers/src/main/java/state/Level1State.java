@@ -5,6 +5,7 @@ import World.World;
 import graphics.Assets;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * GameState defines when the game is actively running in gameplay mode
@@ -44,8 +45,12 @@ public class Level1State extends State{
         reward3 = new RegularReward(world, reward3Spawn,100, player);
         reward4 = new RegularReward(world, reward4Spawn,100, player);
         reward5 = new RegularReward(world, reward5Spawn,100, player);
-        bonus1 = new BonusReward(world, bonusReward1Spawn,200,800,player);
-        bonus2 = new BonusReward(world, bonusReward2Spawn,200,0,player);
+
+        // Create a thread for bonus rewards. In the thread, have a loop that runs until thread ends
+        // while(true) =>
+        Random ran = new Random();
+        bonus1 = new BonusReward(world, bonusReward1Spawn,200, ran.nextInt(10000),player);
+        bonus2 = new BonusReward(world, bonusReward2Spawn,200,ran.nextInt(10000),player);
     }
 
     /**
