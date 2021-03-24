@@ -59,6 +59,7 @@ public class Enemy extends GameObject implements Runnable{
             } else if (location.y > player.getY() && isWalkable(new Point(location.x, location.y - textureSize))) {
                 yTowardsPlayer = -textureSize;
             }
+
             nextLocation.x = location.x + xTowardsPlayer;
             nextLocation.y = location.y + yTowardsPlayer;
 
