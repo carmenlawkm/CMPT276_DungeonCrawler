@@ -75,7 +75,7 @@ public class Level1State extends State{
      */
     public void startThreads(){
         player.start();
-        //enemy.start();
+        enemy.start();
         bonus1.start();
         bonus2.start();
     }

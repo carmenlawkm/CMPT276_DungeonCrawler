@@ -80,11 +80,7 @@ public abstract class GameObject{
      */
     public boolean isWalkable(Point nextLocation){
         nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
-        if(nextLocation.x < 0 ||
-            nextLocation.x > 1200 ||
-            nextLocation.y < 0 ||
-            nextLocation.y > 800 ||
-            nextTile.getID() == 1){
+        if(nextTile.getID() == 1){
             System.out.println("can't walk there!");
             return false;
         }else{
