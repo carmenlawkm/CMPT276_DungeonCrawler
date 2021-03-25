@@ -34,14 +34,14 @@ public class BonusReward extends RewardCell implements Runnable{
         disappearTimer=0;
         int randomtimer=0;
         int actualvalue=value;
-        int initialvalue=0;
+        int flag=0;
         randomtimer=getRandomtime();
         while(running){
             if(player.getTime()<=randomtimer){
                 this.image=Assets.rewardgone;
                 value=0;
             }
-            if(player.getTime()>=randomtimer&&disappearTimer<5){
+            if(player.getTime()>=randomtimer&&disappearTimer<5&&flag==0){
                 this.image=Assets.specialReward;
                 value=actualvalue;
                 disappearTimer++;
@@ -50,6 +50,7 @@ public class BonusReward extends RewardCell implements Runnable{
                     player.score=player.score+value;
                     this.image=Assets.rewardgone;
                     value=0;
+                    flag=1;
                 }
             }
             else if(player.getTime()>=randomtimer&&disappearTimer>=5){
