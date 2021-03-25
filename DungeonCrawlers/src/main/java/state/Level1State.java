@@ -112,12 +112,13 @@ public class Level1State extends State{
      */
     public void render(Graphics g) {
         world.populateMap(g);
-        player.render(g);
-        enemy.render(g);
 
         for(GameObject object: gameObjects){
             object.render(g);
         }
+
+        player.render(g);
+        enemy.render(g);
 
         g.setColor(Color.white);
         g.setFont(Assets.eightBit_score);
