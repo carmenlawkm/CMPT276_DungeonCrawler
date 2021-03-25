@@ -34,7 +34,11 @@ public class GameOverState extends State{
      * sets the game to not running
      */
     public void update() {
-        game.setRunning(false);
+        if(game.getMouseInput().isLeftPressed()){
+            System.out.println("Restarting.");
+            State.setState(game.gameState);
+            game.gameState.startThreads();
+        }
     }
 
 }
