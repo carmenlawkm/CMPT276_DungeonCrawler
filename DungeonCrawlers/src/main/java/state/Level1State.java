@@ -5,6 +5,7 @@ import World.World;
 import graphics.Assets;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -15,20 +16,33 @@ public class Level1State extends State{
     private Enemy enemy;
     private World world;
     private Game game;
-    private RegularReward reward1, reward2, reward3, reward4, reward5;
+
+    private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+
     private BonusReward bonus1, bonus2;
 
     private static Point playerSpawn = new Point(0,80);
+
     private static Point enemySpawn = new Point(1040,640);
+
     private static Point reward1Spawn = new Point (160,640);
     private static Point reward2Spawn = new Point (1040,80);
     private static Point reward3Spawn = new Point (800,640);
     private static Point reward4Spawn = new Point (80,320);
     private static Point reward5Spawn = new Point (560,240);
+
     private static Point bonusReward1Spawn= new Point(720,80);
     private static Point bonusReward2Spawn= new Point(1040,240);
-    public static Point exitLocation = new Point (1120,560);
 
+    private static Point trap1Spawn = new Point(320, 80);
+    private static Point trap2Spawn = new Point(480, 160);
+    private static Point trap3Spawn = new Point(400, 400);
+    private static Point trap4Spawn = new Point(480, 560);
+    private static Point trap5Spawn = new Point(240, 640);
+    private static Point trap6Spawn = new Point(1040, 160);
+    private static Point trap7Spawn = new Point(880, 80);
+
+    public static Point exitLocation = new Point (1120,560);
 
     /**
      * GameState constructor
@@ -40,11 +54,19 @@ public class Level1State extends State{
         this.game = Game.getInstance();
         player = new MainCharacter(world, playerSpawn);
         enemy = new Enemy(world, enemySpawn, 100, player);
-        reward1 = new RegularReward(world, reward1Spawn,100, player);
-        reward2 = new RegularReward(world, reward2Spawn,100, player);
-        reward3 = new RegularReward(world, reward3Spawn,100, player);
-        reward4 = new RegularReward(world, reward4Spawn,100, player);
-        reward5 = new RegularReward(world, reward5Spawn,100, player);
+
+        gameObjects.add(new RegularReward(world, reward1Spawn,100, player));
+        gameObjects.add(new RegularReward(world, reward2Spawn,100, player));
+        gameObjects.add(new RegularReward(world, reward3Spawn,100, player));
+        gameObjects.add(new RegularReward(world, reward4Spawn,100, player));
+        gameObjects.add(new RegularReward(world, reward5Spawn,100, player));
+        gameObjects.add(new Trap(world, trap1Spawn, 100, player));
+        gameObjects.add(new Trap(world, trap2Spawn, 100, player));
+        gameObjects.add(new Trap(world, trap3Spawn, 100, player));
+        gameObjects.add(new Trap(world, trap4Spawn, 100, player));
+        gameObjects.add(new Trap(world, trap5Spawn, 100, player));
+        gameObjects.add(new Trap(world, trap6Spawn, 100, player));
+        gameObjects.add(new Trap(world, trap7Spawn, 100, player));
 
         // Create a thread for bonus rewards. In the thread, have a loop that runs until thread ends
         // while(true) =>
@@ -58,7 +80,7 @@ public class Level1State extends State{
      */
     public void startThreads(){
         player.start();
-        enemy.start();
+        //enemy.start();
     }
 
     /**
@@ -66,11 +88,11 @@ public class Level1State extends State{
      * Checks if the player has won or lost the game
      */
     public void update(){
-        reward1.update();
-        reward2.update();
-        reward3.update();
-        reward4.update();
-        reward5.update();
+
+        for(GameObject object: gameObjects){
+            object.update();
+        }
+
         bonus1.update();
         bonus2.update();
 
@@ -99,13 +121,14 @@ public class Level1State extends State{
         world.populateMap(g);
         player.render(g);
         enemy.render(g);
-        reward1.render(g);
-        reward2.render(g);
-        reward3.render(g);
-        reward4.render(g);
-        reward5.render(g);
+
+        for(GameObject object: gameObjects){
+            object.render(g);
+        }
+
         bonus1.render(g);
         bonus2.render(g);
+
         g.setColor(Color.white);
         g.setFont(Assets.eightBit_score);
         g.drawString("Score> "+player.getScore(), 50, 60);

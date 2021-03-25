@@ -40,23 +40,7 @@ public class Enemy extends GameObject implements Runnable{
         // enemy will prioritize moving in terms of left and right direction to
         // player then prioritizes moving up and down closer to player
         while(running){
-            int xTowardsPlayer = 0;
-            int yTowardsPlayer = 0;
-
-            if (location.x < player.getX() && isWalkable(new Point(location.x + textureSize, location.y))) {
-                xTowardsPlayer = textureSize;
-            } else if (location.x > player.getX() && isWalkable(new Point(location.x - textureSize, location.y))) {
-                xTowardsPlayer = -textureSize;
-            } else if (location.y < player.getY() && isWalkable(new Point(location.x, location.y  + textureSize))) {
-                yTowardsPlayer = textureSize;
-            } else if (location.y > player.getY() && isWalkable(new Point(location.x, location.y - textureSize))) {
-                yTowardsPlayer = -textureSize;
-            }
-
-            nextLocation.x = location.x + xTowardsPlayer;
-            nextLocation.y = location.y + yTowardsPlayer;
-
-            setLocation(nextLocation.x, nextLocation.y);
+            update();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -96,5 +80,26 @@ public class Enemy extends GameObject implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void update() {
+        int xTowardsPlayer = 0;
+        int yTowardsPlayer = 0;
+
+        if (location.x < player.getX() && isWalkable(new Point(location.x + textureSize, location.y))) {
+            xTowardsPlayer = textureSize;
+        } else if (location.x > player.getX() && isWalkable(new Point(location.x - textureSize, location.y))) {
+            xTowardsPlayer = -textureSize;
+        } else if (location.y < player.getY() && isWalkable(new Point(location.x, location.y  + textureSize))) {
+            yTowardsPlayer = textureSize;
+        } else if (location.y > player.getY() && isWalkable(new Point(location.x, location.y - textureSize))) {
+            yTowardsPlayer = -textureSize;
+        }
+
+        nextLocation.x = location.x + xTowardsPlayer;
+        nextLocation.y = location.y + yTowardsPlayer;
+
+        setLocation(nextLocation.x, nextLocation.y);
     }
 }

@@ -29,6 +29,49 @@ public class MainCharacter extends GameObject implements Runnable{
         this.image = Assets.player;
     }
 
+    @Override
+    public void update() {
+        keyCode = game.getKeyInput().getKeyCode();
+        if(game.getKeyInput().keyPressed){
+            if(game.getKeyInput().up_W == keyCode && location.y > 0){
+                System.out.println("Character is going up");
+                nextLocation.x = location.x;
+                nextLocation.y = location.y - tileSize;
+                if(isWalkable(nextLocation)){
+                    location.y -=tileSize;
+                }
+            }else if(game.getKeyInput().down_S == keyCode && location.y <800){
+                System.out.println("Character is going down");
+                nextLocation.x = location.x;
+                nextLocation.y = location.y + tileSize;
+                if(isWalkable(nextLocation)){
+                    location.y +=tileSize;
+                }
+            }else if(game.getKeyInput().left_A == keyCode && location.x > 0){
+                System.out.println("Character is going left");
+                nextLocation.y = location.y;
+                nextLocation.x = location.x - tileSize;
+                if(isWalkable(nextLocation)){
+                    location.x -=tileSize;
+                }
+            }else if(game.getKeyInput().right_D == keyCode && location.x < 1120){
+                System.out.println("Character is going right");
+                nextLocation.y = location.y;
+                nextLocation.x = location.x + tileSize;
+                if(isWalkable(nextLocation)){
+                    location.x +=tileSize;
+                }
+            }else{
+                System.out.println("Character is NOT moving");
+                nextLocation = location;
+            }
+        }
+
+        if(onLava(nextLocation)){
+            score -= trapDeduct;
+        }
+    }
+
     /**
      * Main character thread loop
      * Updates the location of main character
@@ -36,45 +79,7 @@ public class MainCharacter extends GameObject implements Runnable{
     public void run(){
         while(running){
             timepassed++;
-            keyCode = game.getKeyInput().getKeyCode();
-            if(game.getKeyInput().keyPressed){
-                if(game.getKeyInput().up_W == keyCode && location.y > 0){
-                    System.out.println("Character is going up");
-                    nextLocation.x = location.x;
-                    nextLocation.y = location.y - tileSize;
-                    if(isWalkable(nextLocation)){
-                        location.y -=tileSize;
-                    }
-                }else if(game.getKeyInput().down_S == keyCode && location.y <800){
-                    System.out.println("Character is going down");
-                    nextLocation.x = location.x;
-                    nextLocation.y = location.y + tileSize;
-                    if(isWalkable(nextLocation)){
-                        location.y +=tileSize;
-                    }
-                }else if(game.getKeyInput().left_A == keyCode && location.x > 0){
-                    System.out.println("Character is going left");
-                    nextLocation.y = location.y;
-                    nextLocation.x = location.x - tileSize;
-                    if(isWalkable(nextLocation)){
-                        location.x -=tileSize;
-                    }
-                }else if(game.getKeyInput().right_D == keyCode && location.x < 1120){
-                    System.out.println("Character is going right");
-                    nextLocation.y = location.y;
-                    nextLocation.x = location.x + tileSize;
-                    if(isWalkable(nextLocation)){
-                        location.x +=tileSize;
-                    }
-                }else{
-                    System.out.println("Character is NOT moving");
-                    nextLocation = location;
-                }
-            }
-
-            if(onLava(nextLocation)){
-                score -= trapDeduct;
-            }
+            update();
 
             try {
                 game.getKeyInput().setKeyPressed(false);

@@ -69,6 +69,11 @@ public abstract class GameObject{
     }
 
     /**
+     * abstract class for each game object's update method
+     */
+    public abstract void update();
+
+    /**
      * determines if next tile is walkable
      * @param nextLocation the next location the object wishes to walk to
      * @return whether the location should be walkable or not
