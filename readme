@@ -1,0 +1,31 @@
+CMPT276 - Dungeon Crawler 
+
+___________________________________________________________________
+
+Control
+-WASD for movement
+-Click the left button to start the game (from the menu)
+
+Information:
+-Your goal is to reach the exit.
+-Don't let the enemy catch up to you! This will result in instant game over.
+-Regular rewards, worth 100 points. You need to collect all the coins to exit the dungeon.
+-Special rewards, worth 200 points. 
+-Barrier Tiles. You can't walk into them.
+-Entrance Tile. You spawn from here.
+-Exit Tile. This is your goal! Collect all rewards to unlock the exit.
+-Lava Tile. Walking over it deducts 100 points!
+
+___________________________________________________________________
+
+Sources of external materials used:
+Menu Screen Background: https://gameartpartners.com/downloads/platformer-stone-blocks-set-1/
+Font: https://www.fontspace.com/pixeboy-font-f43730
+Diamond: https://www.pixilart.com/draw
+
+The rest of the artwork are done by group members.
+___________________________________________________________________
+
+
+
+
