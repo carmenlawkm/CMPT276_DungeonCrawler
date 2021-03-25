@@ -23,12 +23,7 @@ public abstract class RewardCell extends GameObject{
         super(world, location);
         this.value = value;
     }
-    public int getRandomtime(){
-        int randomtime=0;
-        Random random=new Random();
-        randomtime=random.nextInt();
-        return randomtime;
-    }
+
 
 
 }

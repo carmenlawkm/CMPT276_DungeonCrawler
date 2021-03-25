@@ -5,14 +5,16 @@ import graphics.Assets;
 import state.Game;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * BonusReward class defines cells where bonus rewards appear
  * bonus rewards disappear after a set time and reward the player extra points upon collection
  */
-public class BonusReward extends RewardCell{
+public class BonusReward extends RewardCell implements Runnable{
     int disappearTimer;
     MainCharacter player;
+    private Thread bonusrewardthread;
 
     /**
      * BonusReward constructor
@@ -27,11 +29,64 @@ public class BonusReward extends RewardCell{
         this.player=player;
     }
 
+    @Override
+    public void run() {
+        disappearTimer=0;
+        int randomtimer=0;
+        int actualvalue=value;
+        int initialvalue=0;
+        randomtimer=getRandomtime();
+        while(running){
+            if(player.getTime()<=randomtimer){
+                this.image=Assets.rewardgone;
+                value=0;
+            }
+            if(player.getTime()>=randomtimer&&disappearTimer<5){
+                this.image=Assets.specialReward;
+                value=actualvalue;
+                disappearTimer++;
+                System.out.printf("disappear timer is %d\n",disappearTimer);
+                if(player.getX()==location.x&&player.getY()==location.y){
+                    player.score=player.score+value;
+                }
+            }
+            else if(player.getTime()>=randomtimer&&disappearTimer>=5){
+                this.image=Assets.rewardgone;
+                value=0;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+    public synchronized void start(){
+        if(running)
+            return;
+        running=true;
+        bonusrewardthread=new Thread(this);
+        bonusrewardthread.start();
+
+    }
+    public synchronized void stop(){
+        if(!running)
+            return;
+        running = false;
+        try {
+            bonusrewardthread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Updates status and location of bonus reward
      * Set to disappear after a certain timer
      */
-    public void update() {
+    /*public void update() {
         if(disappearTimer == 15000){
             this.image = Assets.rewardgone;
             value=0;
@@ -44,6 +99,12 @@ public class BonusReward extends RewardCell{
 
         disappearTimer++;
 
+    }*/
+    public int getRandomtime(){
+        int randomtime=0;
+        Random random=new Random();
+        randomtime=random.nextInt(20-5)+5;
+        return randomtime;
     }
 
 }

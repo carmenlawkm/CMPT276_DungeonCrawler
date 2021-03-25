@@ -49,8 +49,8 @@ public class Level1State extends State{
         // Create a thread for bonus rewards. In the thread, have a loop that runs until thread ends
         // while(true) =>
         Random ran = new Random();
-        bonus1 = new BonusReward(world, bonusReward1Spawn,200, ran.nextInt(10000),player);
-        bonus2 = new BonusReward(world, bonusReward2Spawn,200,ran.nextInt(10000),player);
+        bonus1 = new BonusReward(world, bonusReward1Spawn,200, 5,player);
+        bonus2 = new BonusReward(world, bonusReward2Spawn,200, 5,player);
     }
 
     /**
@@ -58,7 +58,9 @@ public class Level1State extends State{
      */
     public void startThreads(){
         player.start();
-        enemy.start();
+        //enemy.start();
+        bonus1.start();
+        bonus2.start();
     }
 
     /**
@@ -71,8 +73,7 @@ public class Level1State extends State{
         reward3.update();
         reward4.update();
         reward5.update();
-        bonus1.update();
-        bonus2.update();
+
 
 
         if(player.getScore() == 0 || enemy.isOnPlayer()){
