@@ -67,12 +67,9 @@ public class Level1State extends State{
         gameObjects.add(new Trap(world, trap5Spawn, 100, player));
         gameObjects.add(new Trap(world, trap6Spawn, 100, player));
         gameObjects.add(new Trap(world, trap7Spawn, 100, player));
-
-        // Create a thread for bonus rewards. In the thread, have a loop that runs until thread ends
-        // while(true) =>
         Random ran = new Random();
-        bonus1 = new BonusReward(world, bonusReward1Spawn,200, ran.nextInt(10000),player);
-        bonus2 = new BonusReward(world, bonusReward2Spawn,200,ran.nextInt(10000),player);
+        gameObjects.add(new BonusReward(world, bonusReward1Spawn,200, ran.nextInt(10000),player));
+        gameObjects.add(new BonusReward(world, bonusReward2Spawn,200,ran.nextInt(10000),player));
     }
 
     /**
@@ -80,7 +77,7 @@ public class Level1State extends State{
      */
     public void startThreads(){
         player.start();
-        //enemy.start();
+        enemy.start();
     }
 
     /**
@@ -92,10 +89,6 @@ public class Level1State extends State{
         for(GameObject object: gameObjects){
             object.update();
         }
-
-        bonus1.update();
-        bonus2.update();
-
 
         if(player.getScore() == 0 || enemy.isOnPlayer()){
             System.out.println("Game over");
@@ -125,9 +118,6 @@ public class Level1State extends State{
         for(GameObject object: gameObjects){
             object.render(g);
         }
-
-        bonus1.render(g);
-        bonus2.render(g);
 
         g.setColor(Color.white);
         g.setFont(Assets.eightBit_score);
