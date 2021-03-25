@@ -38,7 +38,6 @@ public class Level1State extends State{
     private static Point trap2Spawn = new Point(480, 160);
     private static Point trap3Spawn = new Point(400, 400);
     private static Point trap4Spawn = new Point(480, 560);
-    private static Point trap5Spawn = new Point(240, 640);
     private static Point trap6Spawn = new Point(1040, 160);
     private static Point trap7Spawn = new Point(880, 80);
 
@@ -64,7 +63,6 @@ public class Level1State extends State{
         gameObjects.add(new Trap(world, trap2Spawn, 100, player));
         gameObjects.add(new Trap(world, trap3Spawn, 100, player));
         gameObjects.add(new Trap(world, trap4Spawn, 100, player));
-        gameObjects.add(new Trap(world, trap5Spawn, 100, player));
         gameObjects.add(new Trap(world, trap6Spawn, 100, player));
         gameObjects.add(new Trap(world, trap7Spawn, 100, player));
         Random ran = new Random();
