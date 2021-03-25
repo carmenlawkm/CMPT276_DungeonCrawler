@@ -14,9 +14,6 @@ public class World{
     private int width, height;
     private int spawnX, spawnY;
     private int[][] tilesID;
-    private Game game;
-    private Boolean running;
-    private Thread worldThread;
 
     /**
      * World constructor

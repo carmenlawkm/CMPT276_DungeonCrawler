@@ -80,26 +80,16 @@ public abstract class GameObject{
      */
     public boolean isWalkable(Point nextLocation){
         nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
-        if(nextTile.getID() != 1){
-            return true;
-        }else{
+        if(nextLocation.x < 0 ||
+            nextLocation.x > 1200 ||
+            nextLocation.y < 0 ||
+            nextLocation.y > 800 ||
+            nextTile.getID() == 1){
+            System.out.println("can't walk there!");
             return false;
+        }else{
+            return true;
         }
     }
-
-    /**
-     *determine if next tile is a trap
-     * @param nextLocation the next location the object wishes to walk to
-     * @return whether the location should be walkable or not
-     */
-    public boolean onLava(Point nextLocation){
-        nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
-        if(nextTile.getID() == 3){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
 
 }

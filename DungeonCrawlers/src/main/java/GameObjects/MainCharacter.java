@@ -66,10 +66,6 @@ public class MainCharacter extends GameObject implements Runnable{
                 nextLocation = location;
             }
         }
-
-        if(onLava(nextLocation)){
-            score -= trapDeduct;
-        }
     }
 
     /**

@@ -32,6 +32,5 @@ public class Trap extends GameObject{
             deductionValue=0;
             notSteppedOn = false;
         }
-
     }
 }
