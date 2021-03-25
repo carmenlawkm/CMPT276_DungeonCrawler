@@ -53,6 +53,8 @@ public class Level1State extends State{
         this.game = Game.getInstance();
         player = new MainCharacter(world, playerSpawn);
         enemy = new Enemy(world, enemySpawn, 100, player);
+        bonus1= new BonusReward(world, bonusReward2Spawn,200,5,player);
+        bonus2= new BonusReward(world, bonusReward1Spawn,200, 5,player);
 
         gameObjects.add(new RegularReward(world, reward1Spawn,100, player));
         gameObjects.add(new RegularReward(world, reward2Spawn,100, player));
@@ -65,9 +67,7 @@ public class Level1State extends State{
         gameObjects.add(new Trap(world, trap4Spawn, 100, player));
         gameObjects.add(new Trap(world, trap6Spawn, 100, player));
         gameObjects.add(new Trap(world, trap7Spawn, 100, player));
-        Random ran = new Random();
-        gameObjects.add(new BonusReward(world, bonusReward1Spawn,200, ran.nextInt(10000),player));
-        gameObjects.add(new BonusReward(world, bonusReward2Spawn,200,ran.nextInt(10000),player));
+
     }
 
     /**
@@ -75,7 +75,9 @@ public class Level1State extends State{
      */
     public void startThreads(){
         player.start();
-        enemy.start();
+        //enemy.start();
+        bonus1.start();
+        bonus2.start();
     }
 
     /**
@@ -117,6 +119,8 @@ public class Level1State extends State{
 
         player.render(g);
         enemy.render(g);
+        bonus1.render(g);
+        bonus2.render(g);
 
         g.setColor(Color.white);
         g.setFont(Assets.eightBit_score);
