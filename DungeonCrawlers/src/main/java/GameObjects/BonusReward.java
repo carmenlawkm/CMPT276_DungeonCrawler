@@ -89,7 +89,7 @@ public class BonusReward extends RewardCell implements Runnable{
     public int getRandomtime(){
         int randomtime=0;
         Random random=new Random();
-        randomtime=random.nextInt(25-5)+5;
+        randomtime=random.nextInt(30-5)+5;
         return randomtime;
     }
 
