@@ -31,7 +31,6 @@ public class Trap extends GameObject{
             this.image=Assets.trapgone;
             deductionValue=0;
             notSteppedOn = false;
-            player.addRewardCount();
         }
 
     }
