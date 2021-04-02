@@ -25,7 +25,7 @@ public class MainCharacter extends GameObject implements Runnable{
      */
     public MainCharacter(World world, Point location) {
         super(world,location);
-        score = 100;
+        score = 0;
         this.image = Assets.player;
     }
 
