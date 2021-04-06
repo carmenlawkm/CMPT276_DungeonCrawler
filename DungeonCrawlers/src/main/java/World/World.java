@@ -11,7 +11,7 @@ import java.io.IOException;
  * Implements graphics in a thread
  */
 public class World{
-    private int width, height;
+    private int width, height; //width and height in array unit (cells)
     private int spawnX, spawnY;
     private int[][] tilesID;
 
@@ -47,7 +47,7 @@ public class World{
             return Tile.floorTile;
         }
 
-        Tile t = Tile.tiles[tilesID[x][y]];
+        Tile t = Tile.tiles[tilesID[x][y]]; //in cell unit
         if(t == null){
             return Tile.floorTile;
         }
@@ -102,6 +102,14 @@ public class World{
             e.printStackTrace();
             return 0;
         }
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
     }
 }
 
