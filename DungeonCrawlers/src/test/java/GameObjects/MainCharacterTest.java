@@ -17,6 +17,7 @@ class MainCharacterTest {
     private Point playerSpawn;
     private MainCharacter player;
 
+
     @BeforeEach
     void setup(){
         world = new World("src/main/resources/Level1.txt");
@@ -70,7 +71,7 @@ class MainCharacterTest {
 
     @Test
     void getScore(){
-        assertEquals(100, player.getScore());
+        assertEquals(0, player.getScore());
     }
 
     @Test

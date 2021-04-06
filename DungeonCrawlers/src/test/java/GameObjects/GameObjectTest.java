@@ -44,14 +44,6 @@ class GameObjectTest {
     }
 
     @Test
-    void render() {
-    }
-
-    @Test
-    void update() {
-    }
-
-    @Test
     void isWalkable() {
         //from the map, we know 0, 80 is walkable
         assertTrue(player.isWalkable(new Point(0, 80)));
