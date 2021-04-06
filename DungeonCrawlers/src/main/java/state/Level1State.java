@@ -23,16 +23,16 @@ public class Level1State extends State{
 
     private static Point playerSpawn = new Point(0,80);
 
-    private static Point enemySpawn = new Point(1040,640);
+    private static Point enemySpawn = new Point(1040,80);
 
     private static Point reward1Spawn = new Point (160,640);
-    private static Point reward2Spawn = new Point (1040,80);
+    private static Point reward2Spawn = new Point (960,160);
     private static Point reward3Spawn = new Point (800,640);
     private static Point reward4Spawn = new Point (80,320);
     private static Point reward5Spawn = new Point (560,240);
 
-    private static Point bonusReward1Spawn= new Point(720,80);
-    private static Point bonusReward2Spawn= new Point(1040,240);
+    private static Point bonusReward1Spawn= new Point(80,640);
+    private static Point bonusReward2Spawn= new Point(720,400);
 
     private static Point trap1Spawn = new Point(320, 80);
     private static Point trap2Spawn = new Point(480, 160);
@@ -53,8 +53,8 @@ public class Level1State extends State{
         this.game = Game.getInstance();
         player = new MainCharacter(world, playerSpawn);
         enemy = new Enemy(world, enemySpawn, 100, player);
-        bonus1= new BonusReward(world, bonusReward2Spawn,200,5,player);
-        bonus2= new BonusReward(world, bonusReward1Spawn,200, 5,player);
+        bonus1= new BonusReward(world, bonusReward1Spawn,200,7,player);
+        bonus2= new BonusReward(world, bonusReward2Spawn,200, 7,player);
 
         gameObjects.add(new RegularReward(world, reward1Spawn,100, player));
         gameObjects.add(new RegularReward(world, reward2Spawn,100, player));
@@ -90,7 +90,7 @@ public class Level1State extends State{
             object.update();
         }
 
-        if(player.getScore() == 0 || enemy.isOnPlayer()){
+        if(player.getScore() < 0 || enemy.isOnPlayer()){
             System.out.println("Game over");
             player.stop();
             enemy.stop();
