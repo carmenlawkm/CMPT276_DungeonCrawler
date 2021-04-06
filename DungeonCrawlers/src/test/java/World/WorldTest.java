@@ -1,10 +1,10 @@
 package World;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class WorldTest {
+    //not starting with before each for now since world is not necessary in every tests
 
     @Test
     void loadFile() {
@@ -26,9 +26,7 @@ class WorldTest {
     void loadWorld(){
         //loadTest passed
         //World world = new World("src/main/resources/fileTest.txt");
-        //what should i be asserting? I won't be allowed to assert with getWidth, getHeight since they haven't been tested
-
-
+        //what should I be asserting? I won't be allowed to assert with getWidth, getHeight since they haven't been tested
     }
 
     @Test
