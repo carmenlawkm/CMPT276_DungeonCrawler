@@ -127,6 +127,7 @@ public class MainCharacter extends GameObject implements Runnable{
     public int getTime(){
         return timepassed;
     }
+
     public synchronized void start(){
         if(running)
             return;
