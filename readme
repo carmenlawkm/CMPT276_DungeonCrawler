@@ -3,7 +3,7 @@ CMPT276 - Dungeon Crawler
 ___________________________________________________________________
 
 Control
--WASD for movement
+-WASD for movement (The last input before the next take will be taken)
 -Click the left button to start the game (from the menu)
 
 Information:
