@@ -14,13 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainCharacterTest {
 
     private World world;
-    private Game game;
     private Point playerSpawn;
     private MainCharacter player;
 
     @BeforeEach
     void setup(){
-        game = Game.getInstance();
         world = new World("src/main/resources/Level1.txt");
         playerSpawn = new Point(0,80);
         player = new MainCharacter(world, playerSpawn);
@@ -34,6 +32,19 @@ class MainCharacterTest {
     @Test
     void run() {
 
+    }
+
+    @Test
+    void getRewardCount() {
+        assertTrue(player.getRewardCount() == 0);
+    }
+
+    @Test
+    void addRewardCount() {
+        int firstRewardCount = player.getRewardCount();
+        player.addRewardCount();
+        int newRewardCount = player.getRewardCount();
+        assertTrue(firstRewardCount == newRewardCount - 1);
     }
 
     @Test
@@ -58,24 +69,14 @@ class MainCharacterTest {
     }
 
     @Test
-    void addRewardCount() {
-        int firstRewardCount = player.getRewardCount();
-        player.addRewardCount();
-        int newRewardCount = player.getRewardCount();
-        assertTrue(firstRewardCount == newRewardCount - 1);
-    }
-
-    @Test
-    void getRewardCount() {
-        assertTrue(player.getRewardCount() == 0);
-    }
-
-    @Test
-    void getScore() {
+    void getScore(){
+        assertEquals(100, player.getScore());
     }
 
     @Test
     void getTime() {
+        System.out.println(player.getTime());
+        assertEquals(0, player.getTime());
     }
 
     @Test
@@ -85,4 +86,5 @@ class MainCharacterTest {
     @Test
     void stop() {
     }
+
 }
