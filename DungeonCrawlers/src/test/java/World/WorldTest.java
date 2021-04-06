@@ -25,7 +25,7 @@ class WorldTest {
     @Test
     void loadWorld(){
         //loadTest passed
-        World world = new World("src/main/resources/fileTest.txt");
+        //World world = new World("src/main/resources/fileTest.txt");
         //what should i be asserting? I won't be allowed to assert with getWidth, getHeight since they haven't been tested
 
 
