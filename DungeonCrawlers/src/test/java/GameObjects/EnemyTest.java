@@ -1,5 +1,6 @@
 package GameObjects;
 
+import World.Tile;
 import World.World;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,56 +31,60 @@ class EnemyTest {
     }
 
     @Test
-    void run() {
+    void isNotOnPlayer(){
+        //initial spawn points are not the same
+        assertFalse(enemy.isOnPlayer());
     }
 
     @Test
     void isOnPlayer() {
-        //initial spawn points are not the same
-        assertFalse(enemy.isOnPlayer());
         //move enemy to player, then check if true
         enemy.setLocation(0, 80);
         assertTrue(enemy.isOnPlayer());
     }
 
-    @Test
-    void start() {
-    }
 
     @Test
-    void stop() {
-    }
-
-    @Test
-    void update() {
+    void updatesLocationTowardsPlayer() {
         //scenario 1: player is left, enemy moves left
         player.setLocation(80, 80);
         enemy.setLocation(400, 80);
         enemy.update();
-        assertTrue(enemy.getLocation() == new Point(400 - 40, 80));
+        assertEquals(new Point(400 - Tile.TEXTUREWIDTH, 80), enemy.getLocation());
 
         //scenario 2: player is right, enemy moves right
         player.setLocation(400, 80);
         enemy.setLocation(80, 80);
         enemy.update();
-        assertTrue(enemy.getLocation() == new Point(80 + 40, 80));
+        assertEquals(new Point(80 + Tile.TEXTUREWIDTH, 80), enemy.getLocation());
 
         //scenario 3: player is above, x is un-walkable, enemy moves up
         player.setLocation(40, 40);
         enemy.setLocation(160, 240);
         enemy.update();
-        assertTrue(enemy.getLocation() == new Point(160, 240 - 40));
+        assertEquals(new Point(160, 240 - Tile.TEXTUREWIDTH), enemy.getLocation());
 
         //scenario 4: player is below, x is un-walkable, enemy moves down
         player.setLocation(400, 280);
         enemy.setLocation(160, 240);
         enemy.update();
-        assertTrue(enemy.getLocation() == new Point(160, 240 + 40));
+        assertEquals(new Point(160, 240 + Tile.TEXTUREWIDTH), enemy.getLocation());
+    }
 
-        //scenario 5: both x and y directions are un-walkable; enemy stays in place
+    @Test
+    void doesNotUpdateLocationTowardsPlayer(){
+        //only scenario: both x and y directions are un-walkable; enemy stays in place
         player.setLocation(400, 80);
-        enemy.setLocation(80, 560);
+        enemy.setLocation(160, 560);
         enemy.update();
-        assertTrue(enemy.getLocation() == new Point(80, 560));
+        assertEquals(new Point(160, 560), enemy.getLocation());
+    }
+
+    @Test
+    void startAndStoppingThread() {
+        enemy.start();
+        assertTrue(enemy.getEnemyThread().isAlive());
+        enemy.stop();
+        assertFalse(enemy.getEnemyThread().isAlive());
     }
 }

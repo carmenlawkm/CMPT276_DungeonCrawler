@@ -150,4 +150,12 @@ public class MainCharacter extends GameObject implements Runnable{
         }
     }
 
+    /**
+     * getter for our player thread
+     * @return playerThread
+     */
+    public Thread getPlayerThread(){
+        return playerThread;
+    }
+
 }

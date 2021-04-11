@@ -47,7 +47,11 @@ class GameObjectTest {
     void isWalkable() {
         //from the map, we know 0, 80 is walkable
         assertTrue(player.isWalkable(new Point(0, 80)));
-        //we also know that 0, 160 is a barrier
+    }
+
+    @Test
+    void isNotWalkable(){
+        //we know that 0, 160 is a barrier
         assertFalse(player.isWalkable(new Point(0, 160)));
     }
 }

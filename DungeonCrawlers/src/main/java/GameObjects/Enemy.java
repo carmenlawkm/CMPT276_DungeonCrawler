@@ -102,4 +102,12 @@ public class Enemy extends GameObject implements Runnable{
 
         setLocation(nextLocation.x, nextLocation.y);
     }
+
+    /**
+     * getter for our enemy thread
+     * @return enemyThread
+     */
+    public Thread getEnemyThread(){
+        return enemyThread;
+    }
 }
