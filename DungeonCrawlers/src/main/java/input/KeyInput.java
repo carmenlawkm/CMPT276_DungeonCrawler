@@ -1,4 +1,5 @@
 package input;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -6,7 +7,7 @@ import java.awt.event.KeyListener;
 /**
  * KeyInput class manages player key presses to move the character
  */
-public class KeyInput implements KeyListener{
+public class KeyInput extends Component implements KeyListener{
     private int keyCode;
     public boolean keyPressed;
     public int up_W = KeyEvent.VK_W;

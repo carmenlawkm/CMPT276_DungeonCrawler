@@ -27,7 +27,6 @@ public class GameOverState extends State{
         g.setColor(Color.white);
         g.setFont(Assets.eightBit_over);
         g.drawString("GAME OVER!", 360, 400);
-
     }
 
     /**
