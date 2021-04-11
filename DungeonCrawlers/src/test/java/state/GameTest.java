@@ -41,24 +41,32 @@ class GameTest {
 //        assertTrue(game.winState != null);
     }
 
-    //CANNOT SET KEY INPUT; GOT THIS LINE OF CODE FROM ONLINE BUT DOESN'T PASS COMPARISON TEST
     @Test
-    void getKeyInput() {
-//        KeyInput keyInput = new KeyInput();
-//        KeyEvent key = new KeyEvent(keyInput, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_W,'w');
-//
-//        assertEquals(keyInput, game.getKeyInput());
+    void setAndGetKeyInput() {
+        KeyInput keyInput = new KeyInput();
+        //haha
+        game.setKeyInput(keyInput);
+        assertEquals(keyInput, game.getKeyInput());
     }
 
-    //???????
     @Test
-    void getMouseInput() {
+    void setAndGetMouseInput() {
+        MouseInput mouseInput = new MouseInput();
+        game.setMouseClick(mouseInput);
+        assertEquals(mouseInput, game.getMouseInput());
     }
 
-    //CAN SET RUNNING/NOT RUNNING BUT CANNOT TEST AS RUNNING IS PRIVATE AND THERE IS NO GETRUNNING METHOD
     @Test
-    void setRunning() {
+    void setGameNotRunning() {
         Boolean running = false;
         game.setRunning(running);
+        assertEquals(game.getRunning(), false);
+    }
+
+    @Test
+    void setGameRunning(){
+        Boolean running = true;
+        game.setRunning(running);
+        assertEquals(game.getRunning(), true);
     }
 }

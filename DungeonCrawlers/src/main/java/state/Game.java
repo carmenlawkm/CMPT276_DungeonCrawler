@@ -101,10 +101,26 @@ public class Game{
     }
 
     /**
+     * set key input
+     * @param k new key input
+     */
+    public void setKeyInput(KeyInput k){
+        this.k = k;
+    }
+
+    /**
      * gets player key input
      * @return key input
      */
     public KeyInput getKeyInput(){return k;}
+
+    /**
+     * set mouse input
+     * @param m new mouse input
+     */
+    public void setMouseClick(MouseInput m){
+        this.m = m;
+    }
 
     /**
      * gets player mouse clicks
@@ -118,6 +134,14 @@ public class Game{
      */
     public void setRunning(boolean running){
         this.running = running;
+    }
+
+    /**
+     * getter for if the game is running
+     * @return whether the game is running
+     */
+    public boolean getRunning(){
+        return this.running;
     }
 
 }

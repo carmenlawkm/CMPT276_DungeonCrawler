@@ -19,6 +19,6 @@ class GameOverStateTest {
     @Test
     void update() {
         gameOverState.update();
-        //check if game is running
+        assertFalse(game.getRunning());
     }
 }
