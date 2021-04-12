@@ -26,14 +26,38 @@ class MainCharacterTest {
     }
 
     @Test
-    void update() {
+    void walkingOnNormalTiles() {
+        //up
 
+        //down
+
+        //left
+
+        //right
     }
 
     @Test
-    void run() {
+    void tryingToWalkIntoBarrier() {
+        //up
 
+        //down
+
+        //left
+
+        //right
     }
+
+    @Test
+    void tryingToWalkOffScreen() {
+        //up
+
+        //down
+
+        //left
+
+        //right
+    }
+
 
     @Test
     void getRewardCount() {
@@ -49,7 +73,14 @@ class MainCharacterTest {
     }
 
     @Test
-    void getLevel1Win() {
+    void level1ShouldWin() {
+        //case 1: 5 rewards and on location
+        player.setLocation(Level1State.exitLocation.x, Level1State.exitLocation.y);
+        assertEquals(true, player.getLevel1Win());
+    }
+
+    @Test
+    void level1ShouldNotWin(){
         //case 1: not 5 rewards and not on location
         assertEquals(false, player.getLevel1Win());
 
@@ -63,10 +94,6 @@ class MainCharacterTest {
         }
         player.setLocation(Level1State.exitLocation.x - 40, Level1State.exitLocation.y - 40);
         assertEquals(false, player.getLevel1Win());
-
-        //case 4: 5 rewards and on location
-        player.setLocation(Level1State.exitLocation.x, Level1State.exitLocation.y);
-        assertEquals(true, player.getLevel1Win());
     }
 
     @Test
@@ -81,11 +108,11 @@ class MainCharacterTest {
     }
 
     @Test
-    void start() {
-    }
-
-    @Test
-    void stop() {
+    void startAndStoppingThread() {
+        player.start();
+        assertTrue(player.getPlayerThread().isAlive());
+        player.stop();
+        assertFalse(player.getPlayerThread().isAlive());
     }
 
 }

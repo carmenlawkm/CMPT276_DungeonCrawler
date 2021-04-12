@@ -1,16 +1,15 @@
 package GameObjects;
 
 import World.World;
-import com.sun.tools.javac.Main;
 import graphics.Assets;
 
 import java.awt.*;
 
-public class Trap extends GameObject{
+public class Trap extends GameObject {
 
+    protected boolean steppedOn = false;
     private int deductionValue;
     private MainCharacter player;
-    protected boolean notSteppedOn = true;
 
     /**
      * GameObject constructor
@@ -26,11 +25,11 @@ public class Trap extends GameObject{
     }
 
     public void update() {
-        if(player.getX()==location.x && player.getY()==location.y && notSteppedOn){
-            player.score=player.score-deductionValue;
-            this.image=Assets.trapgone;
-            deductionValue=0;
-            notSteppedOn = false;
+        if (player.getX() == location.x && player.getY() == location.y && !steppedOn) {
+            player.score = player.score - deductionValue;
+            this.image = Assets.trapgone;
+            deductionValue = 0;
+            steppedOn = true;
         }
     }
 }
