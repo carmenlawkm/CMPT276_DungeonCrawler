@@ -30,7 +30,7 @@ class MouseInputTest {
         mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_RELEASED, 0,MouseEvent.BUTTON3_MASK, 100, 100, 1,false);
         m.mouseReleased(mouseEvent);
         assertEquals(false,m.isRightPressed());
-        
+
     }
 
     @Test
