@@ -45,4 +45,11 @@ public class Tile {
         return id;
     }
 
+    /**
+     * @return the texture
+     */
+    public BufferedImage getTexture(){return texture;}
+
+
+
 }
