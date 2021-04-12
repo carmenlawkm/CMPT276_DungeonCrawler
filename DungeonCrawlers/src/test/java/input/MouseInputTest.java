@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MouseInputTest {
     @Test
-    void shouldSetMousePressedandReleased() throws AWTException{
+    void shouldSetMousePressedandReleased(){
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
@@ -24,7 +24,7 @@ class MouseInputTest {
     }
 
     @Test
-    void shouldSetMouseXandY() throws AWTException{
+    void shouldSetMouseXandY(){
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
