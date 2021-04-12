@@ -16,10 +16,16 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         return leftPressed;
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+    public int getMouseX(){
+        return mouseX;
     }
+
+    public int getMouseY(){
+        return mouseY;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) { }
 
     @Override
     public void mousePressed(MouseEvent e) {
