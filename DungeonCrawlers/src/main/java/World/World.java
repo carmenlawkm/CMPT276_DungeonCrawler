@@ -1,6 +1,4 @@
 package World;
-
-import state.Game;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -111,5 +109,11 @@ public class World{
     public int getHeight(){
         return height;
     }
+
+    public int getSpawnX(){ return spawnX;}
+
+    public int getSpawnY(){ return spawnY; }
+
+    public int[][] getTilesID(){ return tilesID; }
 }
 
