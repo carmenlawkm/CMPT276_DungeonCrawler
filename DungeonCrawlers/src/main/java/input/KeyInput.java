@@ -15,9 +15,7 @@ public class KeyInput extends Component implements KeyListener{
     public int down_S = KeyEvent.VK_S;
     public int right_D = KeyEvent.VK_D;
 
-    public void setKeyPressed(boolean pressed){
-        keyPressed = pressed;
-    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         keyCode = e.getKeyCode();
@@ -33,5 +31,9 @@ public class KeyInput extends Component implements KeyListener{
     public int getKeyCode(){
         return keyCode;
     }
+    public void setKeyPressed(boolean pressed){
+        keyPressed = pressed;
+    }
+    public boolean getKeyPressed(){return keyPressed;}
 
 }

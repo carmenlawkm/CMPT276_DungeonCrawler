@@ -2,24 +2,36 @@ package input;
 
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class KeyInputTest {
 
     @Test
-    void setKeyPressed() {
+    void shouldSetKeyPressed() {
+        KeyInput k = new KeyInput();
+        //setting to true
+        k.setKeyPressed(true);
+        assertEquals(true,k.getKeyPressed());
+        //setting to false
+        k.setKeyPressed(false);
+        assertEquals(false,k.getKeyPressed());
     }
 
     @Test
-    void keyPressed() throws AWTException {
-        Robot bot = new Robot();
-        bot.keyPress(KeyEvent.VK_A);
+    void shouldStoreKeyPressed(){
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        //testing any keys pressed
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_W);
+        k.keyPressed(keyEvent);
+        assertEquals(KeyEvent.VK_W,k.getKeyCode());
+        assertEquals(true,k.getKeyPressed());
+
     }
 
-    @Test
-    void getKeyCode() {
-    }
 }
