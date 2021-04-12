@@ -3,34 +3,28 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MouseInputTest {
-
-
     @Test
-    void shouldSetMousePressed() throws AWTException{
-        Robot bot = new Robot();
+    void shouldSetMousePressedandReleased() throws AWTException{
         MouseInput m = new MouseInput();
-        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        JPanel frame = new JPanel();
+        frame.addMouseListener(m);
+        //testing click
+        MouseEvent mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_CLICKED, 0,MouseEvent.BUTTON1_MASK, 100, 100, 1,false);
+        m.mousePressed(mouseEvent);
         assertEquals(true,m.isLeftPressed());
-
-    }
-
-    @Test
-    void shouldSetMouseReleased() throws AWTException{
-        Robot bot = new Robot();
-        MouseInput m = new MouseInput();
-        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        //testing change to release
+        mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_RELEASED, 0,MouseEvent.BUTTON1_MASK, 100, 100, 1,false);
+        m.mouseReleased(mouseEvent);
         assertEquals(false,m.isLeftPressed());
     }
 
-
     @Test
-    void mouseMoved() throws AWTException{
+    void shouldSetMouseXandY() throws AWTException{
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
