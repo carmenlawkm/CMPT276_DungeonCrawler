@@ -13,14 +13,24 @@ class MouseInputTest {
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
-        //testing click
+        //testing left click
         MouseEvent mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_CLICKED, 0,MouseEvent.BUTTON1_MASK, 100, 100, 1,false);
         m.mousePressed(mouseEvent);
         assertEquals(true,m.isLeftPressed());
-        //testing change to release
+        //testing change to release for left
         mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_RELEASED, 0,MouseEvent.BUTTON1_MASK, 100, 100, 1,false);
         m.mouseReleased(mouseEvent);
         assertEquals(false,m.isLeftPressed());
+
+        //testing right click
+        mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_CLICKED, 0,MouseEvent.BUTTON3_MASK, 100, 100, 1,false);
+        m.mousePressed(mouseEvent);
+        assertEquals(true,m.isRightPressed());
+        //testing change to release for right
+        mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_RELEASED, 0,MouseEvent.BUTTON3_MASK, 100, 100, 1,false);
+        m.mouseReleased(mouseEvent);
+        assertEquals(false,m.isRightPressed());
+        
     }
 
     @Test
