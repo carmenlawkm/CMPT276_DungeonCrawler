@@ -2,6 +2,9 @@ package input;
 
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class KeyInputTest {
@@ -11,15 +14,9 @@ class KeyInputTest {
     }
 
     @Test
-    void keyPressed() {
-    }
-
-    @Test
-    void keyReleased() {
-    }
-
-    @Test
-    void keyTyped() {
+    void keyPressed() throws AWTException {
+        Robot bot = new Robot();
+        bot.keyPress(KeyEvent.VK_A);
     }
 
     @Test

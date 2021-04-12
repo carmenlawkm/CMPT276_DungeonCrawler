@@ -12,8 +12,6 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
 
-
-
     public boolean isLeftPressed(){
         return leftPressed;
     }
