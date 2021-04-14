@@ -21,7 +21,7 @@ class BonusRewardTest {
     @BeforeEach
     void setup(){
         disappeartimer=5;
-        world = new World("src/main/resources/Level1.txt");
+        world = new World("src/test/resources/fileTest.txt");
         value=200;
         playerSpawn=new Point(80,160);
         player=new MainCharacter(world,playerSpawn);
@@ -46,9 +46,7 @@ class BonusRewardTest {
         player.start();
         bonus.start();
         //player.setTimepassed(23);
-        while (player.getTime() <= 30) {
-            player.setTimepassed(player.getTime()+1);
-        }
+        System.out.printf("%d",player.getTime());
         if(player.getTime()==30) {
             assertTrue(player.score == player.score + 200);
             assertTrue(bonus.image == Assets.rewardgone);

@@ -74,6 +74,7 @@ public class MainCharacter extends GameObject implements Runnable{
      */
     public void run(){
         while(running){
+            System.out.println("Player is running");
             timepassed++;
             update();
 

@@ -30,7 +30,7 @@ class RegularRewardTest{
         }
 
         @Test
-        void update(){
+        void playeronReward(){
             //scenario one, player is on the reward
             player.setLocation(120,80);
             player.score=50;
@@ -38,7 +38,10 @@ class RegularRewardTest{
             reward.update();
             assertTrue(reward.notTaken==false);
 
+        }
 
+        @Test
+        void playerisNotonReward(){
             //scenario two, player is NOT on the reward
             reward.notTaken=true;
             player.setLocation(120,80);

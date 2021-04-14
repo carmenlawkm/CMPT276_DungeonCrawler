@@ -97,6 +97,7 @@ public class Level1State extends State{
             bonus1.stop();
             bonus2.stop();
             State.setState(game.gameOverState);
+            System.out.println("setting state to game over");
         }
 
         if(player.getLevel1Win()) {
@@ -109,14 +110,7 @@ public class Level1State extends State{
         }
 
     }
-    public GameObject objectgetter(String userinput){
-        if(userinput=="player"){
-            return player;
-        }
-
-        if(userinput=="enemy"){
-            return enemy;
-        }
+    public BonusReward getBonusReward(String userinput){
         if(userinput=="bonus1") {
             return bonus1;
         }
@@ -124,6 +118,17 @@ public class Level1State extends State{
             return bonus2;
         }
         return null;
+    }
+    public Enemy getEnemy(){
+        return enemy;
+
+    }
+    public MainCharacter getMainCharacter(){
+        return player;
+
+    }
+    public ArrayList getArrayList(){
+        return gameObjects;
     }
 
     /**
