@@ -23,8 +23,7 @@ class MenuStateTest {
         level1 = new Level1State();
         game.menuState=menustate;
         game.gameState=level1;
-        //game.initialize();
-        //State.setState(menustate);
+
 
     }
     @Test

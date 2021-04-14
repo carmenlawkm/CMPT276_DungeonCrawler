@@ -149,7 +149,9 @@ public class MainCharacter extends GameObject implements Runnable{
             e.printStackTrace();
         }
     }
-
+    public void setTimepassed(int time){
+        timepassed=time;
+    }
     /**
      * getter for our player thread
      * @return playerThread

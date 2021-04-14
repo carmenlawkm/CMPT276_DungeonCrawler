@@ -1,6 +1,7 @@
 package GameObjects;
 
 import World.World;
+import graphics.Assets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,23 +31,55 @@ class BonusRewardTest {
 
     }
     @Test
-    void getRandomtime(){
-    }
-    @Test
-    void run(){
+    void StartandStopping(){
+        bonus.start();
+        assertTrue(bonus.getBonusrewardthread().isAlive());
+        bonus.stop();
+        assertFalse(bonus.getBonusrewardthread().isAlive());
+
 
     }
     @Test
-    void start(){
-
+    void PlayerisOnreward(){
+        bonus.setLocation(80,120);
+        player.setLocation(80,120);
+        player.start();
+        bonus.start();
+        //player.setTimepassed(23);
+        while (player.getTime() <= 30) {
+            player.setTimepassed(player.getTime()+1);
+        }
+        if(player.getTime()==30) {
+            assertTrue(player.score == player.score + 200);
+            assertTrue(bonus.image == Assets.rewardgone);
+        }
+        player.stop();
+        bonus.stop();
     }
+
     @Test
-    void stop(){
+    void PlayerisNotOnReward(){
+        player.start();
+        bonus.start();
+        bonus.setLocation(80,120);
+        player.setLocation(120,120);
+        player.setTimepassed(25);
+        if (player.getTime() == 25) {
+            System.out.printf("hi");
+            assertTrue(player.score == 0);
+        }
+        player.stop();
+        bonus.stop();
 
     }
+
     @Test
-    void update(){
-
+    void RewardAfterTimeInterval(){
+        int randomtime=0;
+        randomtime = bonus.getRandomtime();
+        assertTrue(randomtime>=5&&randomtime<=30);
     }
+
+
 
 }

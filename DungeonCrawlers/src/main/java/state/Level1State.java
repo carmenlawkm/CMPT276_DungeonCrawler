@@ -94,6 +94,8 @@ public class Level1State extends State{
             System.out.println("Game over");
             player.stop();
             enemy.stop();
+            bonus1.stop();
+            bonus2.stop();
             State.setState(game.gameOverState);
         }
 
@@ -101,9 +103,27 @@ public class Level1State extends State{
             System.out.println("Player Wins");
             player.stop();
             enemy.stop();
+            bonus1.stop();
+            bonus2.stop();
             State.setState(game.winState);
         }
 
+    }
+    public GameObject objectgetter(String userinput){
+        if(userinput=="player"){
+            return player;
+        }
+
+        if(userinput=="enemy"){
+            return enemy;
+        }
+        if(userinput=="bonus1") {
+            return bonus1;
+        }
+        if(userinput=="bonus2"){
+            return bonus2;
+        }
+        return null;
     }
 
     /**

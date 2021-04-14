@@ -98,4 +98,11 @@ public class BonusReward extends RewardCell implements Runnable{
 
 
     }
+    /**
+     * getter for our bonusReward thread
+     * @return bonusrewardthread
+     */
+    public Thread getBonusrewardthread(){
+        return bonusrewardthread;
+    }
 }

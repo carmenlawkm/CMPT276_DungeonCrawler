@@ -61,7 +61,7 @@ public class Enemy extends GameObject implements Runnable{
      * Starts enemy thread
      */
     public synchronized void start(){
-        if(running)
+            if(running)
             return;
         running = true;
         enemyThread = new Thread(this);
