@@ -48,6 +48,9 @@ class BonusRewardTest {
 
         player.start();
         bonus.start();
+
+        // Without the sleep, assertion will automatically execute, before the thread is able to run.
+        // Need to sleep so that the bonus reward thread's code can be executed before we assert.
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
