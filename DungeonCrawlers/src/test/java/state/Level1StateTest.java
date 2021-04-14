@@ -1,9 +1,6 @@
 package state;
 
 import GameObjects.*;
-import World.World;
-import com.sun.tools.javac.Main;
-import graphics.Assets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
