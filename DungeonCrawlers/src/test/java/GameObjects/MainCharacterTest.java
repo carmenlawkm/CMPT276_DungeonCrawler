@@ -1,32 +1,29 @@
 package GameObjects;
 
 import World.World;
-import com.sun.tools.javac.Main;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import state.Game;
+import org.junit.*;
 import state.Level1State;
 
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainCharacterTest {
+public class MainCharacterTest {
 
     private World world;
     private Point playerSpawn;
     private MainCharacter player;
 
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         world = new World("src/main/resources/Level1.txt");
         playerSpawn = new Point(0,80);
         player = new MainCharacter(world, playerSpawn);
     }
 
     @Test
-    void walkingOnNormalTiles() {
+    public void walkingOnNormalTiles() {
         //up
 
         //down
@@ -37,7 +34,7 @@ class MainCharacterTest {
     }
 
     @Test
-    void tryingToWalkIntoBarrier() {
+    public void tryingToWalkIntoBarrier() {
         //up
 
         //down
@@ -48,7 +45,7 @@ class MainCharacterTest {
     }
 
     @Test
-    void tryingToWalkOffScreen() {
+    public void tryingToWalkOffScreen() {
         //up
 
         //down
@@ -60,12 +57,12 @@ class MainCharacterTest {
 
 
     @Test
-    void getRewardCount() {
+    public void getRewardCount() {
         assertTrue(player.getRewardCount() == 0);
     }
 
     @Test
-    void addRewardCount() {
+    public void addRewardCount() {
         int firstRewardCount = player.getRewardCount();
         player.addRewardCount();
         int newRewardCount = player.getRewardCount();
@@ -73,14 +70,17 @@ class MainCharacterTest {
     }
 
     @Test
-    void level1ShouldWin() {
+    public void level1ShouldWin() {
         //case 1: 5 rewards and on location
         player.setLocation(Level1State.exitLocation.x, Level1State.exitLocation.y);
+        for (int i = 0; i < 5; i++){
+            player.addRewardCount();
+        }
         assertEquals(true, player.getLevel1Win());
     }
 
     @Test
-    void level1ShouldNotWin(){
+    public void level1ShouldNotWin(){
         //case 1: not 5 rewards and not on location
         assertEquals(false, player.getLevel1Win());
 
@@ -97,18 +97,18 @@ class MainCharacterTest {
     }
 
     @Test
-    void getScore(){
+    public void getScore(){
         assertEquals(0, player.getScore());
     }
 
     @Test
-    void getTime() {
+    public void getTime() {
         System.out.println(player.getTime());
         assertEquals(0, player.getTime());
     }
 
     @Test
-    void startAndStoppingThread() {
+    public void startAndStoppingThread() {
         player.start();
         assertTrue(player.getPlayerThread().isAlive());
         player.stop();

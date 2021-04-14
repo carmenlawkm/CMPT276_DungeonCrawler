@@ -1,16 +1,15 @@
 package input;
 
-import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.*;
+import static org.junit.Assert.assertEquals;
 
-
-class KeyInputTest {
+public class KeyInputTest {
 
     @Test
-    void shouldSetKeyPressed() {
+    public void shouldSetKeyPressed() {
         KeyInput k = new KeyInput();
         //setting to true
         k.setKeyPressed(true);
@@ -21,7 +20,7 @@ class KeyInputTest {
     }
 
     @Test
-    void shouldStoreKeyPressed(){
+    public void shouldStoreKeyPressed(){
         KeyInput k = new KeyInput();
         JPanel frame = new JPanel();
         frame.addKeyListener(k);

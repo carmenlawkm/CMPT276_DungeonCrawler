@@ -1,14 +1,13 @@
 package GameObjects;
 
 import World.World;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.*;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class BonusRewardTest {
+public class BonusRewardTest {
     private MainCharacter player;
     protected boolean notSteppedOn;
     private World world;
@@ -17,8 +16,9 @@ class BonusRewardTest {
     private BonusReward bonus;
     private int value;
     private int disappeartimer;
-    @BeforeEach
-    void setup(){
+
+    @Before
+    public void setup(){
         disappeartimer=5;
         world = new World("src/main/resources/Level1.txt");
         value=200;
@@ -26,26 +26,25 @@ class BonusRewardTest {
         player=new MainCharacter(world,playerSpawn);
         location=new Point(80,120);
         bonus=new BonusReward(world,location,value,disappeartimer,player);
+    }
 
-
+    @Test
+    public void getRandomtime(){
     }
     @Test
-    void getRandomtime(){
-    }
-    @Test
-    void run(){
-
-    }
-    @Test
-    void start(){
+    public void run(){
 
     }
     @Test
-    void stop(){
+    public void start(){
 
     }
     @Test
-    void update(){
+    public void stop(){
+
+    }
+    @Test
+    public void update(){
 
     }
 

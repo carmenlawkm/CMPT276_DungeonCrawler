@@ -1,15 +1,14 @@
 package input;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MouseInputTest {
+public class MouseInputTest {
     @Test
-    void shouldSetMousePressedandReleased(){
+    public void shouldSetMousePressedandReleased(){
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
@@ -34,7 +33,7 @@ class MouseInputTest {
     }
 
     @Test
-    void shouldSetMouseXandY(){
+    public void shouldSetMouseXandY(){
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
