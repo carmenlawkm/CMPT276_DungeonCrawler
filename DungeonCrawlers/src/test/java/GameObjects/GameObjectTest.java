@@ -4,7 +4,7 @@ import World.World;
 import org.junit.*;
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class GameObjectTest {
 

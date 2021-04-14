@@ -4,26 +4,27 @@ import GameObjects.*;
 import World.World;
 import com.sun.tools.javac.Main;
 import graphics.Assets;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class Level1StateTest {
+
+public class Level1StateTest {
     public Level1State level1state;
     private Game game;
     public static Point exitLocation = new Point (1120,560);
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         level1state = new Level1State();
         game = Game.getInstance();
 
     }
     @Test
-    void threadShouldStart(){
+    public void threadShouldStart(){
         MainCharacter player = level1state.getMainCharacter();
         Enemy enemy = level1state.getEnemy();
         BonusReward bonus1 = level1state.getBonusReward("bonus1");
@@ -36,7 +37,7 @@ class Level1StateTest {
 
     }
     @Test
-    void playerShouldDieLevel1(){
+    public void playerShouldDieLevel1(){
         ArrayList <GameObject> arrayList = level1state.getArrayList();
         BonusReward bonus1 = level1state.getBonusReward("bonus1");
         BonusReward bonus2 = level1state.getBonusReward("bonus2");
@@ -58,7 +59,7 @@ class Level1StateTest {
 
     }
     @Test
-    void playerShouldWinLevel1(){
+    public void playerShouldWinLevel1(){
         ArrayList <GameObject> arrayList = level1state.getArrayList();
         BonusReward bonus1 = level1state.getBonusReward("bonus1");
         BonusReward bonus2 = level1state.getBonusReward("bonus2");
@@ -82,7 +83,7 @@ class Level1StateTest {
     }
 
     @Test
-    void checkConstructorValues(){
+    public void checkConstructorValues(){
         Point playerSpawn = new Point(0,80);
 
         Point enemySpawn = new Point(1040,80);

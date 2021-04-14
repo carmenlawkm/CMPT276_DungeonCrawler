@@ -1,23 +1,25 @@
 package state;
 import graphics.Assets;
 import input.MouseInput;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-class MenuStateTest {
+import static org.junit.Assert.assertTrue;
+
+public class MenuStateTest {
     public Game game;
     public Image logo;
     public Image bg;
     public MenuState menustate;
     public Level1State level1;
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         game = Game.getInstance();
         menustate = new MenuState();
         level1 = new Level1State();
@@ -27,7 +29,7 @@ class MenuStateTest {
 
     }
     @Test
-    void updateTest(){
+    public void updateTest(){
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);

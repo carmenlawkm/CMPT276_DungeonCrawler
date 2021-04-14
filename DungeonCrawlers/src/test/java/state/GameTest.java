@@ -9,7 +9,8 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+
 
 public class GameTest {
 

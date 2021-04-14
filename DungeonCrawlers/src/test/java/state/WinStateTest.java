@@ -1,23 +1,25 @@
 package state;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.Before;
+import org.junit.Test;
 
-class WinStateTest {
+import static org.junit.Assert.assertFalse;
+
+
+public class WinStateTest {
     private Game game;
     private WinState winState;
 
 
-    @BeforeEach
-    void setup() {
+    @Before
+    public void setup() {
         game = Game.getInstance();
         winState = new WinState();
     }
 
     @Test
-    void update() {
+    public void update() {
         winState.update();
         assertFalse(game.getRunning());
     }
