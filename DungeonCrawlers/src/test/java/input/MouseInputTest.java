@@ -1,11 +1,12 @@
 package input;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 class MouseInputTest {
     @Test
