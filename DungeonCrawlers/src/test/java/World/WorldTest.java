@@ -69,7 +69,7 @@ public class WorldTest {
 
     @Test
     public void shouldGetOriginalTile() {
-        World world = new World("src/main/resources/fileTest.txt");
+        World world = new World("src/test/resources/fileTest.txt");
         //case: in bound and not null should return the corresponding Tile type with correct id
         int x = 0;
         int y = 0;
@@ -79,7 +79,7 @@ public class WorldTest {
     @Test
     public void shouldGetDefaultTile(){
         //need to test that loadWorld and loadFile correctly loads path first
-        World world = new World("src/main/resources/fileTest.txt");
+        World world = new World("src/test/resources/fileTest.txt");
         int x, y = 0;
         //case 1.1: -x should return floorTile (0)
         x = -1;

@@ -1,11 +1,11 @@
 package state;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 
 public class StateTest {
     private Game game;
@@ -18,7 +18,7 @@ public class StateTest {
         winState = new WinState();
     }
 
-    @AfterEach
+    @After
     public void teardown() {
         State.setState(null);
     }
@@ -35,7 +35,7 @@ public class StateTest {
     }
 
     @Test
-    void setState() {
+    public void setState() {
         State state = new MenuState();
         State.setState(state);
         assertEquals(state, State.getState());

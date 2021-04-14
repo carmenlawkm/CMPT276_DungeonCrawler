@@ -2,7 +2,7 @@ package state;
 
 import org.junit.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertFalse;
 
 public class GameOverStateTest {
 
