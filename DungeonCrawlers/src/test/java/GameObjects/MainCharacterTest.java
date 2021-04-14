@@ -1,71 +1,147 @@
 package GameObjects;
 
 import World.World;
-import com.sun.tools.javac.Main;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import World.Tile;
+
+import input.KeyInput;
+import org.junit.*;
 import state.Game;
 import state.Level1State;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainCharacterTest {
+public class MainCharacterTest {
 
     private World world;
     private Point playerSpawn;
     private MainCharacter player;
+    private Game game;
 
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         world = new World("src/main/resources/Level1.txt");
         playerSpawn = new Point(0,80);
         player = new MainCharacter(world, playerSpawn);
+        game = Game.getInstance();
     }
 
     @Test
-    void walkingOnNormalTiles() {
-        //up
+    public void walkingUp() {
+        //Press W key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_W);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
-        //down
+        //on normal tile
+        player.setLocation(80, 160);
+        player.update();
+        assertEquals(new Point(80, 160-Tile.TEXTUREHEIGHT), player.getLocation());
 
-        //left
+        //into barrier
+        player.setLocation(80, 80);
+        player.update();
+        assertEquals(new Point(80, 80), player.getLocation());
 
-        //right
+        //out-of-bounds
+        player.setLocation(0, 0);
+        player.update();
+        assertEquals(new Point(0, 0), player.getLocation());
     }
 
     @Test
-    void tryingToWalkIntoBarrier() {
-        //up
+    public void walkingDown() {
+        //Press S key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_S);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
-        //down
+        //on normal tile
+        player.setLocation(80, 80);
+        player.update();
+        assertEquals(new Point(80, 80+Tile.TEXTUREHEIGHT), player.getLocation());
 
-        //left
+        //into barrier
+        player.setLocation(80, 160);
+        player.update();
+        assertEquals(new Point(80, 160), player.getLocation());
 
-        //right
+        //out-of-bounds
+        player.setLocation(80, 720);
+        player.update();
+        assertEquals(new Point(80, 720), player.getLocation());
     }
 
     @Test
-    void tryingToWalkOffScreen() {
-        //up
+    public void walkingLeft() {
+        //Press A key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_A);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
-        //down
+        //on normal tile
+        player.setLocation(240, 160);
+        player.update();
+        assertEquals(new Point(240-Tile.TEXTUREWIDTH, 160), player.getLocation());
 
-        //left
+        //into barrier
+        player.setLocation(80, 160);
+        player.update();
+        assertEquals(new Point(80, 160), player.getLocation());
 
-        //right
+        //out-of-bounds
+        player.setLocation(0, 0);
+        player.update();
+        assertEquals(new Point(0, 0), player.getLocation());
+    }
+
+    @Test
+    public void walkingRight() {
+        //Press D key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_D);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
+
+        //on normal tile
+        player.setLocation(80, 80);
+        player.update();
+        assertEquals(new Point(80+Tile.TEXTUREWIDTH, 80), player.getLocation());
+
+        //into barrier
+        player.setLocation(560, 160);
+        player.update();
+        assertEquals(new Point(560, 160), player.getLocation());
+
+        //out-of-bounds
+        player.setLocation(1120, 160);
+        player.update();
+        assertEquals(new Point(1120, 160), player.getLocation());
     }
 
 
     @Test
-    void getRewardCount() {
+    public void getRewardCount() {
         assertTrue(player.getRewardCount() == 0);
     }
 
     @Test
-    void addRewardCount() {
+    public void addRewardCount() {
         int firstRewardCount = player.getRewardCount();
         player.addRewardCount();
         int newRewardCount = player.getRewardCount();
@@ -73,14 +149,17 @@ class MainCharacterTest {
     }
 
     @Test
-    void level1ShouldWin() {
+    public void level1ShouldWin() {
         //case 1: 5 rewards and on location
         player.setLocation(Level1State.exitLocation.x, Level1State.exitLocation.y);
+        for (int i = 0; i < 5; i++){
+            player.addRewardCount();
+        }
         assertEquals(true, player.getLevel1Win());
     }
 
     @Test
-    void level1ShouldNotWin(){
+    public void level1ShouldNotWin(){
         //case 1: not 5 rewards and not on location
         assertEquals(false, player.getLevel1Win());
 
@@ -97,18 +176,18 @@ class MainCharacterTest {
     }
 
     @Test
-    void getScore(){
+    public void getScore(){
         assertEquals(0, player.getScore());
     }
 
     @Test
-    void getTime() {
+    public void getTime() {
         System.out.println(player.getTime());
         assertEquals(0, player.getTime());
     }
 
     @Test
-    void startAndStoppingThread() {
+    public void startAndStoppingThread() {
         player.start();
         assertTrue(player.getPlayerThread().isAlive());
         player.stop();

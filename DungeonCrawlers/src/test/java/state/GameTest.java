@@ -1,70 +1,65 @@
 package state;
 
-import GameObjects.MainCharacter;
-import World.World;
-import graphics.Window;
 import input.KeyInput;
 import input.MouseInput;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 
-import java.awt.*;
+
+import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferStrategy;
+import java.awt.event.MouseEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GameTest {
+public class GameTest {
 
     public Game game;
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         game = Game.getInstance();
     }
 
-    //DOESN'T RUN FOR SOME REASON
     @Test
-    void areObjectsInitialized() {
-//        //test our public game objects before initialization
-//        assertEquals(null, game.gameState);
-//        assertEquals(null, game.menuState);
-//        assertEquals(null, game.gameOverState);
-//        assertEquals(null, game.winState);
-//
-//        game.initialize();
-//
-//        //check they have been initialized by the method
-//        assertTrue(game.gameState != null);
-//        assertTrue(game.menuState != null);
-//        assertTrue(game.gameOverState != null);
-//        assertTrue(game.winState != null);
+    public void setAndGetKeyInput() {
+        //create arbiturary key event
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        //testing any keys pressed
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_W);
+        k.keyPressed(keyEvent);
+
+        //set
+        game.setKeyInput(k);
+        //get
+        assertEquals(k, game.getKeyInput());
     }
 
     @Test
-    void setAndGetKeyInput() {
-        KeyInput keyInput = new KeyInput();
-        //haha
-        game.setKeyInput(keyInput);
-        assertEquals(keyInput, game.getKeyInput());
+    public void setAndGetMouseInput() {
+        //create arbrituary mouse event
+        MouseInput m = new MouseInput();
+        JPanel frame = new JPanel();
+        frame.addMouseListener(m);
+        MouseEvent mouseEvent = new MouseEvent(frame, 0,0, 0, 100, 100, 0,false);
+        m.mouseMoved(mouseEvent);
+
+        //set
+        game.setMouseClick(m);
+        //get
+        assertEquals(m, game.getMouseInput());
     }
 
     @Test
-    void setAndGetMouseInput() {
-        MouseInput mouseInput = new MouseInput();
-        game.setMouseClick(mouseInput);
-        assertEquals(mouseInput, game.getMouseInput());
-    }
-
-    @Test
-    void setGameNotRunning() {
+    public void setGameNotRunning() {
         Boolean running = false;
         game.setRunning(running);
         assertEquals(game.getRunning(), false);
     }
 
     @Test
-    void setGameRunning(){
+    public void setGameRunning(){
         Boolean running = true;
         game.setRunning(running);
         assertEquals(game.getRunning(), true);

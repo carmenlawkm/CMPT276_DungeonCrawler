@@ -2,15 +2,13 @@ package GameObjects;
 
 import World.Tile;
 import World.World;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.Test;
+import org.junit.*;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class EnemyTest {
+public class EnemyTest {
 
     private World world;
     private Point playerSpawn;
@@ -19,8 +17,8 @@ class EnemyTest {
     private MainCharacter player;
     private Enemy enemy;
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         world = new World("src/main/resources/Level1.txt");
         playerSpawn = new Point(0,80);
         player = new MainCharacter(world, playerSpawn);
@@ -31,13 +29,13 @@ class EnemyTest {
     }
 
     @Test
-    void isNotOnPlayer(){
+    public void isNotOnPlayer(){
         //initial spawn points are not the same
         assertFalse(enemy.isOnPlayer());
     }
 
     @Test
-    void isOnPlayer() {
+    public void isOnPlayer() {
         //move enemy to player, then check if true
         enemy.setLocation(0, 80);
         assertTrue(enemy.isOnPlayer());
@@ -45,7 +43,7 @@ class EnemyTest {
 
 
     @Test
-    void updatesLocationTowardsPlayer() {
+    public void updatesLocationTowardsPlayer() {
         //scenario 1: player is left, enemy moves left
         player.setLocation(80, 80);
         enemy.setLocation(400, 80);
@@ -72,16 +70,16 @@ class EnemyTest {
     }
 
     @Test
-    void doesNotUpdateLocationTowardsPlayer(){
+    public void doesNotUpdateLocationTowardsPlayer(){
         //only scenario: both x and y directions are un-walkable; enemy stays in place
-        player.setLocation(400, 80);
-        enemy.setLocation(160, 560);
+        player.setLocation(400, 480);
+        enemy.setLocation(160, 400);
         enemy.update();
-        assertEquals(new Point(160, 560), enemy.getLocation());
+        assertEquals(new Point(160, 400), enemy.getLocation());
     }
 
     @Test
-    void startAndStoppingThread() {
+    public void startAndStoppingThread() {
         enemy.start();
         assertTrue(enemy.getEnemyThread().isAlive());
         enemy.stop();

@@ -1,8 +1,7 @@
 package GameObjects;
 
 import World.World;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 
 import java.awt.*;
 
@@ -10,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class TrapTest {
+public class TrapTest {
     private World world;
     private Point playerSpawn;
     private MainCharacter player;
     private Trap trap;
 
 
-    @BeforeEach
-    void setup() {
+    @Before
+    public void setup() {
         world = new World("src/main/resources/Level1.txt");
         playerSpawn = new Point(0, 80);
         player = new MainCharacter(world, playerSpawn);
@@ -26,14 +25,14 @@ class TrapTest {
     }
 
     @Test
-    void updateWhenPlayerSameLocationAndTrapNotSteppedOn() {
+    public void updateWhenPlayerSameLocationAndTrapNotSteppedOn() {
         trap.update();
         assertEquals(-1, player.getScore());
         assertTrue(trap.steppedOn);
     }
 
     @Test
-    void updateWhenPlayerSameLocationAndTrapSteppedOn(){
+    public void updateWhenPlayerSameLocationAndTrapSteppedOn(){
         trap.update();
         assertEquals(-1, player.getScore());
         assertTrue(trap.steppedOn);
@@ -44,7 +43,7 @@ class TrapTest {
     }
 
     @Test
-    void updateWhenPlayerXDifferent(){
+    public void updateWhenPlayerXDifferent(){
         player.setLocation(1, 80);
 
         trap.update();
@@ -53,7 +52,7 @@ class TrapTest {
     }
 
     @Test
-    void updateWhenPlayerYDifferent(){
+    public void updateWhenPlayerYDifferent(){
         player.setLocation(0, 81);
 
         trap.update();

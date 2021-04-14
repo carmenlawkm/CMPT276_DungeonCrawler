@@ -2,14 +2,17 @@ package GameObjects;
 
 import World.World;
 import graphics.Assets;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
+import org.junit.*;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
-class BonusRewardTest {
+
+public class BonusRewardTest {
     private MainCharacter player;
     protected boolean notSteppedOn;
     private World world;
@@ -18,8 +21,9 @@ class BonusRewardTest {
     private BonusReward bonus;
     private int value;
     private int disappeartimer;
-    @BeforeEach
-    void setup(){
+
+    @Before
+    public void setup(){
         disappeartimer=5;
         world = new World("src/test/resources/fileTest.txt");
         value=200;
@@ -27,11 +31,10 @@ class BonusRewardTest {
         player=new MainCharacter(world,playerSpawn);
         location=new Point(80,120);
         bonus=new BonusReward(world,location,value,disappeartimer,player);
-
-
     }
+
     @Test
-    void StartandStopping(){
+    public void StartandStopping(){
         bonus.start();
         assertTrue(bonus.getBonusrewardthread().isAlive());
         bonus.stop();
@@ -40,7 +43,7 @@ class BonusRewardTest {
 
     }
     @Test
-    void PlayerisOnreward(){
+    public void PlayerisOnreward(){
         bonus.setLocation(80,120);
         player.setLocation(80,120);
         player.start();
@@ -53,10 +56,11 @@ class BonusRewardTest {
         }
         player.stop();
         bonus.stop();
+
     }
 
     @Test
-    void PlayerisNotOnReward(){
+    public void PlayerisNotOnReward(){
         player.start();
         bonus.start();
         bonus.setLocation(80,120);
@@ -72,7 +76,7 @@ class BonusRewardTest {
     }
 
     @Test
-    void RewardAfterTimeInterval(){
+    public void RewardAfterTimeInterval(){
         int randomtime=0;
         randomtime = bonus.getRandomtime();
         assertTrue(randomtime>=5&&randomtime<=30);

@@ -31,31 +31,31 @@ public class BonusReward extends RewardCell implements Runnable{
 
     @Override
     public void run() {
-        disappearTimer=0;
-        int randomtimer=0;
-        int actualvalue=value;
-        int flag=0;
-        randomtimer=getRandomtime();
+        disappearTimer = 0;
+        int randomtimer = 0;
+        int actualvalue = value;
+        int flag = 0;
+        randomtimer = getRandomtime();
         while(running){
-            if(player.getTime()<=randomtimer){
+            if(player.getTime() <= randomtimer){
                 this.image=Assets.rewardgone;
                 value=0;
             }
-            if(player.getTime()>=randomtimer&&disappearTimer<5&&flag==0){
-                this.image=Assets.specialReward;
-                value=actualvalue;
+            if(player.getTime() >= randomtimer && disappearTimer < 5 && flag == 0){
+                this.image = Assets.specialReward;
+                value = actualvalue;
                 disappearTimer++;
-                System.out.printf("disappear timer is %d\n",disappearTimer);
-                if(player.getX()==location.x&&player.getY()==location.y){
-                    player.score=player.score+value;
-                    this.image=Assets.rewardgone;
-                    value=0;
-                    flag=1;
+                //System.out.printf("disappear timer is %d\n",disappearTimer);
+                if(player.getX() == location.x && player.getY() == location.y){
+                    player.score = player.score+value;
+                    this.image = Assets.rewardgone;
+                    value = 0;
+                    flag = 1;
                 }
             }
-            else if(player.getTime()>=randomtimer&&disappearTimer>=5){
-                this.image=Assets.rewardgone;
-                value=0;
+            else if(player.getTime() >= randomtimer && disappearTimer >= 5){
+                this.image = Assets.rewardgone;
+                value = 0;
             }
             try {
                 Thread.sleep(1000);
@@ -69,8 +69,8 @@ public class BonusReward extends RewardCell implements Runnable{
     public synchronized void start(){
         if(running)
             return;
-        running=true;
-        bonusrewardthread=new Thread(this);
+        running = true;
+        bonusrewardthread = new Thread(this);
         bonusrewardthread.start();
 
     }

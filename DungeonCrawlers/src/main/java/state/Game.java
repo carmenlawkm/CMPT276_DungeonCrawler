@@ -35,7 +35,7 @@ public class Game{
      * @param height height size of the window to hold the game
      * @param title title of the game!
      */
-    public Game(int width, int height, String title) {
+    private Game(int width, int height, String title) {
         this.width = width;
         this.height = height;
         this.title = title;
@@ -143,5 +143,7 @@ public class Game{
     public boolean getRunning(){
         return this.running;
     }
+
+
 
 }

@@ -1,15 +1,15 @@
 package GameObjects;
 
 import World.World;
-import graphics.Assets;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static junit.framework.TestCase.assertTrue;
 
-class RegularRewardTest{
+
+public class RegularRewardTest{
         private int value;
         private MainCharacter player;
         protected boolean isTaken;
@@ -18,8 +18,8 @@ class RegularRewardTest{
         private Point location;
         private RegularReward reward;
 
-        @BeforeEach
-        void setup(){
+        @Before
+        public void setup(){
             value=50;
             isTaken=false;
             playerSpawn=new Point(240,80);
@@ -30,7 +30,9 @@ class RegularRewardTest{
         }
 
         @Test
-        void playeronReward(){
+
+        public void playeronReward(){
+
             //scenario one, player is on the reward
             player.setLocation(120,80);
             player.score=50;
@@ -41,7 +43,7 @@ class RegularRewardTest{
         }
 
         @Test
-        void playerisNotonReward(){
+        public void playerisNotonReward(){
             //scenario two, player is NOT on the reward
             reward.notTaken=true;
             player.setLocation(120,80);

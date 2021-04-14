@@ -2,14 +2,14 @@ package GameObjects;
 
 import java.awt.*;
 import World.World;
-import com.sun.tools.javac.Main;
 import graphics.Assets;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RewardCellTest {
+public class RewardCellTest {
     private int value;
     private MainCharacter player;
     protected boolean isTaken;
@@ -17,8 +17,8 @@ class RewardCellTest {
     private Point playerSpawn;
     private Point location;
     private RegularReward reward;
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         value=50;
         isTaken=false;
         playerSpawn=new Point(240,80);
@@ -30,7 +30,7 @@ class RewardCellTest {
     }
 
     @Test
-    void notTaken(){
+    public void notTaken(){
         //scenario one, player is on the reward
         player.setLocation(120,80);
         player.score=50;
