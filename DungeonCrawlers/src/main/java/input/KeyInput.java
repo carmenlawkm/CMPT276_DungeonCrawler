@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
  */
 public class KeyInput extends Component implements KeyListener{
     private int keyCode;
-    public boolean keyPressed;
+    private boolean keyPressed;
     public int up_W = KeyEvent.VK_W;
     public int left_A = KeyEvent.VK_A;
     public int down_S = KeyEvent.VK_S;
