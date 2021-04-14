@@ -25,7 +25,7 @@ public class BonusRewardTest {
 
 
     @Before
-    void setup(){
+    public void setup(){
         disappeartimer = 5;
         world = new World("src/test/resources/fileTest.txt");
         value = 200;
@@ -68,7 +68,7 @@ public class BonusRewardTest {
     }
 
     @Test
-    void PlayerisNotOnReward() {
+    public void PlayerisNotOnReward() {
         player.start();
         bonus.start();
         bonus.setLocation(80, 120);
@@ -83,7 +83,7 @@ public class BonusRewardTest {
     }
 
     @Test
-    void RewardAfterTimeInterval() {
+    public void RewardAfterTimeInterval() {
         int randomtime = 0;
         randomtime = bonus.getRandomtime();
         assertTrue(randomtime >= 5 && randomtime <= 30);
