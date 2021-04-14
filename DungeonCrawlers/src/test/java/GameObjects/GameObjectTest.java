@@ -1,56 +1,54 @@
 package GameObjects;
 
 import World.World;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import org.junit.*;
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GameObjectTest {
+public class GameObjectTest {
 
     private World world;
     private Point playerSpawn;
     private MainCharacter player;
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         world = new World("src/main/resources/Level1.txt");
         playerSpawn = new Point(0,80);
         player = new MainCharacter(world, playerSpawn);
     }
 
     @Test
-    void getLocation() {
+    public void getLocation() {
         Point point = new Point(0, 80);
         assertEquals(point, player.getLocation());
     }
 
     @Test
-    void getX() {
+    public void getX() {
         assertEquals(0, player.getX());
     }
 
     @Test
-    void getY() {
-        assertEquals(80, player.getLocation());
+    public void getY() {
+        assertEquals(80, player.getY());
     }
 
     @Test
-    void setLocation() {
+    public void setLocation() {
         player.setLocation(80, 80);
         assertEquals(new Point(80, 80), player.getLocation());
     }
 
     @Test
-    void isWalkable() {
+    public void isWalkable() {
         //from the map, we know 0, 80 is walkable
         assertTrue(player.isWalkable(new Point(0, 80)));
     }
 
     @Test
-    void isNotWalkable(){
+    public void isNotWalkable(){
         //we know that 0, 160 is a barrier
         assertFalse(player.isWalkable(new Point(0, 160)));
     }

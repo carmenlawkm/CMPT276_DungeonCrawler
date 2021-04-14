@@ -1,31 +1,25 @@
 package state;
 
-import GameObjects.MainCharacter;
-import World.World;
-import graphics.Window;
 import input.KeyInput;
 import input.MouseInput;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferStrategy;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GameTest {
+public class GameTest {
 
     public Game game;
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         game = Game.getInstance();
     }
 
     //DOESN'T RUN FOR SOME REASON
     @Test
-    void areObjectsInitialized() {
+    public void areObjectsInitialized() {
 //        //test our public game objects before initialization
 //        assertEquals(null, game.gameState);
 //        assertEquals(null, game.menuState);
@@ -42,7 +36,7 @@ class GameTest {
     }
 
     @Test
-    void setAndGetKeyInput() {
+    public void setAndGetKeyInput() {
         KeyInput keyInput = new KeyInput();
         //haha
         game.setKeyInput(keyInput);
@@ -50,21 +44,21 @@ class GameTest {
     }
 
     @Test
-    void setAndGetMouseInput() {
+    public void setAndGetMouseInput() {
         MouseInput mouseInput = new MouseInput();
         game.setMouseClick(mouseInput);
         assertEquals(mouseInput, game.getMouseInput());
     }
 
     @Test
-    void setGameNotRunning() {
+    public void setGameNotRunning() {
         Boolean running = false;
         game.setRunning(running);
         assertEquals(game.getRunning(), false);
     }
 
     @Test
-    void setGameRunning(){
+    public void setGameRunning(){
         Boolean running = true;
         game.setRunning(running);
         assertEquals(game.getRunning(), true);

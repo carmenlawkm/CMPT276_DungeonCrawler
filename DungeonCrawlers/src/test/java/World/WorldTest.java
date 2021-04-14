@@ -1,11 +1,12 @@
 package World;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.*;
 
-class WorldTest {
+import static org.junit.Assert.assertEquals;
+
+public class WorldTest {
 
     @Test
-    void shouldLoadFile() {
+    public void shouldLoadFile() {
         assertEquals("15 10\n" +
                 "0 0\n" +
                 "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\n" +
@@ -21,7 +22,7 @@ class WorldTest {
     }
 
     @Test
-    void shouldConvertStringToInt() {
+    public void shouldConvertStringToInt() {
         //should correctly convert string into integer
         assertEquals(10,World.stringToInt("10"));
     }
@@ -29,7 +30,7 @@ class WorldTest {
 
     //testing constructor & loadWorld
     @Test
-    void shouldCreateWorld(){
+    public void shouldCreateWorld(){
         //loadTest passed
         World world = new World("src/test/resources/fileTest.txt");
         //check width, height has been assigned correctly
@@ -67,7 +68,7 @@ class WorldTest {
     }
 
     @Test
-    void shouldGetOriginalTile() {
+    public void shouldGetOriginalTile() {
         World world = new World("src/main/resources/fileTest.txt");
         //case: in bound and not null should return the corresponding Tile type with correct id
         int x = 0;
@@ -76,7 +77,7 @@ class WorldTest {
     }
 
     @Test
-    void shouldGetDefaultTile(){
+    public void shouldGetDefaultTile(){
         //need to test that loadWorld and loadFile correctly loads path first
         World world = new World("src/main/resources/fileTest.txt");
         int x, y = 0;

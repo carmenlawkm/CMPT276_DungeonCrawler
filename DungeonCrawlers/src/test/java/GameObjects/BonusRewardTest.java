@@ -3,12 +3,11 @@ package GameObjects;
 import World.World;
 import org.junit.Test;
 import org.junit.*;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.awt.*;
 
 
-class BonusRewardTest {
+public class BonusRewardTest {
     private MainCharacter player;
     protected boolean notSteppedOn;
     private World world;
@@ -18,8 +17,8 @@ class BonusRewardTest {
     private int value;
     private int disappeartimer;
 
-    @BeforeEach
-    void setup(){
+    @Before
+    public void setup(){
         disappeartimer=5;
         world = new World("src/main/resources/Level1.txt");
         value=200;
@@ -30,22 +29,22 @@ class BonusRewardTest {
     }
 
     @Test
-    void getRandomtime(){
+    public void getRandomtime(){
     }
     @Test
-    void run(){
+    public void run(){
 
     }
     @Test
-    void start(){
+    public void start(){
 
     }
     @Test
-    void stop(){
+    public void stop(){
 
     }
     @Test
-    void update(){
+    public void update(){
 
     }
 
