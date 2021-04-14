@@ -36,7 +36,7 @@ public class BonusRewardTest {
     }
 
     @Test
-    void StartandStopping() {
+    public void StartandStopping() {
         bonus.start();
         assertTrue(bonus.getBonusrewardthread().isAlive());
         bonus.stop();
