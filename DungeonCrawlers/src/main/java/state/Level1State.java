@@ -67,7 +67,6 @@ public class Level1State extends State{
         gameObjects.add(new Trap(world, trap4Spawn, 100, player));
         gameObjects.add(new Trap(world, trap6Spawn, 100, player));
         gameObjects.add(new Trap(world, trap7Spawn, 100, player));
-
     }
 
     /**
@@ -87,7 +86,7 @@ public class Level1State extends State{
     public void update(){
 
         for(GameObject object: gameObjects){
-            object.update();
+            object.update   ();
         }
 
         if(player.getScore() < 0 || enemy.isOnPlayer()){
@@ -128,5 +127,19 @@ public class Level1State extends State{
         g.drawString("Coins collected> "+player.getRewardCount()+"/5", 600, 60);
         g.drawString("Time "+player.getTime()+" s",50,770);
 
+    }
+
+    public GameObject getGameObject(String userInput){
+        if (userInput == "player"){
+            return player;
+        }
+
+        if (userInput == "enemy"){
+            return enemy;
+        }
+
+        //etc etc..
+
+        return null;
     }
 }
