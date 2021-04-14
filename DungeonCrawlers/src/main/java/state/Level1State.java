@@ -86,7 +86,7 @@ public class Level1State extends State{
     public void update(){
 
         for(GameObject object: gameObjects){
-            object.update   ();
+            object.update();
         }
 
         if(player.getScore() < 0 || enemy.isOnPlayer()){
