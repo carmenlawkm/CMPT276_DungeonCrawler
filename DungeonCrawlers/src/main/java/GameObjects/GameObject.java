@@ -81,7 +81,6 @@ public abstract class GameObject{
     public boolean isWalkable(Point nextLocation){
         nextTile = world.getTile(nextLocation.x/tileSize , nextLocation.y /tileSize);
         if(nextTile.getID() == 1){
-            System.out.println("can't walk there!");
             return false;
         }else{
             return true;
