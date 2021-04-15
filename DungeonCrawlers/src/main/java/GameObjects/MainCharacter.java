@@ -57,14 +57,8 @@ public class MainCharacter extends GameObject implements Runnable{
                 if(isWalkable(nextLocation) && nextLocation.x <= 1120){
                     location.x +=tileSize;
                 }
-            }else{
-                nextLocation.x = location.x;
-                nextLocation.y = location.y;
             }
             game.getKeyInput().setKeyPressed(false);
-        }else{
-            nextLocation.x = location.x;
-            nextLocation.y = location.y;
         }
     }
 

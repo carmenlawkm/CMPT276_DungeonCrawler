@@ -134,6 +134,13 @@ public class MainCharacterTest {
         assertEquals(new Point(1120, 160), player.getLocation());
     }
 
+    @Test
+    public void notWalking(){
+        player.setLocation(80, 80);
+        player.update();
+        assertEquals(new Point(80, 80), player.getLocation());
+    }
+
 
     @Test
     public void getRewardCount() {
@@ -190,6 +197,24 @@ public class MainCharacterTest {
     public void startAndStoppingThread() {
         player.start();
         assertTrue(player.getPlayerThread().isAlive());
+        player.stop();
+        assertFalse(player.getPlayerThread().isAlive());
+    }
+
+    @Test
+    public void startingStartedThread() {
+        player.start();
+        assertTrue(player.getPlayerThread().isAlive());
+        player.start();
+        assertTrue(player.getPlayerThread().isAlive());
+    }
+
+    @Test
+    public void stoppingStoppedThread() {
+        player.start();
+        assertTrue(player.getPlayerThread().isAlive());
+        player.stop();
+        assertFalse(player.getPlayerThread().isAlive());
         player.stop();
         assertFalse(player.getPlayerThread().isAlive());
     }
