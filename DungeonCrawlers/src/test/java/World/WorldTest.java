@@ -77,28 +77,53 @@ public class WorldTest {
     }
 
     @Test
-    public void shouldGetDefaultTile(){
+    public void shouldGetXFloorTile(){
         //need to test that loadWorld and loadFile correctly loads path first
         World world = new World("src/test/resources/fileTest.txt");
-        int x, y = 0;
+        int x = 0, y = 0;
         //case 1.1: -x should return floorTile (0)
         x = -1;
         assertEquals(Tile.floorTile, world.getTile(x,y));
+    }
+
+    @Test
+    public void shouldGetYFloorTile(){
+        //need to test that loadWorld and loadFile correctly loads path first
+        World world = new World("src/test/resources/fileTest.txt");
+        int x = 0, y = 0;
         //case 1.2: -y should return floorTile (0)
         y = -1;
         assertEquals(Tile.floorTile, world.getTile(x,y));
+    }
+
+    @Test
+    public void shouldGetXOutOfBoundFloorTile(){
+        //need to test that loadWorld and loadFile correctly loads path first
+        World world = new World("src/test/resources/fileTest.txt");
+        int x = 0, y = 0;
         //case 1.3: out of bound array width should return floorTile (0)
         x = 100;
         assertEquals(Tile.floorTile, world.getTile(x,y));
+    }
+
+    @Test
+    public void shouldGetYOutOfBoundFloorTile(){
+        //need to test that loadWorld and loadFile correctly loads path first
+        World world = new World("src/test/resources/fileTest.txt");
+        int x = 0, y = 0;
         //case 1.4: out of bound array height should return floorTile (0)
         y = 100;
         assertEquals(Tile.floorTile, world.getTile(x,y));
+    }
+
+    @Test
+    public void nullTileShouldGetFloorTile(){
+        //need to test that loadWorld and loadFile correctly loads path first
+        World world = new World("src/test/resources/fileTest.txt");
+        int x = 0, y = 0;
         //case 1.5: returned Tile is null should default to floorTile(0)
         y = 7;
         x = 11;
         assertEquals(Tile.floorTile, world.getTile(x,y));
     }
-
-
-
 }
