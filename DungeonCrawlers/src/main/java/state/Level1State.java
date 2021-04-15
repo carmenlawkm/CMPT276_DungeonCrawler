@@ -153,18 +153,4 @@ public class Level1State extends State{
         g.drawString("Time "+player.getTime()+" s",50,770);
 
     }
-
-    public GameObject getGameObject(String userInput){
-        if (userInput == "player"){
-            return player;
-        }
-
-        if (userInput == "enemy"){
-            return enemy;
-        }
-
-        //etc etc..
-
-        return null;
-    }
 }

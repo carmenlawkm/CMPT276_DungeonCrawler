@@ -9,9 +9,10 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.*;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class MenuStateTest {
+public  class MenuStateTest {
     public Game game;
     public Image logo;
     public Image bg;
@@ -30,6 +31,10 @@ public class MenuStateTest {
     }
     @Test
     public void updateTest(){
+        //not mouseclick
+        menustate.update();
+        assertFalse(State.getState()==game.gameState);
+
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
@@ -39,9 +44,6 @@ public class MenuStateTest {
         assertTrue(game.getMouseInput().isLeftPressed());
         menustate.update();
         assertTrue(State.getState()==game.gameState);
-
-
-
     }
 
 }

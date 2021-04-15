@@ -16,6 +16,7 @@ public class MouseInputTest {
         MouseEvent mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_CLICKED, 0,MouseEvent.BUTTON1_MASK, 100, 100, 1,false);
         m.mousePressed(mouseEvent);
         assertEquals(true,m.isLeftPressed());
+
         //testing change to release for left
         mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_RELEASED, 0,MouseEvent.BUTTON1_MASK, 100, 100, 1,false);
         m.mouseReleased(mouseEvent);
@@ -25,11 +26,11 @@ public class MouseInputTest {
         mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_CLICKED, 0,MouseEvent.BUTTON3_MASK, 100, 100, 1,false);
         m.mousePressed(mouseEvent);
         assertEquals(true,m.isRightPressed());
+
         //testing change to release for right
         mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_RELEASED, 0,MouseEvent.BUTTON3_MASK, 100, 100, 1,false);
         m.mouseReleased(mouseEvent);
         assertEquals(false,m.isRightPressed());
-
     }
 
     @Test

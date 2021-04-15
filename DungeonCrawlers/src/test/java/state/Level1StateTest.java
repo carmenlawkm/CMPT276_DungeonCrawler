@@ -139,6 +139,9 @@ public class Level1StateTest {
         assertEquals(bonus1.getLocation(),bonusReward1Spawn);
         assertEquals(bonus2.getLocation(),bonusReward2Spawn);
 
+        BonusReward nullBonus = level1state.getBonusReward("false input");
+        assertNull(nullBonus);
+
     }
 
 
