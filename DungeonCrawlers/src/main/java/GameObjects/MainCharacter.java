@@ -122,6 +122,8 @@ public class MainCharacter extends GameObject implements Runnable{
         return score;
     }
 
+    public void setScore(int score) {this.score = score;}
+
     /**
      * starts player thread
      */
