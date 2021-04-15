@@ -22,13 +22,20 @@ public class TrapTest {
         trap = new Trap(world, new Point(0, 80), 1, player);
     }
 
+
+
+    /** ***
+     * Check that update decreases player score when player and trap in the same location and trap not stepped on
+    * */
     @Test
     public void updateWhenPlayerSameLocationAndTrapNotSteppedOn() {
         trap.update();
         assertEquals(-1, player.getScore());
         assertTrue(trap.steppedOn);
     }
-
+    /** ***
+     * Check that update decreases player score when player and trap in the same location and trap stepped on
+     * */
     @Test
     public void updateWhenPlayerSameLocationAndTrapSteppedOn(){
         trap.update();
@@ -39,7 +46,9 @@ public class TrapTest {
         trap.update();
         assertEquals(-1, player.getScore());
     }
-
+    /** ***
+     * Check that update does not decrease player score when player at different X
+     * */
     @Test
     public void updateWhenPlayerXDifferent(){
         player.setLocation(1, 80);
@@ -49,6 +58,9 @@ public class TrapTest {
         assertFalse(trap.steppedOn);
     }
 
+    /** ***
+     * Check that update does not decrease player score when player at different Y
+     * */
     @Test
     public void updateWhenPlayerYDifferent(){
         player.setLocation(0, 81);
