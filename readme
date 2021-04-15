@@ -16,7 +16,7 @@ ___________________________________________________________________
 Tutorial
 
 Control
--WASD for movement (The last input before the next take will be taken)
+-WASD for movement (The last input before the next tick will be taken)
 -Click the left button to start the game (from the menu)
 
 Information:
