@@ -31,7 +31,7 @@ public class MainCharacterTest {
     }
 
     @Test
-    public void walkingUp() {
+    public void walkingUpToNormalTile() {
         //Press W key
         KeyInput k = new KeyInput();
         JPanel frame = new JPanel();
@@ -44,11 +44,33 @@ public class MainCharacterTest {
         player.setLocation(80, 160);
         player.update();
         assertEquals(new Point(80, 160-Tile.TEXTUREHEIGHT), player.getLocation());
+    }
+
+    @Test
+    public void walkingUpToBarrier() {
+        //Press W key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_W);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
         //into barrier
         player.setLocation(80, 80);
         player.update();
         assertEquals(new Point(80, 80), player.getLocation());
+    }
+
+    @Test
+    public void walkingUpOutOfBounds() {
+        //Press W key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_W);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
         //out-of-bounds
         player.setLocation(0, 0);
@@ -57,7 +79,7 @@ public class MainCharacterTest {
     }
 
     @Test
-    public void walkingDown() {
+    public void walkingDownOnNormalTile() {
         //Press S key
         KeyInput k = new KeyInput();
         JPanel frame = new JPanel();
@@ -70,11 +92,33 @@ public class MainCharacterTest {
         player.setLocation(80, 80);
         player.update();
         assertEquals(new Point(80, 80+Tile.TEXTUREHEIGHT), player.getLocation());
+    }
+
+    @Test
+    public void walkingDownOnBarrier() {
+        //Press S key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_S);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
         //into barrier
         player.setLocation(80, 160);
         player.update();
         assertEquals(new Point(80, 160), player.getLocation());
+    }
+
+    @Test
+    public void walkingDownOutOfBounds() {
+        //Press S key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_S);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
         //out-of-bounds
         player.setLocation(80, 720);
@@ -83,7 +127,7 @@ public class MainCharacterTest {
     }
 
     @Test
-    public void walkingLeft() {
+    public void walkingLeftOnNormalTiler() {
         //Press A key
         KeyInput k = new KeyInput();
         JPanel frame = new JPanel();
@@ -96,11 +140,33 @@ public class MainCharacterTest {
         player.setLocation(240, 160);
         player.update();
         assertEquals(new Point(240-Tile.TEXTUREWIDTH, 160), player.getLocation());
+    }
+
+    @Test
+    public void walkingLeftToBarrier() {
+        //Press A key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_A);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
         //into barrier
         player.setLocation(80, 160);
         player.update();
         assertEquals(new Point(80, 160), player.getLocation());
+    }
+
+    @Test
+    public void walkingLeftOutOfBounds() {
+        //Press A key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_A);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
         //out-of-bounds
         player.setLocation(0, 0);
@@ -109,7 +175,7 @@ public class MainCharacterTest {
     }
 
     @Test
-    public void walkingRight() {
+    public void walkingRightOnTile() {
         //Press D key
         KeyInput k = new KeyInput();
         JPanel frame = new JPanel();
@@ -127,6 +193,38 @@ public class MainCharacterTest {
         player.setLocation(560, 160);
         player.update();
         assertEquals(new Point(560, 160), player.getLocation());
+
+        //out-of-bounds
+        player.setLocation(1120, 160);
+        player.update();
+        assertEquals(new Point(1120, 160), player.getLocation());
+    }
+
+    @Test
+    public void walkingRightIntoBarrier() {
+        //Press D key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_D);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
+
+        //into barrier
+        player.setLocation(560, 160);
+        player.update();
+        assertEquals(new Point(560, 160), player.getLocation());
+    }
+
+    @Test
+    public void walkingRightOutOfBounds() {
+        //Press D key
+        KeyInput k = new KeyInput();
+        JPanel frame = new JPanel();
+        frame.addKeyListener(k);
+        KeyEvent keyEvent = new KeyEvent(frame,KeyEvent.KEY_PRESSED,0,0, KeyEvent.VK_D);
+        k.keyPressed(keyEvent);
+        game.setKeyInput(k);
 
         //out-of-bounds
         player.setLocation(1120, 160);
@@ -166,14 +264,20 @@ public class MainCharacterTest {
     }
 
     @Test
-    public void level1ShouldNotWin(){
+    public void playerDoesNotCollect5RewardsAndDoesNotExit(){
         //case 1: not 5 rewards and not on location
         assertEquals(false, player.getLevel1Win());
+    }
 
+    @Test
+    public void playerDoesNotCollect5RewardsAndExits(){
         //case 2: not 5 rewards but on location
         player.setLocation(Level1State.exitLocation.x, Level1State.exitLocation.y);
         assertEquals(false, player.getLevel1Win());
+    }
 
+    @Test
+    public void playerCollects5RewardsButDoesNotExit(){
         //case 3: 5 rewards but not on location
         for (int i = 0; i < 5; i++){
             player.addRewardCount();

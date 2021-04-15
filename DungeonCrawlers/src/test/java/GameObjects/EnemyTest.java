@@ -43,25 +43,34 @@ public class EnemyTest {
 
 
     @Test
-    public void updatesLocationTowardsPlayer() {
+    public void movesLeftTowardsPlayer() {
         //scenario 1: player is left, enemy moves left
         player.setLocation(80, 80);
         enemy.setLocation(400, 80);
         enemy.update();
         assertEquals(new Point(400 - Tile.TEXTUREWIDTH, 80), enemy.getLocation());
+    }
 
+    @Test
+    public void movesRightTowardsPlayer() {
         //scenario 2: player is right, enemy moves right
         player.setLocation(400, 80);
         enemy.setLocation(80, 80);
         enemy.update();
         assertEquals(new Point(80 + Tile.TEXTUREWIDTH, 80), enemy.getLocation());
+    }
 
+    @Test
+    public void movesUpTowardsPlayer() {
         //scenario 3: player is above, x is un-walkable, enemy moves up
         player.setLocation(40, 40);
         enemy.setLocation(160, 240);
         enemy.update();
         assertEquals(new Point(160, 240 - Tile.TEXTUREWIDTH), enemy.getLocation());
+    }
 
+    @Test
+    public void movesDownTowardsPlayer() {
         //scenario 4: player is below, x is un-walkable, enemy moves down
         player.setLocation(400, 280);
         enemy.setLocation(160, 240);

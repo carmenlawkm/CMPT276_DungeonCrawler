@@ -30,7 +30,7 @@ public class RewardCellTest {
     }
 
     @Test
-    public void notTaken(){
+    public void playerOnReward(){
         //scenario one, player is on the reward
         player.setLocation(120,80);
         player.score=50;
@@ -40,7 +40,10 @@ public class RewardCellTest {
         assertTrue(reward.notTaken==false);
         assertTrue(reward.image== Assets.rewardgone);
         assertTrue(player.score==100);
+    }
 
+    @Test
+    public void playerNotOnReward(){
         //scenario two, player is NOT on the reward
         reward.notTaken=true;
         reward.value=50;
@@ -52,7 +55,6 @@ public class RewardCellTest {
         assertTrue(reward.notTaken==true);
         assertTrue(reward.image==Assets.regularReward);
         assertTrue(player.score==50);
-
     }
 
 }

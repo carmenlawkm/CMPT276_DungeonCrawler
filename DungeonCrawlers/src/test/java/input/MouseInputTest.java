@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MouseInputTest {
     @Test
-    public void shouldSetMousePressedandReleased(){
+    public void clickAndReleasingLeftClick(){
         MouseInput m = new MouseInput();
         JPanel frame = new JPanel();
         frame.addMouseListener(m);
@@ -21,9 +21,16 @@ public class MouseInputTest {
         mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_RELEASED, 0,MouseEvent.BUTTON1_MASK, 100, 100, 1,false);
         m.mouseReleased(mouseEvent);
         assertEquals(false,m.isLeftPressed());
+    }
+
+    @Test
+    public void clickAndReleasingRightClick(){
+        MouseInput m = new MouseInput();
+        JPanel frame = new JPanel();
+        frame.addMouseListener(m);
 
         //testing right click
-        mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_CLICKED, 0,MouseEvent.BUTTON3_MASK, 100, 100, 1,false);
+        MouseEvent mouseEvent = new MouseEvent(frame,MouseEvent.MOUSE_CLICKED, 0,MouseEvent.BUTTON3_MASK, 100, 100, 1,false);
         m.mousePressed(mouseEvent);
         assertEquals(true,m.isRightPressed());
 

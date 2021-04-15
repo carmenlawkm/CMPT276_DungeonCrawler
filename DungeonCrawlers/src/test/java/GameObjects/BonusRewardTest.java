@@ -36,16 +36,6 @@ public class BonusRewardTest {
     }
 
     @Test
-    public void StartandStopping() {
-        bonus.start();
-        assertTrue(bonus.getBonusrewardthread().isAlive());
-        bonus.stop();
-        assertFalse(bonus.getBonusrewardthread().isAlive());
-
-
-    }
-
-    @Test
     public void PlayerisOnreward() {
         player.setLocation(bonus.getX(), bonus.getY());
         player.setTimepassed(50);
