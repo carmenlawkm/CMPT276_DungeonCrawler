@@ -30,16 +30,24 @@ public class RegularRewardTest{
         }
 
         @Test
+        public void playerOnRewardAndRewardCollected(){
+            //scenario one, player is on the reward
+            player.setLocation(120,80);
+            player.score=50;
+            reward.setLocation(120,80);
+            reward.notTaken=false;
+            reward.update();
+            assertTrue(player.getScore()==50);
+        }
 
-        public void playeronReward(){
-
+        @Test
+        public void playeronRewardAndRewardNotCollected(){
             //scenario one, player is on the reward
             player.setLocation(120,80);
             player.score=50;
             reward.setLocation(120,80);
             reward.update();
             assertTrue(reward.notTaken==false);
-
         }
 
         @Test
@@ -51,7 +59,8 @@ public class RegularRewardTest{
             reward.setLocation(80,80);
             reward.update();
             assertTrue(reward.notTaken==true);
-
         }
+
+
 
 }
