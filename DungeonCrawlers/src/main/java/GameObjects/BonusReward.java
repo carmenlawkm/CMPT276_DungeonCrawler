@@ -45,7 +45,6 @@ public class BonusReward extends RewardCell implements Runnable {
                 this.image = Assets.specialReward;
                 value = actualvalue;
                 disappearTimer++;
-                System.out.printf("disappear timer is %d\n", disappearTimer);
                 if (player.getX() == location.x && player.getY() == location.y) {
                     player.setScore(player.score + value);
                     this.image = Assets.rewardgone;

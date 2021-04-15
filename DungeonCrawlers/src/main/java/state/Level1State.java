@@ -96,7 +96,6 @@ public class Level1State extends State{
             bonus1.stop();
             bonus2.stop();
             State.setState(game.gameOverState);
-            System.out.println("setting state to game over");
         }
 
         if(player.getLevel1Win()) {

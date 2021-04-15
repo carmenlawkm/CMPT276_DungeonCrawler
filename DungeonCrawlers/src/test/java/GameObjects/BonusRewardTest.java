@@ -65,7 +65,6 @@ public class BonusRewardTest {
         player.setLocation(120, 120);
         player.setTimepassed(25);
         if (player.getTime() == 25) {
-            System.out.printf("hi");
             assertTrue(player.score == 0);
         }
         player.stop();
