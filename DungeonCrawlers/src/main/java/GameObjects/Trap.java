@@ -24,6 +24,11 @@ public class Trap extends GameObject {
         this.player = player;
     }
 
+    /**
+     * Update reduces the player's score by the trap's deduction value if player location same as trap location
+     * and trap has not yet been stepped on
+     *
+     */
     public void update() {
         if (player.getX() == location.x && player.getY() == location.y && !steppedOn) {
             player.score = player.score - deductionValue;
