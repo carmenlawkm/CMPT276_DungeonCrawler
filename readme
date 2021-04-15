@@ -1,6 +1,19 @@
-**CMPT276 - Dungeon Crawler**
-
+CMPT276 - Dungeon Crawler by Group 13
 ___________________________________________________________________
+
+Instructions to Building the Game in Maven
+-Use Maven LifeCycle: clean -> validate -> compile
+___________________________________________________________________
+
+Instructions to Running the Game
+-Please run the file in DungeonCrawler/src/main/java/graphics/Launcher to open the game
+___________________________________________________________________
+
+Test Automation in Maven
+-To test the game, please use Maven LifeCycle: clean -> test
+___________________________________________________________________
+
+Tutorial
 
 Control
 -WASD for movement (The last input before the next take will be taken)
