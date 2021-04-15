@@ -85,4 +85,22 @@ public class EnemyTest {
         enemy.stop();
         assertFalse(enemy.getEnemyThread().isAlive());
     }
+
+    @Test
+    public void startingStartedThread() {
+        enemy.start();
+        assertTrue(enemy.getEnemyThread().isAlive());
+        enemy.start();
+        assertTrue(enemy.getEnemyThread().isAlive());
+    }
+
+    @Test
+    public void stoppingStoppedThread() {
+        enemy.start();
+        assertTrue(enemy.getEnemyThread().isAlive());
+        enemy.stop();
+        assertFalse(enemy.getEnemyThread().isAlive());
+        enemy.stop();
+        assertFalse(enemy.getEnemyThread().isAlive());
+    }
 }

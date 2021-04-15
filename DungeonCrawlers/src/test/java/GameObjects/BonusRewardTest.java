@@ -88,4 +88,31 @@ public class BonusRewardTest {
         randomtime = bonus.getRandomtime();
         assertTrue(randomtime >= 5 && randomtime <= 30);
     }
+
+    @Test
+    public void startAndStoppingThread() {
+        bonus.start();
+        Assert.assertTrue(bonus.getBonusrewardthread().isAlive());
+        bonus.stop();
+        Assert.assertFalse(bonus.getBonusrewardthread().isAlive());
+    }
+
+    @Test
+    public void startingStartedThread() {
+        bonus.start();
+        Assert.assertTrue(bonus.getBonusrewardthread().isAlive());
+        bonus.start();
+        Assert.assertTrue(bonus.getBonusrewardthread().isAlive());
+    }
+
+    @Test
+    public void stoppingStoppedThread() {
+        bonus.start();
+        Assert.assertTrue(bonus.getBonusrewardthread().isAlive());
+        bonus.stop();
+        Assert.assertFalse(bonus.getBonusrewardthread().isAlive());
+        bonus.stop();
+        Assert.assertFalse(bonus.getBonusrewardthread().isAlive());
+    }
+
 }
