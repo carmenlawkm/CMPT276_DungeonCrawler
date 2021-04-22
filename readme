@@ -13,6 +13,16 @@ Test Automation in Maven
 -To test the game, please use Maven LifeCycle: clean -> test
 ___________________________________________________________________
 
+Instructions to generate jar file
+-To obtain the jar file, please use Maven LifeCycle: Package
+-The resulting file can be found in DungeonCrawlers/src/target
+___________________________________________________________________
+
+Instructions to generate javadoc documentation
+-To obtain the javadoc jar file, please use Maven LifeCycle: Package
+-The resulting file can be found in DungeonCrawlers/src/target
+___________________________________________________________________
+
 Tutorial
 
 Control
